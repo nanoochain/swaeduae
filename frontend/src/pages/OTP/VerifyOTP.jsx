@@ -1,20 +1,31 @@
 import React, { useState } from 'react';
-import { verifyOTP } from '@/services/api';
+import { verifyOTP } from '../../services/api';
 
 export default function VerifyOTP() {
-  const [phone, setPhone] = useState('');
-  const [code, setCode] = useState('');
+  const [otp, setOtp] = useState('');
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await verifyOTP(phone, code);
-    alert(res.message);
+    const result = await verifyOTP({ otp });
+    if (result.success) {
+      alert('OTP Verified!');
+      window.location.href = '/dashboard';
+    } else {
+      alert('Invalid OTP');
+    }
   };
+
   return (
     <form onSubmit={handleSubmit} className="p-4">
       <h2 className="text-xl font-bold mb-2">Verify OTP</h2>
-      <input placeholder="Phone" value={phone} onChange={e => setPhone(e.target.value)} />
-      <input placeholder="Code" value={code} onChange={e => setCode(e.target.value)} />
-      <button className="btn btn-primary">Verify</button>
+      <input
+        type="text"
+        value={otp}
+        onChange={(e) => setOtp(e.target.value)}
+        placeholder="Enter OTP"
+        className="border p-2 rounded mr-2"
+      />
+      <button type="submit" className="btn btn-primary">Verify</button>
     </form>
   );
 }

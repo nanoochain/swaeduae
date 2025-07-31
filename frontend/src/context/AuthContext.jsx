@@ -1,43 +1,34 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
 
-const AuthContext = createContext();
+// Named context
+export const AuthContext = createContext(null);
 
-export const useAuth = () => useContext(AuthContext);
+// useAuth custom hook
+export function useAuth() {
+  return useContext(AuthContext);
+}
 
-export const AuthProvider = ({ children }) => {
+export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
-  const login = async (email, password) => {
-    const res = await axios.post('/login', { email, password });
-    localStorage.setItem('token', res.data.token);
-    setUser(res.data.user);
-  };
+  useEffect(() => {
+    const saved = localStorage.getItem('user');
+    if (saved) setUser(JSON.parse(saved));
+  }, []);
 
-  const signup = async (username, email, password) => {
-    const res = await axios.post('/signup', { username, email, password });
-    localStorage.setItem('token', res.data.token);
-    setUser(res.data.user);
+  const login = (userData) => {
+    setUser(userData);
+    localStorage.setItem('user', JSON.stringify(userData));
   };
 
   const logout = () => {
-    localStorage.removeItem('token');
     setUser(null);
+    localStorage.removeItem('user');
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      axios.get('/profile', {
-        headers: { Authorization: `Bearer ${token}` }
-      }).then(res => setUser(res.data.user))
-        .catch(() => setUser(null));
-    }
-  }, []);
-
   return (
-    <AuthContext.Provider value={{ user, login, signup, logout }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
-};
+}

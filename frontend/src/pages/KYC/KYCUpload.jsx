@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { uploadKYC } from '@/services/api';
+import { uploadKYC } from '../../services/api';
 
 export default function KYCUpload() {
   const [file, setFile] = useState(null);

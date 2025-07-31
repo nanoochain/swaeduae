@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createPayment } from '@/services/api';
+import { createPayment } from '../../services/api';
 
 export default function PaymentForm() {
   const [amount, setAmount] = useState('');

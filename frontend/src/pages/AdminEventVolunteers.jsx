@@ -1,54 +1,52 @@
-// AdminEventVolunteers.jsx
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { getEventVolunteers, approveVolunteerForEvent } from "@/services/api";
 
-const AdminEventVolunteers = () => {
-  const { eventId } = useParams();
-  const [volunteers, setVolunteers] = useState([]);
+export default function AdminEventVolunteers() {
+  const [eventId, setEventId] = useState("");
+  const [vols, setVols] = useState([]);
+  const [status, setStatus] = useState("");
 
-  useEffect(() => {
-    const fetchVolunteers = async () => {
-      const res = await axios.get(`/admin/events/${eventId}/volunteers`);
-      setVolunteers(res.data);
-    };
-    fetchVolunteers();
-  }, [eventId]);
+  const handleFetch = async () => {
+    if (eventId) setVols(await getEventVolunteers(eventId));
+  };
 
-  const approve = async (registrationId) => {
-    await axios.post(`/admin/events/${eventId}/approve`, {
-      registration_id: registrationId,
-    });
-    setVolunteers(vs =>
-      vs.map(v => v.id === registrationId ? { ...v, is_approved: true } : v)
-    );
+  const handleApprove = async (userId) => {
+    await approveVolunteerForEvent(eventId, userId);
+    setStatus("Approved!");
+    setVols(await getEventVolunteers(eventId));
   };
 
   return (
-    <div className="p-6 max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Volunteers for Event #{eventId}</h1>
-      {volunteers.length === 0 ? (
-        <p>No volunteers registered.</p>
-      ) : (
-        <ul className="space-y-4">
-          {volunteers.map(v => (
-            <li key={v.id} className="border p-4 rounded shadow bg-white dark:bg-gray-800">
-              <p><strong>{v.username}</strong> ({v.email})</p>
-              <p>Status: {v.is_approved ? '✅ Approved' : '❌ Pending'}</p>
-              {!v.is_approved && (
-                <button
-                  onClick={() => approve(v.id)}
-                  className="mt-2 px-4 py-1 bg-green-600 text-white rounded hover:bg-green-700"
-                >
-                  Approve
-                </button>
-              )}
-            </li>
+    <div className="bg-white shadow rounded p-4 mt-4">
+      <h2 className="font-bold mb-2">Approve Event Volunteers</h2>
+      <input
+        className="input mb-2"
+        placeholder="Event ID"
+        value={eventId}
+        onChange={e => setEventId(e.target.value)}
+      />
+      <button className="btn btn-secondary mb-2" onClick={handleFetch}>Load Volunteers</button>
+      {status && <div className="text-green-600">{status}</div>}
+      <table className="table-auto text-sm w-full">
+        <thead>
+          <tr><th>User</th><th>Status</th><th>Approve</th></tr>
+        </thead>
+        <tbody>
+          {vols.map(v => (
+            <tr key={v.id}>
+              <td>{v.user_email}</td>
+              <td>{v.status}</td>
+              <td>
+                {v.status !== "approved" && (
+                  <button className="btn btn-primary btn-xs" onClick={() => handleApprove(v.user_id)}>
+                    Approve
+                  </button>
+                )}
+              </td>
+            </tr>
           ))}
-        </ul>
-      )}
+        </tbody>
+      </table>
     </div>
   );
-};
-
-export default AdminEventVolunteers;
+}

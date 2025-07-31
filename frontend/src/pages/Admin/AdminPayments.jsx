@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getPayments } from '@/services/api';
+import { getPayments } from '../../services/api';
 
 export default function AdminPayments() {
   const [payments, setPayments] = useState([]);

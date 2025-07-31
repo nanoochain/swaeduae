@@ -1,41 +1,34 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask_cors import CORS
-from flask_jwt_extended import JWTManager
-import os
+from flask_mail import Mail
 
 db = SQLAlchemy()
-jwt = JWTManager()
+migrate = Migrate()
+mail = Mail()
 
 def create_app():
     app = Flask(__name__)
-    CORS(app)
+    app.config.from_object('sawaed_app.config.Config')
 
-    # Configuration
-    basedir = os.path.abspath(os.path.dirname(__file__))
-    db_path = os.path.join(os.path.dirname(basedir), 'site.db')
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['JWT_SECRET_KEY'] = 'your-secret-key'
-
-    # Initialize extensions
     db.init_app(app)
-    jwt.init_app(app)
+    migrate.init_app(app, db)
+    mail.init_app(app)
 
-    # Import models
-    from sawaed_app import models
+    CORS(app, origins=[
+        "http://localhost:5173",
+        "http://139.59.77.83:5173",
+        "https://swaeduae.ae"
+    ])
 
-    # Create database
-    with app.app_context():
-        db.create_all()
+    from .routes.auth import auth_bp
+    app.register_blueprint(auth_bp, url_prefix='/auth')
 
-    # Register blueprints
-    from sawaed_app.routes.auth_routes import auth_bp
-    from sawaed_app.routes.event_routes import event_bp
-    from sawaed_app.routes.admin_routes import admin_bp
+    from .routes.events import events_bp
+    app.register_blueprint(events_bp, url_prefix='/events')
 
-    app.register_blueprint(auth_bp)
-    app.register_blueprint(event_bp)
-    app.register_blueprint(admin_bp)
+    from .routes.certificates import cert_bp
+    app.register_blueprint(cert_bp, url_prefix='/certificates')
 
     return app

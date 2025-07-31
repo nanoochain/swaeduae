@@ -1,50 +1,23 @@
-name: Deploy with Auto-Build and Backup
+name: Deploy to VPS
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - name: 📥 Checkout code
-      uses: actions/checkout@v3
-
-    - name: 🔐 Setup SSH key
-      uses: webfactory/ssh-agent@v0.5.4
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-    - name: 🔁 Backup current server state
-      run: |
-        ssh -o StrictHostKeyChecking=no root@${{ secrets.SERVER_HOST }} "          mkdir -p /opt/swaeduae-backups &&           cp -r /opt/swaeduae /opt/swaeduae-backups/swaeduae_$(date +'%Y%m%d_%H%M%S')"
-
-    - name: 📤 Upload new code to server
-      uses: appleboy/scp-action@v0.1.4
-      with:
-        host: ${{ secrets.SERVER_HOST }}
-        username: root
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        source: "."
-        target: "/opt/swaeduae"
-
-    - name: Install Docker Compose
-      run: |
-           sudo curl -L "https://github.com/docker/compose/releases/download/v2.24.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-           sudo chmod +x /usr/local/bin/docker-compose
-           docker-compose --version
-
-
-    - name: 🐳 Rebuild Docker stack + build frontend
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SERVER_HOST }}
-        username: root
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        script: |
-          cd /opt/swaeduae
-          bash scripts/build-frontend.sh
-          docker-compose down
-          docker-compose up -d --build
+      - uses: actions/checkout@v4
+      - name: Copy to VPS & Compose Up
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: \$\{{ secrets.VPS_HOST }}
+          username: root
+          key: \$\{{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd /opt/swaeduae
+            git pull
+            docker compose down
+            docker compose up -d --build

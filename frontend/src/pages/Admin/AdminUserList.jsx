@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getUsers } from '@/services/api';
+import { getUsers } from '../../services/api';
 
 const AdminUserList = () => {
   const [users, setUsers] = useState([]);
@@ -10,21 +10,17 @@ const AdminUserList = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">👥 Manage Users</h1>
-      <table className="min-w-full bg-white dark:bg-gray-800 rounded-xl shadow">
+      <h2 className="text-2xl font-bold mb-4">User List</h2>
+      <table className="table-auto w-full">
         <thead>
-          <tr>
-            <th className="p-2">Username</th>
-            <th className="p-2">Email</th>
-            <th className="p-2">Role</th>
-          </tr>
+          <tr><th>Username</th><th>Email</th><th>Role</th></tr>
         </thead>
         <tbody>
-          {users.map(u => (
-            <tr key={u.id} className="border-t">
-              <td className="p-2">{u.username}</td>
-              <td className="p-2">{u.email}</td>
-              <td className="p-2">{u.role}</td>
+          {users.map((user, i) => (
+            <tr key={i}>
+              <td>{user.username}</td>
+              <td>{user.email}</td>
+              <td>{user.role}</td>
             </tr>
           ))}
         </tbody>

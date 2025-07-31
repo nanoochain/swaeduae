@@ -1,30 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { getVolunteerCertificates } from '@/services/api';
 
-const VolunteerCertificates = () => {
-  const [certs, setCerts] = useState([]);
-
+export default function VolunteerCertificates() {
+  const [certificates, setCertificates] = useState([]);
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    axios.get('/certificates', {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    .then(res => setCerts(res.data))
-    .catch(err => console.error(err));
+    getVolunteerCertificates().then(setCertificates);
   }, []);
-
   return (
     <div className="p-4">
-      <h1 className="text-xl font-bold mb-4">📄 شهادات التطوع</h1>
+      <h2 className="text-2xl font-bold mb-4">My Certificates</h2>
       <ul>
-        {certs.map(cert => (
-          <li key={cert.id} className="border p-2 my-2 rounded shadow">
-            🧾 {cert.event_name} - <a className="text-blue-600 underline" href={cert.download_url}>تنزيل PDF</a>
+        {certificates.map(cert => (
+          <li key={cert.id} className="mb-2">
+            Event: {cert.event_id} | Issued: {cert.issued_at} <br />
+            <a href={cert.cert_url} className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">
+              View/Download
+            </a>
           </li>
         ))}
       </ul>
     </div>
   );
-};
-
-export default VolunteerCertificates;
+}

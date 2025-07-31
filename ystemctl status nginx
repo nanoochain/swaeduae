@@ -1,0 +1,20 @@
+[0;1;31m×[0m sawaed.service - SawaedUAE Gunicorn Service
+     Loaded: loaded (]8;;file://ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01/etc/systemd/system/sawaed.service/etc/systemd/system/sawaed.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Thu 2025-07-31 03:52:24 UTC; 4s ago
+   Duration: 901ms
+ Invocation: 1708aca16ea84f058bd5496a648fa09b
+    Process: 37991 ExecStart=/opt/swaeduae/backend/venv/bin/gunicorn -w 4 -b 0.0.0.0:5000 wsgi:app [0;1;31m(code=exited, status=1/FAILURE)[0m
+   Main PID: 37991 (code=exited, status=1/FAILURE)
+   Mem peak: 155.3M
+        CPU: 2.505s
+
+Jul 31 03:52:24 ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01 gunicorn[37991]:   File "/opt/swaeduae/backend/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 395, in stop
+Jul 31 03:52:24 ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01 gunicorn[37991]:     time.sleep(0.1)
+Jul 31 03:52:24 ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01 gunicorn[37991]:   File "/opt/swaeduae/backend/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 241, in handle_chld
+Jul 31 03:52:24 ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01 gunicorn[37991]:     self.reap_workers()
+Jul 31 03:52:24 ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01 gunicorn[37991]:   File "/opt/swaeduae/backend/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 529, in reap_workers
+Jul 31 03:52:24 ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01 gunicorn[37991]:     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+Jul 31 03:52:24 ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01 gunicorn[37991]: gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+Jul 31 03:52:24 ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01 systemd[1]: [0;1;39m[0;1;31m[0;1;39msawaed.service: Main process exited, code=exited, status=1/FAILURE[0m
+Jul 31 03:52:24 ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185msawaed.service: Failed with result 'exit-code'.[0m
+Jul 31 03:52:24 ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01 systemd[1]: sawaed.service: Consumed 2.505s CPU time, 155.3M memory peak.

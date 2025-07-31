@@ -1,0 +1,19 @@
+[0;1;31m×[0m sawaed.service - SawaedUAE Gunicorn Service
+     Loaded: loaded (]8;;file://ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01/etc/systemd/system/sawaed.service/etc/systemd/system/sawaed.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Thu 2025-07-31 03:56:49 UTC; 6min ago
+   Duration: 1.043s
+ Invocation: 6e6eb594a6e7452ca411be827cce0adc
+   Main PID: 38446 (code=exited, status=1/FAILURE)
+   Mem peak: 170.1M
+        CPU: 3.101s
+
+Jul 31 03:56:49 ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01 gunicorn[38446]:   File "/opt/swaeduae/backend/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 395, in stop
+Jul 31 03:56:49 ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01 gunicorn[38446]:     time.sleep(0.1)
+Jul 31 03:56:49 ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01 gunicorn[38446]:   File "/opt/swaeduae/backend/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 241, in handle_chld
+Jul 31 03:56:49 ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01 gunicorn[38446]:     self.reap_workers()
+Jul 31 03:56:49 ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01 gunicorn[38446]:   File "/opt/swaeduae/backend/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 529, in reap_workers
+Jul 31 03:56:49 ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01 gunicorn[38446]:     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+Jul 31 03:56:49 ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01 gunicorn[38446]: gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+Jul 31 03:56:49 ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01 systemd[1]: [0;1;39m[0;1;31m[0;1;39msawaed.service: Main process exited, code=exited, status=1/FAILURE[0m
+Jul 31 03:56:49 ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185msawaed.service: Failed with result 'exit-code'.[0m
+Jul 31 03:56:49 ubuntu-s-4vcpu-8gb-240gb-intel-blr1-01 systemd[1]: sawaed.service: Consumed 3.101s CPU time, 170.1M memory peak.

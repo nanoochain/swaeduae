@@ -1,35 +1,21 @@
-<<<<<<< HEAD
-node_modules/
-dist/
-.env
-*.log
-*.sqlite3
-__pycache__/
-frontend/.env
-backend/venv/
-=======
-# Python
-venv/
-__pycache__/
-*.pyc
-*.pyo
-*.db
-
-# Node
-node_modules/
-dist/
-.vite/
-
-# Logs and system files
-*.log
+# Backup files
+backups/
 *.zip
 *.tar.gz
+*.sqlite3
 
-# Env
-.env
-.env.*
-
-# Editor
-.vscode/
+# Editor backups
 *.bak
->>>>>>> 4267a6b (✅ Final Phase 3: API fixes, dashboard polish, final prep)
+*.save
+
+# Python caches
+__pycache__/
+*.pyc
+
+# Logs
+logs/
+*.log
+
+# Node modules & environments
+venv/
+node_modules/

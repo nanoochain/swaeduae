@@ -1,61 +1,56 @@
-// EventList.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const EventList = () => {
+export default function EventList() {
   const [events, setEvents] = useState([]);
-  const [registeredIds, setRegisteredIds] = useState([]);
-  const [message, setMessage] = useState('');
+  const [filter, setFilter] = useState('');
+  const [filteredEvents, setFilteredEvents] = useState([]);
 
   useEffect(() => {
-    fetchEvents();
-    fetchMyEvents();
+    axios.get('/api/events')
+      .then(res => {
+        setEvents(res.data.events);
+        setFilteredEvents(res.data.events);
+      });
   }, []);
 
-  const fetchEvents = async () => {
-    const res = await axios.get('/events');
-    setEvents(res.data);
-  };
-
-  const fetchMyEvents = async () => {
-    const res = await axios.get('/my-events');
-    setRegisteredIds(res.data.map(ev => ev.id));
-  };
-
-  const register = async (id) => {
-    try {
-      await axios.post('/events/register', { event_id: id });
-      setMessage('✅ Registered!');
-      fetchMyEvents(); // refresh
-    } catch {
-      setMessage('❌ Already registered or error.');
-    }
-  };
+  useEffect(() => {
+    setFilteredEvents(
+      events.filter(ev =>
+        ev.name.toLowerCase().includes(filter.toLowerCase())
+      )
+    );
+  }, [filter, events]);
 
   return (
-    <div className="p-6 max-w-3xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Upcoming Events</h1>
-      {message && <p className="mb-4 text-sm">{message}</p>}
-      {events.map(event => (
-        <div key={event.id} className="border rounded p-4 mb-4 shadow bg-white dark:bg-gray-800">
-          <h2 className="text-lg font-semibold">{event.title}</h2>
-          <p>Date: {new Date(event.date).toLocaleDateString()}</p>
-          <p>Location: {event.location}</p>
-          <button
-            onClick={() => register(event.id)}
-            disabled={registeredIds.includes(event.id)}
-            className={`mt-2 px-4 py-2 rounded ${
-              registeredIds.includes(event.id)
-                ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-blue-600 hover:bg-blue-700 text-white'
-            }`}
-          >
-            {registeredIds.includes(event.id) ? 'Already Registered' : 'Register'}
-          </button>
-        </div>
-      ))}
+    <div className="p-6 max-w-5xl mx-auto">
+      <h2 className="text-3xl font-bold mb-6" style={{ color: '#50C878' }}>Volunteer Events</h2>
+      <input
+        type="text"
+        placeholder="Search events..."
+        value={filter}
+        onChange={e => setFilter(e.target.value)}
+        className="border border-green-400 p-2 rounded mb-4 w-full"
+      />
+      {filteredEvents.length === 0 ? (
+        <p>No events found.</p>
+      ) : (
+        <ul>
+          {filteredEvents.map(ev => (
+            <li key={ev.id} className="mb-4 p-4 border rounded border-green-300">
+              <h3 className="font-semibold text-xl">{ev.name}</h3>
+              <p>From {new Date(ev.start_date).toLocaleDateString()} to {new Date(ev.end_date).toLocaleDateString()}</p>
+              <p>Organization: {ev.organization_name}</p>
+              <a
+                href={`/event/${ev.id}`}
+                className="mt-2 inline-block px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+              >
+                View Details
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
-};
-
-export default EventList;
+}

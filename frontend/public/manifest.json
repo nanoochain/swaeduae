@@ -1,0 +1,14 @@
+{
+  "short_name": "SawaedUAE",
+  "name": "Sawaed UAE Volunteer Society",
+  "icons": [
+    { "src": "/vite.svg", "type": "image/svg+xml", "sizes": "any" }
+  ],
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#009999",
+  "description": "Volunteer registration and certificate platform for UAE",
+  "orientation": "portrait-primary"
+}

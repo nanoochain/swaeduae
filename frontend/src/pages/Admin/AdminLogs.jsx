@@ -1,22 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function AdminLogs() {
-  const logs = [
-    { time: '2025-07-31 02:00', action: 'User registered: john@example.com' },
-    { time: '2025-07-31 02:15', action: 'Event created: Beach Cleanup' },
-    { time: '2025-07-31 03:00', action: 'Certificate sent to jane@example.com' }
-  ];
-
+  const [logs, setLogs] = useState("");
+  useEffect(() => {
+    axios.get("/api/logs")
+      .then(res => setLogs(typeof res.data === "string" ? res.data : JSON.stringify(res.data, null, 2)))
+      .catch(() => setLogs("No logs found or error loading log file."));
+  }, []);
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">System Logs</h2>
-      <ul className="space-y-2">
-        {logs.map((log, i) => (
-          <li key={i} className="bg-gray-100 p-2 rounded">
-            <strong>{log.time}</strong>: {log.action}
-          </li>
-        ))}
-      </ul>
+    <div className="p-8">
+      <h1 className="text-2xl font-bold mb-6">System Logs</h1>
+      <pre className="bg-gray-900 text-green-300 p-4 rounded overflow-x-auto h-96">{logs}</pre>
     </div>
   );
 }

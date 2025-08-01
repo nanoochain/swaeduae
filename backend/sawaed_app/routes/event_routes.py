@@ -1,26 +1,15 @@
-from flask import Blueprint, request, jsonify
-from sawaed_app.models import db, VolunteerEvent
+from flask import Blueprint, jsonify
+from sawaed_app.models import VolunteerEvent
 
-event_bp = Blueprint('event', __name__)
+event_bp = Blueprint('event_bp', __name__)
 
 @event_bp.route('/events', methods=['GET'])
-def list_events():
+def get_events():
     events = VolunteerEvent.query.all()
-    return jsonify([{
+    events_list = [{
         "id": e.id,
-        "title": e.title,
-        "description": e.description,
-        "date": e.date
-    } for e in events])
-
-@event_bp.route('/events', methods=['POST'])
-def create_event():
-    data = request.get_json()
-    event = VolunteerEvent(
-        title=data.get("title"),
-        description=data.get("description"),
-        date=data.get("date")
-    )
-    db.session.add(event)
-    db.session.commit()
-    return jsonify({"message": "Event created", "event_id": event.id}), 201
+        "name": e.name,
+        "start_date": e.start_date.isoformat() if e.start_date else None,
+        "end_date": e.end_date.isoformat() if e.end_date else None,
+    } for e in events]
+    return jsonify({"events": events_list})

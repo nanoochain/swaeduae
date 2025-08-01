@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 node_modules/
 dist/
 .env
@@ -6,3 +7,29 @@ dist/
 __pycache__/
 frontend/.env
 backend/venv/
+=======
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.db
+
+# Node
+node_modules/
+dist/
+.vite/
+
+# Logs and system files
+*.log
+*.zip
+*.tar.gz
+
+# Env
+.env
+.env.*
+
+# Editor
+.vscode/
+*.bak
+>>>>>>> 4267a6b (✅ Final Phase 3: API fixes, dashboard polish, final prep)

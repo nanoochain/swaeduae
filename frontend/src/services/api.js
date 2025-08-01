@@ -1,75 +1,66 @@
 import axios from "axios";
-const API = "/api";
+const API = "/"; // Change for prod if needed
 
-// --- Admin stats, delivery logs, bulk message ---
+// Public
+export async function getPublicEvents() {
+  const { data } = await axios.get(API + "events");
+  return data.events || [];
+}
+export async function registerForEvent(eventId) {
+  return axios.post(API + "events/register", { event_id: eventId });
+}
+
+// Volunteer
+export async function getVolunteerStats() {
+  const { data } = await axios.get(API + "dashboard/stats");
+  return data;
+}
+export async function getProfile() {
+  const { data } = await axios.get(API + "profile");
+  return data;
+}
+export async function getMyCertificates() {
+  const { data } = await axios.get(API + "certificates");
+  return data.certificates || [];
+}
+
+// Admin
 export async function getAdminStats() {
-  const res = await axios.get(`${API}/admin/stats`);
-  return res.data;
+  const { data } = await axios.get(API + "admin/stats");
+  return data;
 }
-export async function getDeliveryLogs() {
-  const res = await axios.get(`${API}/admin/delivery_logs`);
-  return res.data;
-}
-export async function exportDeliveryLogs() {
-  window.location.href = `${API}/admin/delivery_logs/export`;
-}
-export async function sendBulkMessage(data) {
-  return axios.post(`${API}/admin/bulk_message`, data);
-}
-
-// --- User Management ---
 export async function getUsers() {
-  const res = await axios.get(`${API}/admin/users`);
-  return res.data;
+  const { data } = await axios.get(API + "admin/users");
+  return data.users || [];
 }
-export async function approveUser(user_id) {
-  return axios.post(`${API}/admin/approve_user`, { user_id });
+export async function approveUser(id) {
+  return axios.post(API + "admin/users/approve", { id });
 }
-
-// --- Events and Volunteers ---
+export async function banUser(id) {
+  return axios.post(API + "admin/users/ban", { id });
+}
 export async function getEvents() {
-  const res = await axios.get(`${API}/events`);
-  return res.data;
+  const { data } = await axios.get(API + "admin/events");
+  return data.events || [];
 }
-export async function registerForEvent(event_id) {
-  return axios.post(`${API}/events/register`, { event_id });
+export async function approveEvent(id) {
+  return axios.post(API + "admin/events/approve", { id });
 }
-export async function getEventVolunteers(event_id) {
-  const res = await axios.get(`${API}/admin/event_volunteers?event_id=` + event_id);
-  return res.data;
-}
-export async function approveVolunteerForEvent(event_id, user_id) {
-  return axios.post(`${API}/admin/approve_volunteer`, { event_id, user_id });
-}
-
-// --- KYC Admin ---
 export async function getKYCSubmissions() {
-  const res = await axios.get(`${API}/admin/kyc_submissions`);
-  return res.data;
+  const { data } = await axios.get(API + "admin/kyc");
+  return data.kyc || [];
 }
-export async function approveKYCSubmission(kyc_id) {
-  return axios.post(`${API}/admin/approve_kyc`, { kyc_id });
+export async function approveKYCSubmission(id) {
+  return axios.post(API + "admin/kyc/approve", { id });
 }
-
-// --- Certificates ---
-export async function getVolunteerCertificates() {
-  const res = await axios.get(`${API}/certificates`);
-  return res.data;
+export async function getCertificates() {
+  const { data } = await axios.get(API + "admin/certificates");
+  return data.certificates || [];
 }
-export async function verifyCertificate(cert_id) {
-  const res = await axios.get(`${API}/certificates/verify/${cert_id}`);
-  return res.data;
+export async function sendCertificate(id) {
+  return axios.post(API + "admin/certificates/send", { id });
 }
-export async function approveCertificate(cert_id) {
-  return axios.post("/api/certificates/approve", { cert_id });
-}
-export async function sendCertificate(cert_id, via) {
-  return axios.post("/api/certificates/send", { cert_id, via });
-}
-export async function getCertificatePDF(cert_id) {
-  return "/api/certificates/" + cert_id + "/pdf";
-}
-export async function verifyCertificatePublic(cert_id) {
-  const res = await axios.get("/api/verify/" + cert_id);
-  return res.data;
+export async function getAdminLogs() {
+  const { data } = await axios.get(API + "admin/logs");
+  return data.logs || [];
 }

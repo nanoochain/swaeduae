@@ -1,32 +1,13 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
-
-function Navbar() {
-  const { token, logout, role } = useContext(AuthContext);
+import React from "react";
+import { Link } from "react-router-dom";
+export default function Navbar() {
   return (
-    <nav className="p-4 bg-gray-800 text-white flex justify-between">
-      <div>
-        {token && (
-          <>
-            <Link to="/dashboard" className="mr-4">Dashboard</Link>
-            <Link to="/events" className="mr-4">Events</Link>
-            <Link to="/profile" className="mr-4">Profile</Link>
-            {role === 'admin' && <Link to="/admin" className="mr-4">Admin</Link>}
-          </>
-        )}
-      </div>
-      <div>
-        {token
-          ? <button onClick={logout} className="text-red-400">Logout</button>
-          : <>
-              <Link to="/" className="mr-4">Login</Link>
-              <Link to="/signup">Signup</Link>
-            </>
-        }
-      </div>
+    <nav className="flex items-center bg-primary-700 text-white px-6 py-3 shadow">
+      <Link to="/" className="font-bold text-xl mr-8">SawaedUAE</Link>
+      <Link to="/events" className="mx-2">Events</Link>
+      <Link to="/certificates" className="mx-2">Certificates</Link>
+      <Link to="/profile" className="mx-2">Profile</Link>
+      <Link to="/admin/dashboard" className="mx-2">Admin</Link>
     </nav>
   );
 }
-
-export default Navbar;

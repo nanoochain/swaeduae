@@ -16,6 +16,6 @@ __pycache__/
 logs/
 *.log
 
-# Node modules & environments
+# Node modules & virtual envs
 venv/
 node_modules/

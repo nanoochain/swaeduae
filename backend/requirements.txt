@@ -18,3 +18,4 @@ Flask-Mail==0.9.1
 Flask-Migrate==4.0.4
 Flask-SocketIO==5.3.5
 alembic==1.13.1
+gunicorn==22.0.0

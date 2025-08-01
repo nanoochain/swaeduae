@@ -1,44 +1,34 @@
 from flask import Flask
-from .config import Config
-from .extensions import db, jwt, mail, migrate
-from .routes.logs import logs_bp
-from .routes.auth_routes import auth_bp
-import logging
-from logging.handlers import RotatingFileHandler
-import os
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from werkzeug.security import generate_password_hash
+
+db = SQLAlchemy()
+migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(Config)
+    app.config.from_mapping(
+        SQLALCHEMY_DATABASE_URI="postgresql://swaeduser:swaedpass@db:5432/swaeddb",
+        SQLALCHEMY_TRACK_MODIFICATIONS=False,
+        SECRET_KEY="your_super_secret_key",
+    )
 
     db.init_app(app)
+    migrate.init_app(app, db)
 
-    if migrate is not None:
-        migrate.init_app(app, db)
+    from sawaed_app.models import User
 
-    jwt.init_app(app)
-
-    if mail is not None:
-        mail.init_app(app)
-
-    logs_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "logs")
-    if not os.path.exists(logs_dir):
-        os.makedirs(logs_dir)
-    file_handler = RotatingFileHandler(
-        os.path.join(logs_dir, 'app.log'),
-        maxBytes=5 * 1024 * 1024,
-        backupCount=3
-    )
-    file_handler.setFormatter(logging.Formatter(
-        '[%(asctime)s] %(levelname)s in %(module)s: %(message)s'
-    ))
-    file_handler.setLevel(logging.INFO)
-    app.logger.addHandler(file_handler)
-    app.logger.setLevel(logging.INFO)
-
-    # Register blueprints
-    app.register_blueprint(auth_bp, url_prefix='/auth')
-    app.register_blueprint(logs_bp)
-    # Add more blueprints as needed (admin, certificates, kyc, events, etc.)
+    with app.app_context():
+        admin = User.query.filter_by(username='admin').first()
+        if not admin:
+            admin = User(
+                username='admin',
+                email='admin@swaeduae.ae',
+                password_hash=generate_password_hash('changeme'),
+                role='admin'
+            )
+            db.session.add(admin)
+            db.session.commit()
 
     return app

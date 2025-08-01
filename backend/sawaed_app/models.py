@@ -1,34 +1,22 @@
-from .extensions import db
+from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
+from sawaed_app import db
 
 class User(db.Model):
+    __tablename__ = 'users'
+
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
+    username = db.Column(db.String(64), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(200), nullable=False)
-    role = db.Column(db.String(20), default="volunteer")
-    certificates = db.relationship('Certificate', backref='user', lazy=True)
+    password_hash = db.Column(db.String(512), nullable=False)
+    role = db.Column(db.String(20), default='user')
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-class Event(db.Model):
-    __tablename__ = 'event'
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(150), nullable=False)
-    description = db.Column(db.Text)
-    date = db.Column(db.Date)
-    location = db.Column(db.String(150))
-    volunteer_hours = db.relationship('VolunteerHour', backref='event', lazy=True)
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
 
-class Certificate(db.Model):
-    __tablename__ = 'certificate'
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    event_id = db.Column(db.Integer, db.ForeignKey('event.id'), nullable=False)
-    issued_at = db.Column(db.DateTime)
-    cert_url = db.Column(db.String(255))
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
-class VolunteerHour(db.Model):
-    __tablename__ = 'volunteer_hour'
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    event_id = db.Column(db.Integer, db.ForeignKey('event.id'), nullable=False)
-    hours = db.Column(db.Float, nullable=False)
-    approved = db.Column(db.Boolean, default=False)
+    def __repr__(self):
+        return f'<User {self.username}>'

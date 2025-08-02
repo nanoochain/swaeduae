@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 
 from .extensions import db, jwt, mail, migrate, metrics as _metrics
 from prometheus_flask_exporter import PrometheusMetrics
-from .socketio import init_socketio  # if not already imported
+from .socketio_app import init_socketio  # if not already imported
 
 def create_app() -> Flask:
     """Create and configure a Flask application instance."""

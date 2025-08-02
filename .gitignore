@@ -1,21 +1,10 @@
-# Backup files
-backups/
+__pycache__/
+*.pyc
 *.zip
 *.tar.gz
 *.sqlite3
-
-# Editor backups
-*.bak
-*.save
-
-# Python caches
-__pycache__/
-*.pyc
-
-# Logs
-logs/
-*.log
-
-# Node modules & virtual envs
-venv/
 node_modules/
+.env*
+uploads/kyc/*
+dist/
+*.log

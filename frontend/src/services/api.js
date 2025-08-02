@@ -1,66 +1,74 @@
-import axios from "axios";
-const API = "/"; // Change for prod if needed
+const BASE_URL = import.meta.env.VITE_API_URL || "https://swaeduae.ae/api";
 
-// Public
-export async function getPublicEvents() {
-  const { data } = await axios.get(API + "events");
-  return data.events || [];
-}
-export async function registerForEvent(eventId) {
-  return axios.post(API + "events/register", { event_id: eventId });
+async function request(endpoint, method = "GET", data = null, token = null) {
+  const headers = {
+    "Content-Type": "application/json",
+  };
+  if (token) {
+    headers["Authorization"] = `Bearer ${token}`;
+  }
+
+  const config = {
+    method,
+    headers,
+  };
+
+  if (data) {
+    config.body = JSON.stringify(data);
+  }
+
+  const res = await fetch(`${BASE_URL}${endpoint}`, config);
+  if (!res.ok) {
+    const error = await res.text();
+    throw new Error(error);
+  }
+  return await res.json();
 }
 
-// Volunteer
-export async function getVolunteerStats() {
-  const { data } = await axios.get(API + "dashboard/stats");
-  return data;
-}
-export async function getProfile() {
-  const { data } = await axios.get(API + "profile");
-  return data;
-}
-export async function getMyCertificates() {
-  const { data } = await axios.get(API + "certificates");
-  return data.certificates || [];
-}
+// Auth
+export const login = (data) => request("/login", "POST", data);
+export const signup = (data) => request("/signup", "POST", data);
+export const getProfile = (token) => request("/profile", "GET", null, token);
+
+// Events
+export const getEvents = (token) => request("/events", "GET", null, token);
+
+// Certificates
+export const getCertificates = (token) => request("/certificates", "GET", null, token);
+export const verifyCertificate = (id) => request(`/verify/${id}`, "GET");
 
 // Admin
-export async function getAdminStats() {
-  const { data } = await axios.get(API + "admin/stats");
-  return data;
-}
-export async function getUsers() {
-  const { data } = await axios.get(API + "admin/users");
-  return data.users || [];
-}
-export async function approveUser(id) {
-  return axios.post(API + "admin/users/approve", { id });
-}
-export async function banUser(id) {
-  return axios.post(API + "admin/users/ban", { id });
-}
-export async function getEvents() {
-  const { data } = await axios.get(API + "admin/events");
-  return data.events || [];
-}
-export async function approveEvent(id) {
-  return axios.post(API + "admin/events/approve", { id });
-}
-export async function getKYCSubmissions() {
-  const { data } = await axios.get(API + "admin/kyc");
-  return data.kyc || [];
-}
-export async function approveKYCSubmission(id) {
-  return axios.post(API + "admin/kyc/approve", { id });
-}
-export async function getCertificates() {
-  const { data } = await axios.get(API + "admin/certificates");
-  return data.certificates || [];
-}
-export async function sendCertificate(id) {
-  return axios.post(API + "admin/certificates/send", { id });
-}
-export async function getAdminLogs() {
-  const { data } = await axios.get(API + "admin/logs");
-  return data.logs || [];
-}
+export const getAdminStats = (token) => request("/admin/stats", "GET", null, token);
+export const getUsers = (token) => request("/admin/users", "GET", null, token);
+export const getKYCSubmissions = (token) => request("/admin/kyc_submissions", "GET", null, token);
+export const updateKYCSubmission = (id, status, token) =>
+  request(`/admin/kyc_submissions/${id}`, "POST", { status }, token);
+export const getVolunteerApprovals = (token) => request("/admin/volunteer_approvals", "GET", null, token);
+export const updateVolunteerApproval = (id, approved, token) =>
+  request(`/admin/volunteer_approvals/${id}`, "POST", { approved }, token);
+export const listCertificates = (token) => request("/admin/certificates", "GET", null, token);
+export const createCertificate = (data, token) => request("/admin/certificates", "POST", data, token);
+export const getLogs = (token) => request("/admin/logs", "GET", null, token);
+
+// KYC
+export const uploadKYC = async (file, token) => {
+  const formData = new FormData();
+  formData.append("document", file);
+  const res = await fetch(`${BASE_URL}/kyc/upload`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: formData,
+  });
+  if (!res.ok) throw new Error("Failed to upload document");
+  return await res.json();
+};
+
+// Payment
+export const createPayment = (data, token) =>
+  request("/payment", "POST", data, token);
+
+// OTP
+export const verifyOTP = (data) =>
+  request("/verify-otp", "POST", data);

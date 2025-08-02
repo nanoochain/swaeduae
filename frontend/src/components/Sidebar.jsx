@@ -1,36 +1,41 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useAuth } from '../context/AuthContext';
+import { NavLink } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext.jsx';
 
+/*
+ * Sidebar shows navigation links tailored to the logged in user's role. Volunteers
+ * and regular users see links to their dashboard, profile, KYC upload and
+ * certificate pages. Administrators additionally see links for managing
+ * users, reviewing KYC submissions, volunteer approvals, certificates
+ * and viewing system logs. A logout button is always available. The
+ * component hides itself entirely when no user is logged in (e.g. on
+ * the login or signup pages).
+ */
 const Sidebar = () => {
-  const { logout, user } = useAuth();
-  const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate('/');
-  };
-
-  const switchLanguage = () => {
-    const nextLang = i18n.language === 'en' ? 'ar' : 'en';
-    i18n.changeLanguage(nextLang);
-  };
-
+  const { user, logout } = useAuth();
+  if (!user) return null;
   return (
-    <div className="w-64 min-h-screen bg-gray-100 p-4 border-r">
-      <h2 className="text-xl font-bold mb-4">{t('Sidebar.Title')}</h2>
-      <ul className="space-y-2">
-        <li><Link to="/dashboard">{t('Sidebar.Dashboard')}</Link></li>
-        <li><Link to="/profile">{t('Sidebar.Profile')}</Link></li>
-        <li><Link to="/certificates">{t('Sidebar.Certificates')}</Link></li>
-        <li><Link to="/volunteer">{t('Sidebar.Volunteer')}</Link></li>
-        {user?.role === 'admin' && <li><Link to="/admin">{t('Sidebar.Admin')}</Link></li>}
-        <li><button onClick={switchLanguage} className="text-sm underline mt-2">{t('Sidebar.SwitchLang')}</button></li>
-        <li><button onClick={handleLogout} className="text-red-500">{t('Sidebar.Logout')}</button></li>
-      </ul>
-    </div>
+    <aside className="sidebar" style={{ padding: '1rem', borderRight: '1px solid #eee' }}>
+      <nav>
+        <ul style={{ listStyle: 'none', padding: 0 }}>
+          <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+          <li><NavLink to="/profile">Profile</NavLink></li>
+          <li><NavLink to="/kyc/upload">KYC Upload</NavLink></li>
+          <li><NavLink to="/certificates">My Certificates</NavLink></li>
+          {user.role === 'admin' && (
+            <>
+              <li><NavLink to="/admin">Admin Dashboard</NavLink></li>
+              <li><NavLink to="/admin/users">User Management</NavLink></li>
+              <li><NavLink to="/admin/kyc">KYC Review</NavLink></li>
+              <li><NavLink to="/admin/volunteer-approvals">Volunteer Approvals</NavLink></li>
+              <li><NavLink to="/admin/certificates">Certificates</NavLink></li>
+              <li><NavLink to="/admin/logs">System Logs</NavLink></li>
+            </>
+          )}
+          <li><button type="button" onClick={logout}>Logout</button></li>
+        </ul>
+      </nav>
+    </aside>
   );
 };
 

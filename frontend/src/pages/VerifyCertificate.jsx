@@ -1,35 +1,50 @@
 import React, { useState } from 'react';
-import { verifyCertificate } from '@/services/api';
+import { verifyCertificate } from '../services/api.js';
 
+/*
+ * Public page allowing anyone to verify a certificate's validity.
+ * The backend exposes `/verify/<cert_id>` which returns a status of
+ * "valid" or "invalid" and, if valid, a URL to the PDF file【861662118637036†L48-L53】.
+ */
 export default function VerifyCertificate() {
   const [certId, setCertId] = useState('');
   const [result, setResult] = useState(null);
-
-  const handleVerify = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await api.get(`/verify/${certId}`);
-    setResult(res.data);
+    if (!certId) return;
+    try {
+      const res = await verifyCertificate(certId);
+      setResult(res);
+    } catch (err) {
+      setResult({ status: 'error', error: err.message });
+    }
   };
-
   return (
-    <div className="max-w-lg mx-auto p-8">
-      <h2 className="text-2xl font-bold mb-4">Verify Certificate</h2>
-      <form onSubmit={handleVerify} className="flex gap-2 mb-4">
-        <input className="border px-2 rounded" placeholder="Certificate ID" value={certId} onChange={e => setCertId(e.target.value)} required />
-        <button className="btn btn-primary">Verify</button>
+    <div>
+      <h1>Verify Certificate</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Certificate ID"
+          value={certId}
+          onChange={(e) => setCertId(e.target.value)}
+        />
+        <button type="submit">Verify</button>
       </form>
       {result && (
-        <div className="p-4 border rounded bg-gray-50">
-          {result.status === 'valid' ? (
-            <div>
-              <p><b>User:</b> {result.user}</p>
-              <p><b>Event:</b> {result.event_id}</p>
-              <p><b>Issued At:</b> {result.issued_at}</p>
-              <a className="text-blue-500 underline" href={result.cert_url} target="_blank" rel="noreferrer">Download Certificate</a>
-            </div>
-          ) : (
-            <p className="text-red-500 font-bold">Certificate not found or invalid.</p>
+        <div style={{ marginTop: '1rem' }}>
+          {result.status === 'valid' && (
+            <>
+              <p>Certificate is valid.</p>
+              {result.pdf_url && (
+                <a href={result.pdf_url} target="_blank" rel="noopener noreferrer">
+                  Download PDF
+                </a>
+              )}
+            </>
           )}
+          {result.status === 'invalid' && <p>Certificate is invalid.</p>}
+          {result.status === 'error' && <p>Error: {result.error}</p>}
         </div>
       )}
     </div>

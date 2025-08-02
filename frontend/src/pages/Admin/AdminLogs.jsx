@@ -1,17 +1,37 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import { getLogs } from '../../services/api.js';
 
+/*
+ * Displays recent system logs for administrators. The backend route
+ * `/admin/logs` returns a list of log objects containing an ID,
+ * message and timestamp【15469675107366†L87-L94】. Administrators can use
+ * this page to quickly scan for errors or unusual activity. Only
+ * the most recent records are returned to avoid overwhelming the UI.
+ */
 export default function AdminLogs() {
-  const [logs, setLogs] = useState("");
+  const [logs, setLogs] = useState([]);
   useEffect(() => {
-    axios.get("/api/logs")
-      .then(res => setLogs(typeof res.data === "string" ? res.data : JSON.stringify(res.data, null, 2)))
-      .catch(() => setLogs("No logs found or error loading log file."));
+    getLogs()
+      .then((res) => {
+        const list = res.logs || res;
+        setLogs(Array.isArray(list) ? list : []);
+      })
+      .catch((err) => console.error(err));
   }, []);
   return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold mb-6">System Logs</h1>
-      <pre className="bg-gray-900 text-green-300 p-4 rounded overflow-x-auto h-96">{logs}</pre>
+    <div>
+      <h1>System Logs</h1>
+      {logs.length === 0 ? (
+        <p>No log entries.</p>
+      ) : (
+        <ul>
+          {logs.map((log) => (
+            <li key={log.id}>
+              {log.timestamp}: {log.message}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

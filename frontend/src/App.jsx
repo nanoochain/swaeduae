@@ -1,26 +1,24 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import EventList from './pages/EventList';
-import AdminDashboard from './pages/AdminDashboard';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Events from "./pages/Events";
+import Certificates from "./pages/Certificates";
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/events" element={<EventList />} />
-        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/certificates" element={<Certificates />} />
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 
 export default App;
-
-import KYCUpload from './pages/KYCUpload';
-import AdminKYCReview from './pages/AdminKYCReview';
-
-// Inside your <Routes> add:
-{/* <Route path="/kyc/upload" element={<KYCUpload />} /> */}
-{/* <Route path="/admin/kyc" element={<AdminKYCReview />} /> */}

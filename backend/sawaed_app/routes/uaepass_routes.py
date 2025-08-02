@@ -1,38 +1,23 @@
-from flask import Blueprint, request, jsonify
-import requests
-import os
+"""
+Placeholder routes for UAE PASS integration.
 
-uaepass_bp = Blueprint('uaepass', __name__, url_prefix='/uaepass')
+UAE PASS is a national digital identity for citizens and residents of
+the United Arab Emirates.  Integrating with UAE PASS typically
+involves implementing OAuth 2.0 flows.  The endpoints provided here
+serve as stubs and illustrate where that logic would live.
+"""
 
-# Configuration - replace with your UAE PASS details
-UAE_PASS_CLIENT_ID = os.getenv("UAE_PASS_CLIENT_ID", "your-client-id")
-UAE_PASS_CLIENT_SECRET = os.getenv("UAE_PASS_CLIENT_SECRET", "your-client-secret")
-UAE_PASS_TOKEN_URL = "https://oauth.uaepass.ae/token"  # Replace with actual UAE PASS token endpoint
-UAE_PASS_SIGNATURE_API_URL = "https://api.uaepass.ae/signature"  # Replace with actual signature API endpoint
+from flask import Blueprint, jsonify
 
-@uaepass_bp.route('/auth/token', methods=['POST'])
-def get_access_token():
-    data = {
-        "client_id": UAE_PASS_CLIENT_ID,
-        "client_secret": UAE_PASS_CLIENT_SECRET,
-        "grant_type": "client_credentials"
-    }
-    response = requests.post(UAE_PASS_TOKEN_URL, data=data)
-    if response.status_code == 200:
-        return jsonify(response.json())
-    else:
-        return jsonify({"error": "Failed to get token"}), response.status_code
+uaepass_bp = Blueprint("uaepass_bp", __name__)
 
-@uaepass_bp.route('/sign', methods=['POST'])
-def request_signature():
-    access_token = request.headers.get("Authorization")
-    document = request.json.get("document")
-    # Forward the signature request to UAE PASS API (mocked example)
-    headers = {"Authorization": access_token}
-    payload = {"document": document}
-    response = requests.post(UAE_PASS_SIGNATURE_API_URL, json=payload, headers=headers)
-    if response.status_code == 200:
-        return jsonify(response.json())
-    else:
-        return jsonify({"error": "Signature request failed"}), response.status_code
 
+@uaepass_bp.route("/login")
+def uaepass_login():
+    """Initiate the UAE PASS login flow (stub)."""
+    # In a real implementation, redirect the user to the UAE PASS
+    # authorization endpoint with appropriate query parameters, then
+    # handle the callback to exchange the authorization code for tokens.
+    return jsonify({
+        "msg": "UAE PASS login not yet implemented."
+    }), 501

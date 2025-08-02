@@ -1,45 +1,43 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { uploadKYC } from '../services/api.js';
 
+/*
+ * Allows volunteers to upload identity documents for Know Your Customer
+ * verification. The backend endpoint `/kyc/upload` accepts multipart
+ * form data and saves the file on the server【648640763498140†L16-L39】. Only
+ * PDF and image formats are accepted; unsupported types will return
+ * a 400 response【648640763498140†L11-L31】. After a successful upload the user
+ * receives a simple confirmation.
+ */
 export default function KYCUpload() {
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState('');
-
-  const onFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
-
-  const onSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!file) {
-      setMessage('Please select a file.');
-      return;
-    }
+    if (!file) return;
     const formData = new FormData();
     formData.append('document', file);
-
     try {
-      const token = localStorage.getItem('token'); // Adjust token retrieval as per your auth
-      const res = await axios.post('/kyc/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setMessage('Upload successful!');
+      await uploadKYC(formData);
+      setMessage('Document uploaded successfully');
+      setFile(null);
     } catch (err) {
-      setMessage('Upload failed.');
+      setMessage('Upload failed');
+      console.error(err);
     }
   };
-
   return (
     <div>
-      <h2>KYC Document Upload</h2>
-      <form onSubmit={onSubmit}>
-        <input type="file" onChange={onFileChange} accept=".pdf,.jpg,.jpeg,.png" />
-        <button type="submit">Upload</button>
+      <h1>KYC Upload</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="file"
+          accept=".pdf,.jpg,.jpeg,.png"
+          onChange={(e) => setFile(e.target.files[0])}
+        />
+        <button type="submit">Submit</button>
       </form>
-      <p>{message}</p>
+      {message && <p>{message}</p>}
     </div>
   );
 }

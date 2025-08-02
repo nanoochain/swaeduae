@@ -1,12 +1,23 @@
-# Backend Dockerfile
-FROM python:3.10-slim
+# syntax=docker/dockerfile:1
 
+## Frontend Dockerfile
+# This multi‑stage image installs Node dependencies and builds the
+# React application using Vite.  The resulting ``dist`` folder is
+# copied to a shared volume in the docker-compose file.  The build
+# stage uses a full Node base image while the final stage is
+# minimal.
+
+FROM node:18-alpine as build
 WORKDIR /app
 
-COPY backend/requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+# Install dependencies based on package.json if present
+COPY package*.json ./
+RUN npm install --legacy-peer-deps
 
-COPY backend /app/backend
-WORKDIR /app/backend
+# Copy source files and build
+COPY . .
+RUN npm run build
 
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "sawaed_app:app"]
+# We don't define a default CMD here because the container is used
+# solely during the build phase in docker-compose.  If you wish to
+# develop locally without compose, you can run ``npm run dev``.

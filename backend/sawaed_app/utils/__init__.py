@@ -1,1 +1,3 @@
-# Make this directory a package
+"""
+Utility functions for the SawaedUAE backend.
+"""

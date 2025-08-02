@@ -1,18 +1,34 @@
-import React, { useEffect, useState } from "react";
-import { getProfile } from "@/services/api";
+import React, { useEffect, useState } from 'react';
+import { getProfile } from '../services/api.js';
+
+/*
+ * The profile page fetches the logged in user's details using the
+ * `/profile` endpoint which requires a bearer token. The backend
+ * returns information such as username, email and role. If the
+ * request fails (e.g. due to an expired token) the user will be
+ * logged out by the AuthProvider on the next reload.
+ */
 export default function Profile() {
-  const [profile, setProfile] = useState({});
-  useEffect(() => { getProfile().then(setProfile); }, []);
+  const [profile, setProfile] = useState(null);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    getProfile()
+      .then((res) => {
+        setProfile(res.user || res);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError('Failed to load profile');
+      });
+  }, []);
+  if (error) return <div>{error}</div>;
+  if (!profile) return <div>Loading...</div>;
   return (
-    <div className="p-6 max-w-xl">
-      <h1 className="text-2xl font-bold mb-4">My Profile</h1>
-      <div className="p-5 bg-white dark:bg-neutral-800 rounded-xl shadow space-y-2">
-        <div><b>Name:</b> {profile.username}</div>
-        <div><b>Email:</b> {profile.email}</div>
-        <div><b>Role:</b> {profile.role}</div>
-        <div><b>Org:</b> {profile.org_name}</div>
-        {/* Add edit options */}
-      </div>
+    <div>
+      <h1>Profile</h1>
+      <p>Name: {profile.username || profile.name}</p>
+      <p>Email: {profile.email}</p>
+      <p>Role: {profile.role}</p>
     </div>
   );
 }

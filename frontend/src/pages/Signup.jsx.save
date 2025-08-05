@@ -1,0 +1,28 @@
+import React, { useState } from 'react';import React from "react"; const Signup = () => ( import { useNavigate, Link } from 
+'react-router-dom'; <div className="flex flex-col items-center justify-center min-h-screen bg-white"> export default function Signup() { 
+<h2 className="text-3xl font-bold mb-6">إنشاء حساب جديد</h2>
+  const navigate = useNavigate(); {/* Add signup form here */} <form className="w-full max-w-sm space-y-4"> const [form, setForm] = 
+  useState({ name: '', email: '', password: '', phone: '', type: 'volunteer' }); <input type="text" placeholder="الاسم الكامل" 
+  className="input input-bordered w-full" /> return ( <input type="email" placeholder="البريد الإلكتروني" className="input input-bordered 
+  w-full" />
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50"> <input type="password" placeholder="كلمة المرور" 
+      className="input input-bordered w-full" /> <button className="bg-blue-600 text-white w-full py-2 rounded 
+      font-semibold">تسجيل</button> <div className="w-full max-w-md bg-white shadow-lg rounded-xl p-8 space-y-6"> </form>
+        <h2 className="text-2xl font-bold text-center mb-2">تسجيل حساب جديد</h2> <a href="/login" className="mt-4 text-blue-600 
+  underline">لديك حساب؟ تسجيل الدخول</a> </div>
+        <select className="input w-full mb-3" value={form.type} onChange={e => setForm(f => ({...f, type: e.target.value}))}>); export 
+default Signup;
+          <option value="volunteer">متطوع</option> <option value="organization">جهة</option> </select> <input type="text" className="input 
+        w-full mb-3" placeholder="الاسم الكامل"
+          value={form.name} onChange={e => setForm(f => ({...f, name: e.target.value}))} /> <input type="email" className="input w-full 
+        mb-3" placeholder="البريد الإلكتروني"
+          value={form.email} onChange={e => setForm(f => ({...f, email: e.target.value}))} /> <input type="tel" className="input w-full 
+        mb-3" placeholder="رقم الجوال"
+          value={form.phone} onChange={e => setForm(f => ({...f, phone: e.target.value}))} /> <input type="password" className="input 
+        w-full mb-4" placeholder="كلمة المرور"
+          value={form.password} onChange={e => setForm(f => ({...f, password: e.target.value}))} /> <button className="btn w-full 
+        bg-green-600 hover:bg-green-700 text-white"
+          onClick={() => navigate('/dashboard')}>تسجيل</button> <div className="text-sm mt-2"> <Link to="/login" 
+          className="text-blue-600">لديك حساب؟ سجل الدخول</Link>
+        </div> </div> </div> );
+}

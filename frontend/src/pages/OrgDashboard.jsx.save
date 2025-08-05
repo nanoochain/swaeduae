@@ -1,0 +1,10 @@
+import React from "react"; export default function OrgDashboard() { return ( <div className="p-8"> <h1 className="text-3xl font-bold 
+      mb-6">لوحة تحكم الجهة</h1> <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="card p-6 rounded-xl border text-center"> <div className="text-5xl mb-2">➕</div> <div>إنشاء فعالية جديدة</div> 
+        </div> <div className="card p-6 rounded-xl border text-center">
+          <div className="text-5xl mb-2">👥</div> <div>إدارة المتطوعين</div> </div> </div> <div className="mt-8"> <div 
+        className="bg-gray-50 p-4 rounded-xl border">
+          <h3 className="font-bold mb-2">إحصائيات الجهة</h3> <ul className="list-disc ml-8"> <li>فعاليات نشطة: 7</li> <li>متطوعون مسجلون: 
+            82</li>
+          </ul> </div> </div> </div> );
+}

@@ -1,0 +1,9 @@
+import React from "react";import React from "react"; import { Link } from "react-router-dom"; export default function NotFound() { import 
+{ Link } from "react-router-dom"; return ( export default function NotFound() { <div className="h-screen flex flex-col items-center 
+justify-center">
+  return ( <h1 className="text-5xl font-bold mb-4 text-red-600">404</h1> <div className="text-xl mb-4">الصفحة غير موجودة</div> <Link 
+      to="/" className="px-5 py-2 bg-blue-600 text-white rounded-lg font-bold">العودة للصفحة الرئيسية</Link>
+    <div className="flex flex-col items-center justify-center min-h-screen"> </div> ); <h2 className="text-4xl font-bold mb-6">404</h2>} 
+      <p className="mb-4">الصفحة غير موجودة</p> <Link to="/" className="text-blue-600 underline">العودة للرئيسية</Link>
+    </div> );
+}

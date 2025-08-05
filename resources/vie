@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="{{ app()->getL
+<head>    <meta charset="UTF-8">    <meta n
+    <title>{{ __('messages.title') 
+</head><body>    <nav>    
+        <a href="/dashboard">{{ __('messa
+        <a href="/volunteer/pro
+        <a href="/volunteer/certificates">{{ _
+  
+   
+
+            <a href="{{ url('
+        </span>    </nav>    <main class="p-4">        @yield('content')    </main></bod
+</html>EOF# 7. Route
+
+<?phpuse Illumina
+use App\Http\Controller
+use App\Http\Controllers\Auth\RegisterController;use App\Http\Controllers\Volunteer
+use App\Http\Controllers\CertificateController;use App\Http\Controllers\Admin\AdminController;Route:
+Route::get('
+    session(['locale' => $
+    app()->setLocale($lang);    retu
+});// Auth RoutesRoute::get('login', [LoginController::class, 'showLoginForm'])->name('login');Route::post('
+Route::post('l
+Route::get('register', [Re
+Route::post('register', [RegisterController::c
+// Public PagesRoute::view('/faq', 'public.faq')->name('faq');Route::view('/contact', 'public.contact')->name('c
+Route::view('/
+// ProtectedRoute::middl
+    Route::get('/dashboard', function () {        ret
+    })->name('dashboard');    Route::get('/volunteer/profile', [
+    Route::pos
+    Route::get('/volunteer/certificates', [CertificateController::cl
+    Route::
+
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->
+});EOF# 8. Volunteer Hours 
+mkdir -p database/migrations && cat > database/migrations/2025_08_04_000100_create_volunteer_hours_tabl
+<?phpuse Illu
+use Illuminate\Database\Schema\Blu
+use Illuminate\S
+return new class extends Migration {    public 
+        Schema::create('volunteer_hours', fu
+            $table->id();            $table->foreignId('user_id')
+            $tabl
+            $table-
+            $tab
+        });
+    pu
+        Sch
+   
+
+EOF# Done ✅php artisan migrate --path=database/migrations/2025_08_04_000100_create_volunteer_hours_table.php
+

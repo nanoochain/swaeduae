@@ -1,0 +1,13 @@
+import React from "react";import React from "react"; const Certificates = () => ( export default function Certificates() { <div 
+className="p-8">
+  const certs = [ <h1 className="text-3xl font-bold mb-4">الشهادات التطوعية</h1> <p>اعرض وحمّل شهاداتك التطوعية الموثقة من المنصة.</p> { 
+    id: 1, event: "حملة تنظيف الشاطئ", date: "2025-08-15", link: "#" }, </div> { id: 2, event: "زيارة دار المسنين", date: "2025-09-01", 
+    link: "#" },);
+  ];export default Certificates; return ( <div className="max-w-3xl mx-auto py-10"> <h2 className="text-2xl font-bold mb-4">شهاداتي</h2> 
+      <ul>
+        {certs.map(cert => ( <li key={cert.id} className="flex items-center justify-between py-2 border-b"> <div> <b>{cert.event}</b> <div 
+              className="text-gray-500 text-xs">{cert.date}</div>
+            </div> <a className="btn btn-sm bg-green-600 text-white px-4 py-1" href={cert.link} target="_blank" rel="noopener 
+            noreferrer">تحميل الشهادة</a>
+          </li> ))} </ul> </div> );
+}

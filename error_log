@@ -1,0 +1,9 @@
+[04-Aug-2025 15:51:04 UTC] PHP Parse error:  Unclosed '{' on line 52 in /home3/vminingc/swaeduae.ae/laravel-app/routes/web.php on line 176
+[04-Aug-2025 18:49:08 UTC] PHP Fatal error:  Cannot use App\Http\Controllers\OpportunityController as OpportunityController because the name is already in use in /home3/vminingc/swaeduae.ae/laravel-app/routes/web.php on line 59
+[04-Aug-2025 18:49:08 UTC] PHP Fatal error:  Cannot use App\Http\Controllers\OpportunityController as OpportunityController because the name is already in use in /home3/vminingc/swaeduae.ae/laravel-app/routes/web.php on line 59
+[04-Aug-2025 18:52:22 UTC] PHP Fatal error:  Cannot use Illuminate\Support\Facades\Route as Route because the name is already in use in /home3/vminingc/swaeduae.ae/laravel-app/routes/web.php on line 37
+[04-Aug-2025 18:52:23 UTC] PHP Fatal error:  Cannot use Illuminate\Support\Facades\Route as Route because the name is already in use in /home3/vminingc/swaeduae.ae/laravel-app/routes/web.php on line 37
+[04-Aug-2025 18:54:24 UTC] PHP Fatal error:  Cannot use App\Http\Controllers\EventController as EventController because the name is already in use in /home3/vminingc/swaeduae.ae/laravel-app/routes/web.php on line 43
+[04-Aug-2025 18:54:24 UTC] PHP Fatal error:  Cannot use App\Http\Controllers\EventController as EventController because the name is already in use in /home3/vminingc/swaeduae.ae/laravel-app/routes/web.php on line 43
+[05-Aug-2025 10:37:47 UTC] PHP Fatal error:  Cannot use App\Http\Controllers\OpportunityController as OpportunityController because the name is already in use in /home3/vminingc/swaeduae.ae/laravel-app/routes/web.php on line 104
+[05-Aug-2025 13:25:55 UTC] PHP Fatal error:  Cannot use App\Http\Controllers\EventController as EventController because the name is already in use in /home3/vminingc/swaeduae.ae/laravel-app/routes/web.php on line 29

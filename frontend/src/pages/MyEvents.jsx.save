@@ -1,0 +1,12 @@
+import React from "react"; export default function MyEvents() {
+  // You would fetch real event data here!
+  const events = [ { id: 1, name: "حملة تنظيف الشاطئ", date: "2025-08-15", status: "مقبول" }, { id: 2, name: "زيارة دار المسنين", date: 
+    "2025-09-01", status: "بانتظار الموافقة" },
+  ]; return ( <div className="max-w-3xl mx-auto py-10"> <h2 className="text-2xl font-bold mb-4">فعالياتي المسجلة</h2> <table 
+      className="w-full border rounded-lg">
+        <thead> <tr className="bg-gray-100"> <th className="p-2">اسم الفعالية</th> <th className="p-2">التاريخ</th> <th 
+            className="p-2">الحالة</th>
+          </tr> </thead> <tbody> {events.map(ev => ( <tr key={ev.id} className="text-center border-t"> <td className="p-2">{ev.name}</td> 
+              <td className="p-2">{ev.date}</td> <td className="p-2">{ev.status}</td>
+            </tr> ))} </tbody> </table> </div> );
+}

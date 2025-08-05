@@ -1,0 +1,5 @@
+[04-Aug-2025 18:49:58 UTC] PHP Fatal error:  Cannot use App\Http\Controllers\OpportunityController as OpportunityController because the name is already in use in /home3/vminingc/swaeduae.ae/laravel-app/routes/web.php on line 59
+[05-Aug-2025 10:38:21 UTC] PHP Fatal error:  Cannot use App\Http\Controllers\OpportunityController as OpportunityController because the name is already in use in /home3/vminingc/swaeduae.ae/laravel-app/routes/web.php on line 104
+[05-Aug-2025 10:39:29 UTC] PHP Fatal error:  Cannot use App\Http\Controllers\OpportunityController as OpportunityController because the name is already in use in /home3/vminingc/swaeduae.ae/laravel-app/routes/web.php on line 104
+[05-Aug-2025 13:26:13 UTC] PHP Fatal error:  Cannot use App\Http\Controllers\EventController as EventController because the name is already in use in /home3/vminingc/swaeduae.ae/laravel-app/routes/web.php on line 29
+[05-Aug-2025 13:42:32 UTC] PHP Fatal error:  Cannot use App\Http\Controllers\VolunteerOpportunityController as VolunteerOpportunityController because the name is already in use in /home3/vminingc/swaeduae.ae/laravel-app/routes/web.php on line 70

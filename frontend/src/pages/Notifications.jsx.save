@@ -1,0 +1,10 @@
+import React from "react"; export default function Notifications() {
+  // Dummy notifications, replace with real API!
+  const notifications = [ { id: 1, msg: "تم قبولك في فعالية حملة تنظيف الشاطئ", date: "قبل 10 دقائق" }, { id: 2, msg: "تم إصدار شهادة 
+    جديدة لك", date: "قبل 1 ساعة" },
+  ]; return ( <div className="max-w-lg mx-auto py-10"> <h2 className="text-xl font-bold mb-4">الإشعارات</h2> <ul> {notifications.map(n => 
+        (
+          <li key={n.id} className="border-b py-3 flex justify-between items-center"> <span>{n.msg}</span> <span className="text-gray-400 
+            text-xs">{n.date}</span>
+          </li> ))} </ul> </div> );
+}

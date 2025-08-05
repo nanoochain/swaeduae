@@ -1,0 +1,22 @@
+import React from "react";import React from "react"; import { Link } from "react-router-dom"; export default function Home() { import 
+Header from "../components/Header"; return ( import Footer from "../components/Footer"; <div className="relative bg-gradient-to-tr 
+from-blue-700 via-sky-400 to-green-300 min-h-screen"> import EventSearch from "../components/EventSearch"; <div className="max-w-5xl 
+mx-auto py-24 px-6 flex flex-col items-center text-center"> import EventCarousel from "../components/EventCarousel"; <h1 
+className="text-4xl md:text-6xl font-extrabold text-white mb-6">منصة سواعد الإمارات للتطوع</h1> import Partners from 
+"../components/Partners"; <p className="text-xl md:text-2xl text-white/90 mb-8">شارك في صنع أثر مجتمعي وسجّل في أفضل الفعاليات التطوعية في 
+الإمارات.</p> import AppDownload from "../components/AppDownload"; <Link to="/events" className="py-3 px-8 bg-white/90 text-blue-900 
+font-bold text-lg rounded-xl shadow hover:bg-white">استعرض الفعاليات</Link>
+      </div> <div className="absolute left-0 right-0 bottom-0 p-6 bg-white/90 shadow-inner flex flex-col md:flex-row justify-between 
+      items-center">
+export default function Home() { <div> <span className="font-bold text-blue-900">فعاليات مميزة:</span> <span className="ml-2">الماراثون 
+          الخيري، حملة التشجير، منتدى المتطوعين</span>
+  return ( </div> <Link to="/faq" className="text-blue-700 underline mt-2 md:mt-0">الأسئلة الشائعة</Link> <div className="flex flex-col 
+    min-h-screen bg-gradient-to-b from-blue-100 to-white"> </div> </div>
+      <Header /> ); <main className="flex flex-col items-center justify-center flex-1 w-full px-4 py-12">} <div className="text-center 
+        mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2 text-blue-800">أكبر منصة تطوعية في الإمارات</h2> <h1 className="text-4xl 
+          md:text-5xl font-extrabold text-orange-500 mb-2 leading-tight">
+            خطوة أولى<br /> <span className="text-blue-900">لإحداث الفارق</span> </h1> <p className="text-lg text-blue-700 mt-3 mb-6">انضم 
+          لأكبر مجتمع من المتطوعين والمؤسسات، وابدأ رحلتك اليوم!</p>
+        </div> <EventSearch /> <EventCarousel /> <AppDownload /> <Partners /> </main> <Footer /> </div> );
+}

@@ -1,0 +1,6 @@
+import React from "react"; export default function MapEvents() {
+  // This is a placeholder, you can add react-leaflet or google maps
+  return ( <div className="max-w-5xl mx-auto py-10"> <h2 className="text-2xl font-bold mb-6">الفعاليات على الخريطة</h2> <div 
+      className="h-96 w-full bg-gray-100 flex items-center justify-center rounded-lg border">
+        <span>خريطة تفاعلية هنا</span> </div> </div> );
+}

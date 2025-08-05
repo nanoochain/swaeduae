@@ -1,0 +1,22 @@
+import React, { useState } from "react";import React from "react"; const Profile = () => ( export default function Profile() { <div 
+className="p-8">
+  const [form, setForm] = useState({ <h1 className="text-3xl font-bold mb-4">ملفي الشخصي</h1> <p>بياناتك الأساسية، ساعاتك، فعالياتك 
+    المسجلة، والجوائز.</p> name: "أحمد محمد", </div> email: "ahmed@email.com",); phone: "0501234567",export default Profile; city: "دبي", 
+    languages: "العربية, الإنجليزية", kyc: null,
+  });
+  return ( <div className="max-w-2xl mx-auto py-10"> <h2 className="text-2xl font-bold mb-6">الملف الشخصي</h2> <form 
+      className="space-y-4">
+        <input className="input w-full" placeholder="الاسم" value={form.name} onChange={e => setForm(f => ({...f, name: e.target.value}))} 
+          />
+        <input className="input w-full" placeholder="البريد الإلكتروني" value={form.email} onChange={e => setForm(f => ({...f, email: 
+          e.target.value}))} />
+        <input className="input w-full" placeholder="رقم الجوال" value={form.phone} onChange={e => setForm(f => ({...f, phone: 
+          e.target.value}))} />
+        <input className="input w-full" placeholder="المدينة" value={form.city} onChange={e => setForm(f => ({...f, city: 
+          e.target.value}))} />
+        <input className="input w-full" placeholder="اللغات" value={form.languages} onChange={e => setForm(f => ({...f, languages: 
+          e.target.value}))} />
+        <div> <label className="block mb-2">وثيقة التحقق (KYC)</label> <input type="file" onChange={e => setForm(f => ({...f, kyc: 
+          e.target.files[0]}))} />
+        </div> <button className="btn bg-blue-600 text-white px-8 py-2 mt-2">حفظ التعديلات</button> </form> </div> );
+}

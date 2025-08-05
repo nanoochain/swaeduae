@@ -1,0 +1,21 @@
+import React, { useState } from 'react';import React from "react"; const Login = () => ( import { useNavigate, Link } from 
+'react-router-dom'; <div className="flex flex-col items-center justify-center min-h-screen bg-white"> export default function Login() { 
+<h2 className="text-3xl font-bold mb-6">تسجيل الدخول</h2>
+  const navigate = useNavigate(); {/* Add login form here */} <form className="w-full max-w-sm space-y-4"> const [email, setEmail] = 
+  useState(''); <input type="email" placeholder="البريد الإلكتروني" className="input input-bordered w-full" /> const [password, 
+  setPassword] = useState(''); <input type="password" placeholder="كلمة المرور" className="input input-bordered w-full" /> return ( 
+  <button className="bg-blue-600 text-white w-full py-2 rounded font-semibold">دخول</button>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50"> </form> <a href="/signup" className="mt-4 
+    text-blue-600 underline">مستخدم جديد؟ سجل هنا</a>
+      <div className="w-full max-w-md bg-white shadow-lg rounded-xl p-8 space-y-6"> </div> ); export default Login; <h2 
+        className="text-2xl font-bold text-center mb-2">تسجيل الدخول</h2> <input type="email" className="input w-full mb-3" 
+        placeholder="البريد الإلكتروني"
+          value={email} onChange={e => setEmail(e.target.value)} /> <input type="password" className="input w-full mb-4" placeholder="كلمة 
+        المرور"
+          value={password} onChange={e => setPassword(e.target.value)} /> <button className="btn w-full bg-blue-600 hover:bg-blue-700 
+        text-white"
+          onClick={() => navigate('/dashboard')}>دخول</button> <div className="flex justify-between mt-4 text-sm"> <Link to="/signup" 
+          className="text-blue-600">مستخدم جديد؟ سجل هنا</Link> <Link to="/forgot-password" className="text-gray-500">نسيت كلمة 
+          المرور؟</Link>
+        </div> </div> </div> );
+}

@@ -1,0 +1,43 @@
+import React, { useEffect, useState } from "react";import React from "react"; import { useParams, Link } from "react-router-dom"; export 
+default function EventDetails() { import { useParams, Link } from "react-router-dom"; const { id } = useParams(); import axios from 
+"axios"; // TODO: Fetch event details from API import { FaMapMarkerAlt, FaCalendarAlt, FaUserFriends, FaArrowLeft } from "react-icons/fa"; 
+const event = { export default function EventDetails() { id,
+  const { id } = useParams(); title: "فعالية تطوعية كبرى", description: "تفاصيل الفعالية التطوعية الكبرى في دبي.", date: "2025-08-10", 
+    location: "دبي مول", gallery: ["/event1.jpg", "/event2.jpg"], org: "الهلال الأحمر الإماراتي",
+  const [event, setEvent] = useState(null); }; return ( useEffect(() => { axios.get(`/api/events/${id}`).then(res => setEvent(res.data)); 
+  }, [id]); <div className="max-w-3xl mx-auto py-8 px-4">
+  if (!event) return <div className="text-center mt-20 text-xl">جاري التحميل...</div>; <h2 className="text-3xl font-bold 
+      mb-3">{event.title}</h2> <div className="mb-2 text-gray-600">بتاريخ: {event.date} | المكان: {event.location}</div> <div 
+      className="mb-4">{event.description}</div> <div className="mb-4 flex gap-4">
+  return ( <button className="py-2 px-6 bg-green-600 text-white rounded">سجّل الآن</button> <button className="py-2 px-6 bg-blue-600 
+        text-white rounded">مشاركة</button>
+    <div className="max-w-4xl mx-auto mt-10 p-8 bg-white rounded-2xl shadow-xl"> </div> <div className="grid grid-cols-2 gap-4 mb-6"> 
+      <Link to="/events" className="flex items-center text-blue-600 mb-4 hover:underline"><FaArrowLeft className="mr-2" /> رجوع 
+      للفرص</Link> {event.gallery.map((img, i) => ( <h1 className="text-3xl font-bold mb-4">{event.title}</h1> <img key={i} src={img} 
+      alt="event gallery" className="rounded shadow" /> <div className="flex flex-col md:flex-row gap-8 mb-6"> ))} </div> <div 
+      className="text-gray-700 mb-2">الجهة المنظمة: <b>{event.org}</b></div> <Link to="/events" className="text-blue-700 underline">عودة 
+      لقائمة الفعاليات</Link>
+        <img src={event.image || "/img/event_placeholder.jpg"} alt="" className="w-64 rounded-2xl shadow-lg" /> </div> ); <div 
+        className="flex-1 space-y-4">}
+          <div><FaMapMarkerAlt className="inline text-gray-500" /> {event.location}</div> <div><FaCalendarAlt className="inline 
+          text-gray-500" /> {event.date_start} - {event.date_end}</div> <div><FaUserFriends className="inline text-gray-500" /> 
+          {event.volunteers_needed} متطوع</div> <div className="text-lg text-gray-800">{event.organization_name}</div>
+        </div> </div> <div className="mb-8"> <h2 className="text-xl font-bold mb-2">الوصف</h2> <p>{event.description}</p> </div> <div 
+      className="flex gap-4 mb-4">
+        <Link to={`/organizations/${event.organization_id}`} className="text-blue-600 underline">عرض جهة التنظيم</Link> <button 
+        className="px-6 py-2 bg-green-600 text-white rounded-full shadow hover:bg-green-700">سجل الآن</button>
+      </div> <EventFeedback eventId={id} /> </div> );
+}
+function EventFeedback({ eventId }) { const [show, setShow] = useState(false); return ( <div> <button onClick={()=>setShow(s=>!s)} 
+      className="mt-6 text-blue-500 underline">تقييم/ملاحظات الحدث</button> {show && <div className="mt-4"><FeedbackForm eventId={eventId} 
+      /></div>}
+    </div> );
+}
+function FeedbackForm({ eventId }) { const [text, setText] = useState(""); const [ok, setOk] = useState(false); const handleSubmit = e => 
+  { e.preventDefault(); axios.post(`/api/events/${eventId}/feedback`, {text}).then(()=>setOk(true)); }; if (ok) return <div 
+  className="text-green-700 font-bold">شكرًا لتعليقك!</div>; return (
+    <form onSubmit={handleSubmit} className="space-y-2"> <textarea className="w-full border rounded-xl p-2" value={text} 
+      onChange={e=>setText(e.target.value)} placeholder="اكتب ملاحظاتك أو تقييمك..." rows={3} required /> <button className="bg-blue-600 
+      px-4 py-2 text-white rounded-full hover:bg-blue-700">إرسال</button>
+    </form> );
+}

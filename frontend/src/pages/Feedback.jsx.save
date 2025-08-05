@@ -1,0 +1,12 @@
+import React, { useState } from "react"; export default function Feedback() { const [form, setForm] = useState({ event: "", rating: 5, 
+  comment: "" }); return (
+    <div className="max-w-xl mx-auto py-10"> <h2 className="text-2xl font-bold mb-6">تقييم الفعالية</h2> <form className="space-y-4"> 
+        <input className="input w-full" placeholder="اسم الفعالية"
+          value={form.event} onChange={e => setForm(f => ({...f, event: e.target.value}))} /> <label>التقييم: {form.rating} ⭐</label> 
+        <input type="range" min={1} max={5} value={form.rating}
+          onChange={e => setForm(f => ({...f, rating: e.target.value}))} /> <textarea className="input w-full" rows={4} 
+        placeholder="ملاحظاتك"
+          value={form.comment} onChange={e => setForm(f => ({...f, comment: e.target.value}))} /> <button className="btn bg-blue-600 
+        text-white px-8 py-2">إرسال التقييم</button>
+      </form> </div> );
+}

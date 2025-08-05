@@ -1,0 +1,17 @@
+import React from "react"; export default function Footer() { return ( <footer className="bg-blue-900 text-white py-8 mt-8 relative"> <div 
+      className="container mx-auto px-4 flex flex-col md:flex-row md:justify-between items-center gap-8">
+        <div className="flex flex-col items-start"> <img src="/logo.svg" alt="SwaedUAE" className="h-12 mb-2" /> <span className="text-xs 
+          text-blue-200 mb-1">
+            بدعم وزارة تنمية المجتمع - الإمارات </span> <span className="text-xs text-blue-200">© {new Date().getFullYear()} متطوعي 
+          الإمارات. جميع الحقوق محفوظة.</span>
+        </div> <div className="flex gap-3 text-2xl mb-2 md:mb-0"> <a href="#" className="hover:text-orange-400" title="Instagram"><i 
+          className="fab fa-instagram"></i></a> <a href="#" className="hover:text-orange-400" title="X"><i className="fab 
+          fa-x-twitter"></i></a> <a href="#" className="hover:text-orange-400" title="Facebook"><i className="fab fa-facebook"></i></a>
+        </div> <div className="flex flex-col gap-1"> <div className="flex gap-2"> <a href="/terms" className="hover:text-orange-400 
+            text-xs">سياسة الخصوصية</a> <a href="/faq" className="hover:text-orange-400 text-xs">الأسئلة الشائعة</a> <a href="/contact" 
+            className="hover:text-orange-400 text-xs">تواصل معنا</a>
+          </div> <div className="flex items-center gap-2 mt-2"> <button className="border px-2 rounded hover:bg-white hover:text-blue-900 
+            transition">+A</button> <button className="border px-2 rounded hover:bg-white hover:text-blue-900 transition">-A</button> 
+            <span className="ml-2 text-xs text-blue-200">إعدادات النصوص</span>
+          </div> </div> </div> </footer> );
+}

@@ -1,42 +1,40 @@
 name: Laravel CI/CD
 
 on:
+  pull_request:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
+      - feature/*
 
 jobs:
   test:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.4'
-        extensions: mbstring, bcmath, xml, zip, curl, mysql
-        ini-values: post_max_size=256M, upload_max_filesize=256M
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.4
+          extensions: mbstring, bcmath, xml, curl, sqlite, tokenizer, intl
+          coverage: xdebug
 
-    - name: Install Composer dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest --no-interaction
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest --optimize-autoloader
 
-    - name: Copy .env example
-      run: cp .env.example .env
+      - name: Copy .env
+        run: cp .env.example .env
 
-    - name: Generate application key
-      run: php artisan key:generate
+      - name: Generate application key
+        run: php artisan key:generate
 
-    - name: Run migrations
-      run: php artisan migrate --force
+      - name: Run migrations
+        run: php artisan migrate --no-interaction --force
 
-    - name: Run tests
-      run: php artisan test
+      - name: Run tests
+        run: php artisan test --coverage
 
   deploy:
     needs: test
@@ -44,5 +42,5 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
-    - name: Deploy placeholder
-      run: echo "Add deployment steps here"
+      - uses: actions/checkout@v3
+      # Add your deployment steps here

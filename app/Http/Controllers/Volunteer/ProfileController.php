@@ -5,54 +5,21 @@ namespace App\Http\Controllers\Volunteer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Event;
+use App\Models\Certificate;
+use App\Models\VolunteerHour;
 
 class ProfileController extends Controller
 {
-    // Dashboard
-    public function dashboard()
+    public function index()
     {
-        return view('volunteer.dashboard');
-    }
+        $user = Auth::user();
+        $certificates = Certificate::where('user_id', $user->id)->get();
+        $hours = VolunteerHour::where('user_id', $user->id)->sum('hours');
+        $events = Event::whereHas('registrations', function($q) use ($user) {
+            $q->where('user_id', $user->id);
+        })->get();
 
-    // Show profile
-    public function show()
-    {
-        return view('volunteer.profile');
-    }
-
-    // Edit profile
-    public function edit()
-    {
-        return view('volunteer.profile_edit');
-    }
-
-    // Certificates
-    public function certificates()
-    {
-        return view('volunteer.certificates');
-    }
-
-    // Leaderboard
-    public function leaderboard()
-    {
-        return view('volunteer.leaderboard');
-    }
-
-    // Badges
-    public function badges()
-    {
-        return view('volunteer.badges');
-    }
-
-    // My Events
-    public function myEvents()
-    {
-        return view('volunteer.my_events');
-    }
-
-    // Hours
-    public function hours()
-    {
-        return view('volunteer.hours');
+        return view('volunteer.profile_dashboard', compact('user', 'certificates', 'hours', 'events'));
     }
 }

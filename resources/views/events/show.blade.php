@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
+@section('title', $event->title . ' | Event')
+
 @section('content')
-<div class="max-w-3xl mx-auto p-6 bg-white rounded shadow">
-    <h1 class="text-3xl font-bold mb-4">{{ $event->title }}</h1>
-    <p class="text-gray-600 mb-2">{{ \Carbon\Carbon::parse($event->date)->format('F d, Y') }}</p>
-    <div class="mb-6">
-        {!! nl2br(e($event->description)) !!}
+<div class="container mx-auto py-10">
+    <div class="bg-white shadow rounded-lg p-8 max-w-2xl mx-auto">
+        <h1 class="text-3xl font-bold text-blue-900 mb-2">{{ $event->title }}</h1>
+        <div class="mb-3 text-gray-600">{{ $event->location }} | {{ $event->date }}</div>
+        <p class="mb-4">{{ $event->description }}</p>
+        <a href="{{ route('events.index') }}" class="text-green-700 hover:underline">← Back to Events</a>
     </div>
-    <a href="{{ route('events.index') }}" class="text-blue-700 hover:underline">Back to events</a>
 </div>
 @endsection

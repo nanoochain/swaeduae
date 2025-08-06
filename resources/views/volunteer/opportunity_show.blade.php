@@ -10,5 +10,5 @@
         <p><strong>{{ __('Status:') }}</strong> {{ ucfirst($opportunity->status) }}</p>
     </div>
 
-    <a href="{{ route('volunteer.opportunities') }}" class="text-blue-700 hover:underline">&larr; Back to Opportunities</a>
+    <a href="{{ route('opportunities.index') }}" class="text-blue-700 hover:underline">&larr; Back to Opportunities</a>
 @endsection

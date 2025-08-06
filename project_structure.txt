@@ -1,0 +1,927 @@
+==== [ROOT DIRECTORY] ====
+total 4240
+-rw-rw-r--  1 vminingc vminingc       0 Aug  6 02:59 @php
+-rw-rw-r--  1 vminingc vminingc       0 Aug  6 02:59 IlluminateFoundationComposerScripts::postAutoloadDump
+-rw-r--r--  1 vminingc vminingc     707 Aug  5 14:37 README.md
+-rw-rw-r--  1 vminingc vminingc     270 Aug  4 17:27 about.blade.php
+drwxr-xr-x 10 vminingc vminingc    4096 Aug  4 12:07 app
+-rw-rw-r--  1 vminingc vminingc     542 Aug  4 13:29 app.blade.php
+-rw-rw-r--  1 vminingc vminingc     722 Aug  4 17:27 app.css
+-rw-r--r--  1 vminingc vminingc     350 Aug  4 12:07 artisan
+drwxr-xr-x  3 vminingc vminingc    4096 Aug  4 12:08 bootstrap
+-rw-r--r--  1 vminingc vminingc    2576 Aug  5 02:29 composer.json
+-rw-r--r--  1 vminingc vminingc  360858 Aug  5 02:29 composer.lock
+drwxr-xr-x  2 vminingc vminingc    4096 Aug  5 09:25 config
+-rw-rw-r--  1 vminingc vminingc     663 Aug  4 17:27 contact.blade.php
+drwxr-xr-x  5 vminingc vminingc    4096 Aug  5 03:44 database
+-rw-r--r--  1 vminingc vminingc    1876 Aug  5 13:25 error_log
+-rw-rw-r--  1 vminingc vminingc     387 Aug  4 17:27 faq.blade.php
+-rw-r--r--  1 vminingc vminingc       0 Aug  4 12:08 favicon.ico
+-rwxrwxr-x  1 vminingc vminingc    4006 Aug  4 16:36 fix_routes_and_clear.sh
+drwxr-xr-x  5 vminingc vminingc    4096 Aug  4 12:08 frontend
+-rw-rw-r--  1 vminingc vminingc     113 Aug  6 03:08 grant_privileges.sql
+-rw-rw-r--  1 vminingc vminingc     130 Aug  4 17:27 home.blade.php
+-rw-r--r--  1 vminingc vminingc     393 Aug  4 12:08 index.php
+drwxr-xr-x  2 vminingc vminingc    4096 Aug  4 12:08 js
+-rw-rw-r--  1 vminingc vminingc 1284000 Aug  5 11:26 laravel-app-filetree.txt
+-rw-rw-r--  1 vminingc vminingc    1932 Aug  4 13:12 latest-errors.txt
+-rw-rw-r--  1 vminingc vminingc     210 Aug  4 17:20 layout.blade.php
+-rw-rw-r--  1 vminingc vminingc     144 Aug  5 08:57 opcache_clear.php
+-rw-r--r--  1 vminingc vminingc  130727 Aug  4 12:08 package-lock.json
+-rw-r--r--  1 vminingc vminingc     546 Aug  5 02:29 package.json
+-rw-r--r--  1 vminingc vminingc    1191 Aug  4 12:08 phpunit.xml
+-rw-r--r--  1 vminingc vminingc      93 Aug  5 02:29 postcss.config.js
+-rw-rw-r--  1 vminingc vminingc 1276059 Aug  5 02:44 project-files.txt
+-rw-rw-r--  1 vminingc vminingc      27 Aug  6 03:28 project_structure.txt
+drwxr-xr-x  7 vminingc nobody      4096 Aug  5 10:48 public
+drwxr-xr-x  7 vminingc vminingc    4096 Aug  4 12:08 resources
+drwxr-xr-x  4 vminingc vminingc    4096 Aug  5 13:16 routes
+drwxrwxr-x  7 vminingc vminingc    4096 Aug  4 12:08 storage
+-rw-rw-r--  1 vminingc vminingc 1006197 Aug  4 16:59 swaeduae_tree.txt
+drwxrwxr-x  5 vminingc vminingc    4096 Aug  5 16:53 swaeduae_updates
+-rw-r--r--  1 vminingc vminingc    7611 Aug  5 16:52 swaeduae_updates (2).zip
+-rw-rw-r--  1 vminingc vminingc    4082 Aug  5 02:48 swaeduae_updates.sh
+-rw-r--r--  1 vminingc vminingc     541 Aug  5 02:29 tailwind.config.js
+drwxr-xr-x  4 vminingc vminingc    4096 Aug  4 12:07 tests
+drwxr-xr-x 54 vminingc vminingc    4096 Aug  5 02:27 vendor
+-rw-r--r--  1 vminingc vminingc     263 Aug  5 02:29 vite.config.js
+-rw-rw-r--  1 vminingc vminingc     131 Aug  5 09:26 webpack.mix.js
+
+==== [ROUTES] ====
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\OpportunityController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\CertificateController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+
+/*
+|--------------------------------------------------------------------------
+| Authentication Routes
+|--------------------------------------------------------------------------
+|
+| These routes handle user authentication for volunteers and organizations.
+| If you decide to implement different registration forms for each role,
+| define separate controllers and routes here.
+*/
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [LoginController::class, 'login']);
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('register', [RegisterController::class, 'register']);
+
+/*
+|--------------------------------------------------------------------------
+| Public Routes
+|--------------------------------------------------------------------------
+|
+| Use resource controllers for events, opportunities, news and certificates.
+| This makes the routes table cleaner and opens the door to adding CRUD
+| operations (create, edit, update, destroy) later.
+*/
+Route::resource('events', EventController::class)->only(['index', 'show']);
+Route::resource('opportunities', OpportunityController::class)->only(['index', 'show']);
+Route::resource('news', NewsController::class)->only(['index', 'show']);
+Route::resource('certificates', CertificateController::class)->only(['index', 'show']);
+
+// Profile - available to authenticated users
+Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile.show');
+
+// Home page (fallback)
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Add more routes here as needed
+
+// Volunteer Opportunities route (temporary fix)
+Route::get('/opportunities', function () {
+    return view('opportunities'); // You can customize this later
+})->name('volunteer.opportunities');
+
+<?php
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\MobileApiController;
+
+Route::post('login', [MobileApiController::class, 'login']);
+Route::post('register', [MobileApiController::class, 'register']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    R
+    Route::post('events/register', [MobileApiController::class, 'registerForEvent']);
+    Route::get('certificates', [MobileApiController::class, 'certificates']);
+    Route::get('profile', [MobileApiController::class, 'profile']);
+    Route::post('logout', [MobileApiController::class, 'logout']);
+});
+
+==== [CONTROLLERS] ====
+app/Http/Controllers/:
+total 288
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  5 11:16 Admin
+-rw-r--r-- 1 vminingc vminingc  168 Aug  4 12:07 AdminController.php
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 12:07 Api
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 12:07 Auth
+-rw-r--r-- 1 vminingc vminingc  551 Aug  4 16:47 CertificateController.php
+-rw-r--r-- 1 vminingc vminingc  791 Aug  4 12:07 CertificateEmailController.php
+-rw-r--r-- 1 vminingc vminingc  642 Aug  4 12:07 CertificatePdfController.php
+-rw-r--r-- 1 vminingc vminingc  354 Aug  4 12:07 CertificateVerifyController.php
+-rw-r--r-- 1 vminingc vminingc  299 Aug  4 12:07 Controller.php
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 12:07 Dashboard
+-rw-r--r-- 1 vminingc vminingc  193 Aug  4 16:52 DashboardController.php
+-rw-rw-r-- 1 vminingc vminingc  306 Aug  5 12:44 DownloadController.php
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 12:07 Event
+-rw-r--r-- 1 vminingc vminingc  995 Aug  4 12:07 EventApplicationController.php
+-rw-r--r-- 1 vminingc vminingc  904 Aug  4 12:07 EventCheckinController.php
+-rw-r--r-- 1 vminingc vminingc  434 Aug  5 13:55 EventController.php
+-rw-r--r-- 1 vminingc vminingc  884 Aug  4 12:07 EventEvaluationController.php
+-rw-r--r-- 1 vminingc vminingc  689 Aug  4 12:07 EventInfoRequestController.php
+-rw-r--r-- 1 vminingc vminingc  338 Aug  4 12:07 EventQrController.php
+-rw-rw-r-- 1 vminingc vminingc  579 Aug  5 12:17 HomeController.php
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 12:07 Kyc
+-rw-r--r-- 1 vminingc vminingc  755 Aug  4 12:07 KycController.php
+-rw-r--r-- 1 vminingc vminingc  348 Aug  4 12:07 LangController.php
+-rw-r--r-- 1 vminingc vminingc  253 Aug  4 12:07 LanguageController.php
+-rw-rw-r-- 1 vminingc vminingc  420 Aug  5 12:44 NewsController.php
+-rw-r--r-- 1 vminingc vminingc  406 Aug  4 12:07 NotificationController.php
+-rw-r--r-- 1 vminingc vminingc 1503 Aug  5 16:53 OpportunityController.php
+-rw-r--r-- 1 vminingc vminingc 1818 Aug  4 12:07 OrganizationController.php
+-rw-r--r-- 1 vminingc vminingc  734 Aug  4 12:07 PagesController.php
+-rw-rw-r-- 1 vminingc vminingc  294 Aug  5 12:44 PartnerController.php
+-rw-r--r-- 1 vminingc vminingc 1416 Aug  5 02:29 ProfileController.php
+-rw-r--r-- 1 vminingc vminingc  638 Aug  4 12:07 PublicController.php
+-rw-r--r-- 1 vminingc vminingc  853 Aug  4 12:07 SurveyController.php
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 12:07 Team
+-rw-r--r-- 1 vminingc vminingc  174 Aug  4 12:07 Voluntee
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 12:07 Volunteer
+-rw-r--r-- 1 vminingc vminingc  865 Aug  5 12:44 VolunteerController.php
+-rw-r--r-- 1 vminingc vminingc  638 Aug  4 12:07 VolunteerHourController.php
+-rw-rw-r-- 1 vminingc vminingc  571 Aug  5 13:52 VolunteerOpportunityController.php
+-rw-r--r-- 1 vminingc vminingc  377 Aug  4 16:47 VolunteerProfileController.php
+
+app/Http/Controllers/Admin:
+total 248
+-rw-r--r-- 1 vminingc vminingc  366 Aug  4 12:07 AdminController.php
+-rw-rw-r-- 1 vminingc vminingc 2060 Aug  5 12:46 AdminDashboardController.php
+-rw-rw-r-- 1 vminingc vminingc  240 Aug  4 15:11 AdminEventController.php
+-rw-rw-r-- 1 vminingc vminingc  238 Aug  4 15:11 AdminUserController.php
+-rw-r--r-- 1 vminingc vminingc  202 Aug  5 11:16 AnalyticsController.php
+-rw-r--r-- 1 vminingc vminingc  387 Aug  4 12:07 AttendanceDashboardController.php
+-rw-r--r-- 1 vminingc vminingc  759 Aug  4 12:07 CertificateAdminController.php
+-rw-r--r-- 1 vminingc vminingc  463 Aug  5 11:16 CertificateController.php
+-rw-r--r-- 1 vminingc vminingc  514 Aug  4 12:07 CertificateManagementController.php
+-rw-r--r-- 1 vminingc vminingc  196 Aug  5 11:16 DashboardController.php
+-rw-r--r-- 1 vminingc vminingc  502 Aug  4 12:07 EventAttendanceController.php
+-rw-r--r-- 1 vminingc vminingc  292 Aug  5 10:58 EventController.php
+-rw-r--r-- 1 vminingc vminingc 1079 Aug  4 12:07 EventInfoFormController.php
+-rw-r--r-- 1 vminingc vminingc  517 Aug  4 12:07 EventManagementController.php
+-rw-r--r-- 1 vminingc vminingc  645 Aug  4 12:07 EventPhotoController.php
+-rw-r--r-- 1 vminingc vminingc  745 Aug  4 12:07 EventVolunteerController.php
+-rw-rw-r-- 1 vminingc vminingc  278 Aug  5 11:16 KycAdminController.php
+-rw-r--r-- 1 vminingc vminingc  309 Aug  4 12:07 KycManagementController.php
+-rw-r--r-- 1 vminingc vminingc  191 Aug  5 11:16 LogController.php
+-rw-rw-r-- 1 vminingc vminingc  343 Aug  5 11:16 NewsController.php
+-rw-r--r-- 1 vminingc vminingc  204 Aug  4 12:07 Noti
+-rw-r--r-- 1 vminingc vminingc  397 Aug  4 12:07 NotificationController.php
+-rw-r--r-- 1 vminingc vminingc  391 Aug  5 11:16 OrganizationController.php
+-rw-r--r-- 1 vminingc vminingc  930 Aug  4 12:07 PageController.php
+-rw-rw-r-- 1 vminingc vminingc  358 Aug  5 11:16 PartnerController.php
+-rw-r--r-- 1 vminingc vminingc  200 Aug  5 11:16 SettingsController.php
+-rw-r--r-- 1 vminingc vminingc 1720 Aug  4 12:07 SiteSettingsController.php
+-rw-rw-r-- 1 vminingc vminingc  359 Aug  5 11:16 UserController.php
+-rw-r--r-- 1 vminingc vminingc 1211 Aug  4 12:07 UserExportController.php
+-rw-r--r-- 1 vminingc vminingc  507 Aug  4 12:07 UserManagementController.php
+-rw-r--r-- 1 vminingc vminingc  853 Aug  4 12:07 VolunteerHoursController.php
+
+app/Http/Controllers/Api:
+total 8
+-rw-r--r-- 1 vminingc vminingc 3681 Aug  4 12:07 MobileApiController.php
+
+app/Http/Controllers/Auth:
+total 128
+-rw-r--r-- 1 vminingc vminingc 1038 Aug  5 02:29 AuthenticatedSessionController.php
+-rw-rw-r-- 1 vminingc vminingc  965 Aug  4 12:07 ConfirmPasswordController.php
+-rw-r--r-- 1 vminingc vminingc 1024 Aug  5 02:29 ConfirmablePasswordController.php
+-rw-r--r-- 1 vminingc vminingc  630 Aug  5 02:29 EmailVerificationNotificationController.php
+-rw-r--r-- 1 vminingc vminingc  564 Aug  5 02:29 EmailVerificationPromptController.php
+-rw-rw-r-- 1 vminingc vminingc  667 Aug  4 12:07 ForgotPasswordController.php
+-rw-r--r-- 1 vminingc vminingc 1005 Aug  5 13:14 LoginController.php
+-rw-r--r-- 1 vminingc vminingc 2210 Aug  5 02:29 NewPasswordController.php
+-rw-r--r-- 1 vminingc vminingc  795 Aug  5 02:29 PasswordController.php
+-rw-r--r-- 1 vminingc vminingc 1311 Aug  5 02:29 PasswordResetLinkController.php
+-rw-r--r-- 1 vminingc vminingc  945 Aug  5 13:14 RegisterController.php
+-rw-r--r-- 1 vminingc vminingc 1333 Aug  5 02:29 RegisteredUserController.php
+-rw-rw-r-- 1 vminingc vminingc  785 Aug  4 12:07 ResetPasswordController.php
+-rw-r--r-- 1 vminingc vminingc  827 Aug  4 12:07 SocialController.php
+-rw-rw-r-- 1 vminingc vminingc 1071 Aug  4 12:07 VerificationController.php
+-rw-r--r-- 1 vminingc vminingc  800 Aug  5 02:29 VerifyEmailController.php
+
+app/Http/Controllers/Dashboard:
+total 16
+-rw-r--r-- 1 vminingc vminingc 465 Aug  4 12:07 DashboardController.
+-rw-r--r-- 1 vminingc vminingc 838 Aug  4 12:07 DashboardController.php
+
+app/Http/Controllers/Event:
+total 0
+
+app/Http/Controllers/Kyc:
+total 8
+-rw-r--r-- 1 vminingc vminingc 786 Aug  4 12:07 KycController.php
+
+app/Http/Controllers/Team:
+total 8
+-rw-r--r-- 1 vminingc vminingc 692 Aug  5 10:58 TeamController.php
+
+app/Http/Controllers/Volunteer:
+total 24
+-rw-r--r-- 1 vminingc vminingc  579 Aug  5 11:34 OpportunityController.php
+-rw-r--r-- 1 vminingc vminingc 1038 Aug  5 11:10 ProfileController.php
+-rw-r--r-- 1 vminingc vminingc  911 Aug  5 11:10 RegistrationController.php
+
+==== [MODELS] ====
+total 184
+-rw-r--r-- 1 vminingc vminingc 341 Aug  4 12:07 Badge.php
+-rw-r--r-- 1 vminingc vminingc 496 Aug  4 12:07 Certificate.php
+-rw-rw-r-- 1 vminingc vminingc 145 Aug  5 12:44 Download.php
+-rw-r--r-- 1 vminingc vminingc 842 Aug  5 16:53 Event.php
+-rw-r--r-- 1 vminingc vminingc 449 Aug  4 12:07 EventApplication.php
+-rw-r--r-- 1 vminingc vminingc 433 Aug  4 12:07 EventCheckin.php
+-rw-r--r-- 1 vminingc vminingc 439 Aug  4 12:07 EventEvaluation.php
+-rw-r--r-- 1 vminingc vminingc 393 Aug  4 12:07 EventInfoRequest.php
+-rw-r--r-- 1 vminingc vminingc 462 Aug  4 12:07 EventRegistration.php
+-rw-r--r-- 1 vminingc vminingc 239 Aug  4 12:07 Kyc.php
+-rw-rw-r-- 1 vminingc vminingc 244 Aug  5 13:18 News.php
+-rw-r--r-- 1 vminingc vminingc 635 Aug  4 12:07 Opportunity.php
+-rw-r--r-- 1 vminingc vminingc 435 Aug  4 12:07 Organization.php
+-rw-rw-r-- 1 vminingc vminingc 144 Aug  5 12:44 Partner.php
+-rw-r--r-- 1 vminingc vminingc 531 Aug  4 12:07 Registration.php
+-rw-r--r-- 1 vminingc vminingc 298 Aug  4 12:07 Role.php
+-rw-r--r-- 1 vminingc vminingc 459 Aug  4 12:07 SiteSetting.php
+-rw-r--r-- 1 vminingc vminingc 151 Aug  4 12:07 Team.php
+-rw-r--r-- 1 vminingc vminingc 546 Aug  5 03:05 User.php
+-rw-r--r-- 1 vminingc vminingc 428 Aug  4 12:07 Volunteer.php
+-rw-r--r-- 1 vminingc vminingc 451 Aug  4 12:07 VolunteerHour.php
+-rw-rw-r-- 1 vminingc vminingc 274 Aug  5 13:52 VolunteerOpportunity.php
+-rw-r--r-- 1 vminingc vminingc 377 Aug  4 12:07 VolunteerProfile.php
+
+==== [BLADE VIEWS] ====
+resources/views/:
+total 388
+-rw-r--r--  1 vminingc vminingc  194 Aug  4 16:00 404.blade.php
+-rw-rw-r--  1 vminingc vminingc  837 Aug  5 12:32 EventController.php
+-rw-r--r--  1 vminingc vminingc  599 Aug  4 12:08 a
+drwxrwxr-x  2 vminingc vminingc 4096 Aug  4 15:36 about
+-rw-r--r--  1 vminingc vminingc  262 Aug  5 02:58 about.blade.php
+drwxr-xr-x 14 vminingc vminingc 4096 Aug  4 15:36 admin
+-rw-rw-r--  1 vminingc vminingc  209 Aug  4 15:55 admin.dashboard.blade.php
+-rw-rw-r--  1 vminingc vminingc  203 Aug  4 15:55 admin.events.blade.php
+-rw-rw-r--  1 vminingc vminingc  201 Aug  4 15:55 admin.users.blade.php
+-rw-rw-r--  1 vminingc vminingc  405 Aug  5 12:32 app.css
+drwxr-xr-x  2 vminingc vminingc 4096 Aug  4 12:08 attendance
+drwxr-xr-x  3 vminingc vminingc 4096 Aug  4 12:08 auth
+-rw-rw-r--  1 vminingc vminingc  219 Aug  4 15:55 auth.forgot-password.blade.php
+-rw-rw-r--  1 vminingc vminingc  199 Aug  4 15:55 auth.login.blade.php
+-rw-rw-r--  1 vminingc vminingc  205 Aug  4 15:55 auth.register.blade.php
+drwxr-xr-x  2 vminingc vminingc 4096 Aug  4 12:08 certificates
+-rw-rw-r--  1 vminingc vminingc  247 Aug  4 15:11 certificates.blade.php
+-rw-rw-r--  1 vminingc vminingc  215 Aug  4 15:55 certificates.index.blade.php
+-rw-rw-r--  1 vminingc vminingc  213 Aug  4 15:55 certificates.show.blade.php
+drwxr-xr-x  2 vminingc vminingc 4096 Aug  5 02:41 components
+drwxrwxr-x  2 vminingc vminingc 4096 Aug  4 15:36 contact
+-rw-r--r--  1 vminingc vminingc  219 Aug  5 02:58 contact.blade.php
+drwxr-xr-x  2 vminingc vminingc 4096 Aug  4 12:08 dashboard
+-rw-r--r--  1 vminingc vminingc  712 Aug  5 12:32 dashboard.blade.php
+drwxrwxr-x  2 vminingc vminingc 4096 Aug  5 12:40 downloads
+-rw-rw-r--  1 vminingc vminingc  144 Aug  5 02:23 downloads.blade.php
+drwxr-xr-x  2 vminingc vminingc 4096 Aug  4 12:08 emails
+drwxr-xr-x  2 vminingc vminingc 4096 Aug  4 18:35 events
+-rw-rw-r--  1 vminingc vminingc  206 Aug  5 02:58 events.blade.php
+-rw-rw-r--  1 vminingc vminingc  203 Aug  4 15:55 events.index.blade.php
+-rw-rw-r--  1 vminingc vminingc  201 Aug  4 15:55 events.show.blade.php
+drwxrwxr-x  2 vminingc vminingc 4096 Aug  4 15:36 faq
+-rw-r--r--  1 vminingc vminingc  214 Aug  5 02:58 faq.blade.php
+-rw-r--r--  1 vminingc vminingc   30 Aug  5 11:37 home.blade.php
+drwxr-xr-x  2 vminingc vminingc 4096 Aug  4 12:08 kyc
+-rw-r--r--  1 vminingc vminingc  185 Aug  4 15:58 kyc.blade.php
+-rw-rw-r--  1 vminingc vminingc 1183 Aug  5 09:53 layout.blade.php
+drwxr-xr-x  2 vminingc vminingc 4096 Aug  5 02:36 layouts
+-rw-r--r--  1 vminingc vminingc  201 Aug  4 15:58 maintenance.blade.php
+drwxr-xr-x  2 vminingc vminingc 4096 Aug  4 12:08 news
+drwxr-xr-x  2 vminingc vminingc 4096 Aug  4 12:08 notifications
+drwxr-xr-x  2 vminingc vminingc 4096 Aug  4 12:08 opportunities
+-rw-rw-r--  1 vminingc vminingc  277 Aug  6 03:24 opportunities.blade.php
+drwxr-xr-x  2 vminingc vminingc 4096 Aug  4 12:08 organization
+drwxr-xr-x  2 vminingc vminingc 4096 Aug  4 12:08 organizations
+drwxr-xr-x  2 vminingc vminingc 4096 Aug  4 12:08 pages
+drwxr-xr-x  2 vminingc vminingc 4096 Aug  5 12:32 partials
+drwxrwxr-x  2 vminingc vminingc 4096 Aug  5 12:40 partners
+-rw-r--r--  1 vminingc vminingc  206 Aug  4 18:35 partners.blade.php
+drwxr-xr-x  2 vminingc vminingc 4096 Aug  4 12:08 pdf
+drwxr-xr-x  3 vminingc vminingc 4096 Aug  4 12:08 profile
+-rw-r--r--  1 vminingc vminingc  195 Aug  4 18:35 profile.blade.php
+-rw-r--r--  1 vminingc vminingc  714 Aug  4 12:08 publ
+drwxr-xr-x  2 vminingc vminingc 4096 Aug  5 11:51 public
+drwxrwxr-x  2 vminingc vminingc 4096 Aug  5 12:40 regions
+drwxr-xr-x  2 vminingc vminingc 4096 Aug  4 12:08 resources
+drwxr-xr-x  2 vminingc vminingc 4096 Aug  4 12:08 surveys
+drwxrwxr-x  2 vminingc vminingc 4096 Aug  4 15:36 team
+-rw-r--r--  1 vminingc vminingc  196 Aug  4 16:00 team.blade.php
+drwxr-xr-x  2 vminingc vminingc 4096 Aug  4 12:08 teams
+drwxr-xr-x  3 vminingc vminingc 4096 Aug  4 12:08 vendor
+drwxr-xr-x  3 vminingc vminingc 4096 Aug  5 13:42 volunteer
+-rw-rw-r--  1 vminingc vminingc  209 Aug  4 15:55 volunteer.hours.blade.php
+-rw-rw-r--  1 vminingc vminingc  225 Aug  4 15:55 volunteer.opportunities.blade.php
+-rw-r--r--  1 vminingc vminingc 2675 Aug  5 13:21 welcome.blade.php
+
+resources/views/about:
+total 0
+
+resources/views/admin:
+total 156
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 12:08 analytics
+-rw-r--r-- 1 vminingc vminingc  150 Aug  5 06:39 analytics.blade.php
+drwxrwxr-x 2 vminingc vminingc 4096 Aug  4 15:36 auth
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 15:36 certificates
+-rw-r--r-- 1 vminingc vminingc 1529 Aug  5 13:02 certificates.blade.php
+-rw-r--r-- 1 vminingc vminingc 2379 Aug  4 12:08 dashboard.bl
+-rw-r--r-- 1 vminingc vminingc 1381 Aug  5 13:02 dashboard.blade.php
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 12:08 events
+-rw-r--r-- 1 vminingc vminingc 1324 Aug  5 13:02 events.blade.php
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 12:08 kyc
+-rw-r--r-- 1 vminingc vminingc  203 Aug  5 03:13 kyc.blade.php
+-rw-r--r-- 1 vminingc vminingc 1396 Aug  4 12:08 kyc_index.blade.php
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 12:08 logs
+-rw-r--r-- 1 vminingc vminingc  380 Aug  4 12:08 logs.blade.php
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 12:08 news
+-rw-r--r-- 1 vminingc vminingc 1880 Aug  4 12:08 news.blade.php
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 12:08 organizations
+-rw-r--r-- 1 vminingc vminingc 1794 Aug  4 12:08 organizations.blade.php
+-rw-r--r-- 1 vminingc vminingc 1090 Aug  4 12:08 pages.blade.php
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 12:08 partials
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 12:08 partners
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 12:08 settings
+-rw-r--r-- 1 vminingc vminingc 5296 Aug  4 12:08 settings.blade.php
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 12:08 users
+-rw-r--r-- 1 vminingc vminingc 1929 Aug  5 13:02 users.blade.php
+
+resources/views/admin/analytics:
+total 16
+-rw-r--r-- 1 vminingc vminingc 220 Aug  4 12:08 index.blade.
+-rw-r--r-- 1 vminingc vminingc 376 Aug  4 12:08 index.blade.php
+
+resources/views/admin/auth:
+total 0
+
+resources/views/admin/certificates:
+total 32
+-rw-rw-r-- 1 vminingc vminingc  138 Aug  4 16:47 create.blade.php
+-rw-r--r-- 1 vminingc vminingc 1733 Aug  4 12:08 edit.blade.php
+-rw-r--r-- 1 vminingc vminingc  124 Aug  4 16:47 index.blade.php
+-rw-r--r-- 1 vminingc vminingc  137 Aug  4 16:47 show.blade.php
+
+resources/views/admin/events:
+total 64
+-rw-r--r-- 1 vminingc vminingc  794 Aug  4 16:54 create.blade.php
+-rw-r--r-- 1 vminingc vminingc  950 Aug  4 16:54 edit.blade.php
+-rw-r--r-- 1 vminingc vminingc 1502 Aug  4 16:54 index.blade.php
+-rw-r--r-- 1 vminingc vminingc 2186 Aug  4 12:08 info_form.blade.php
+-rw-r--r-- 1 vminingc vminingc  302 Aug  4 12:08 photos.
+-rw-r--r-- 1 vminingc vminingc  196 Aug  4 12:08 qr.blade.php
+-rw-r--r-- 1 vminingc vminingc  213 Aug  4 15:58 show.blade.php
+-rw-r--r-- 1 vminingc vminingc 1846 Aug  4 12:08 volunteers.blade.php
+
+resources/views/admin/kyc:
+total 8
+-rw-r--r-- 1 vminingc vminingc 209 Aug  4 15:58 index.blade.php
+
+resources/views/admin/logs:
+total 8
+-rw-r--r-- 1 vminingc vminingc 971 Aug  4 12:08 index.blade.php
+
+resources/views/admin/news:
+total 24
+-rw-r--r-- 1 vminingc vminingc  840 Aug  4 12:08 create.blade.php
+-rw-r--r-- 1 vminingc vminingc  947 Aug  4 12:08 edit.blade.php
+-rw-r--r-- 1 vminingc vminingc 1765 Aug  4 12:08 index.blade.php
+
+resources/views/admin/organizations:
+total 16
+-rw-r--r-- 1 vminingc vminingc 1387 Aug  4 12:08 edit.blade.php
+-rw-r--r-- 1 vminingc vminingc 1034 Aug  4 12:08 show.blade.php
+
+resources/views/admin/partials:
+total 8
+-rw-r--r-- 1 vminingc vminingc 587 Aug  4 12:08 sidebar.blade.php
+
+resources/views/admin/partners:
+total 24
+-rw-r--r-- 1 vminingc vminingc  864 Aug  4 12:08 create.blade.php
+-rw-r--r-- 1 vminingc vminingc 1159 Aug  4 12:08 edit.blade.php
+-rw-r--r-- 1 vminingc vminingc 1885 Aug  4 12:08 index.blade.php
+
+resources/views/admin/settings:
+total 8
+-rw-r--r-- 1 vminingc vminingc 1241 Aug  4 12:08 index.blade.php
+
+resources/views/admin/users:
+total 24
+-rw-r--r-- 1 vminingc vminingc 1573 Aug  5 03:38 edit.blade.php
+-rw-r--r-- 1 vminingc vminingc 1959 Aug  5 03:38 index.blade.php
+-rw-r--r-- 1 vminingc vminingc 1026 Aug  4 12:08 show.blade.php
+
+resources/views/attendance:
+total 8
+-rw-r--r-- 1 vminingc vminingc 648 Aug  4 12:08 dashboard.blade.php
+
+resources/views/auth:
+total 60
+-rw-r--r-- 1 vminingc vminingc  905 Aug  5 02:29 confirm-password.blade.php
+-rw-r--r-- 1 vminingc vminingc 1000 Aug  5 02:29 forgot-password.blade.php
+-rw-r--r-- 1 vminingc vminingc 1212 Aug  5 13:14 login.blade.php
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 12:08 passwords
+-rw-r--r-- 1 vminingc vminingc 1538 Aug  5 13:14 register.blade.php
+-rw-r--r-- 1 vminingc vminingc 1646 Aug  5 02:29 reset-password.blade.php
+-rw-r--r-- 1 vminingc vminingc 1361 Aug  5 02:29 verify-email.blade.php
+-rw-rw-r-- 1 vminingc vminingc 1134 Aug  4 12:08 verify.blade.php
+
+resources/views/auth/passwords:
+total 24
+-rw-rw-r-- 1 vminingc vminingc 2056 Aug  4 12:08 confirm.blade.php
+-rw-r--r-- 1 vminingc vminingc  585 Aug  4 12:08 email.blade.php
+-rw-rw-r-- 1 vminingc vminingc 2984 Aug  4 12:08 reset.blade.php
+
+resources/views/certificates:
+total 40
+-rw-r--r-- 1 vminingc vminingc  129 Aug  4 16:47 index.blade.php
+-rw-r--r-- 1 vminingc vminingc 1514 Aug  4 12:08 pdf.blade.php
+-rw-r--r-- 1 vminingc vminingc  142 Aug  4 16:47 show.blade.php
+-rw-r--r-- 1 vminingc vminingc  289 Aug  4 12:08 template.blade.php
+-rw-r--r-- 1 vminingc vminingc  740 Aug  4 12:08 verify.blade.php
+
+resources/views/components:
+total 136
+-rw-rw-r-- 1 vminingc vminingc  211 Aug  4 16:55 admin-navbar.blade.php
+-rw-r--r-- 1 vminingc vminingc 3045 Aug  5 02:29 application-logo.blade.php
+-rw-r--r-- 1 vminingc vminingc  180 Aug  5 02:29 auth-session-status.blade.php
+-rw-r--r-- 1 vminingc vminingc  412 Aug  5 02:29 danger-button.blade.php
+-rw-r--r-- 1 vminingc vminingc  282 Aug  5 02:29 dropdown-link.blade.php
+-rw-r--r-- 1 vminingc vminingc  876 Aug  5 02:49 dropdown.blade.php
+-rw-r--r-- 1 vminingc vminingc  259 Aug  5 02:29 input-error.blade.php
+-rw-r--r-- 1 vminingc vminingc  162 Aug  5 02:29 input-label.blade.php
+-rw-rw-r-- 1 vminingc vminingc  318 Aug  4 18:35 lang-toggle.blade.php
+-rw-r--r-- 1 vminingc vminingc 3239 Aug  5 02:29 modal.blade.php
+-rw-r--r-- 1 vminingc vminingc  770 Aug  5 02:29 nav-link.blade.php
+-rw-r--r-- 1 vminingc vminingc  536 Aug  5 02:29 primary-button.blade.php
+-rw-rw-r-- 1 vminingc vminingc 1242 Aug  5 02:41 project-files.txt
+-rw-r--r-- 1 vminingc vminingc 1004 Aug  5 02:29 responsive-nav-link.blade.php
+-rw-r--r-- 1 vminingc vminingc  505 Aug  5 02:29 secondary-button.blade.php
+-rw-r--r-- 1 vminingc vminingc  297 Aug  5 02:29 text-input.blade.php
+-rw-rw-r-- 1 vminingc vminingc  200 Aug  4 16:55 volunteer-navbar.blade.php
+
+resources/views/contact:
+total 0
+
+resources/views/dashboard:
+total 16
+-rw-r--r-- 1 vminingc vminingc 2302 Aug  4 12:08 index.blade.php
+-rw-r--r-- 1 vminingc vminingc  565 Aug  4 12:08 volunteer.blade.php
+
+resources/views/downloads:
+total 8
+-rw-rw-r-- 1 vminingc vminingc 781 Aug  5 12:40 index.blade.php
+
+resources/views/emails:
+total 24
+-rw-r--r-- 1 vminingc vminingc 346 Aug  4 12:08 certificate-issued.blade.php
+-rw-r--r-- 1 vminingc vminingc 342 Aug  4 12:08 certificate.blade.php
+-rw-r--r-- 1 vminingc vminingc 143 Aug  4 12:08 general_notification.blade.php
+
+resources/views/events:
+total 56
+-rw-r--r-- 1 vminingc vminingc 660 Aug  4 12:08 create.blade.php
+-rw-r--r-- 1 vminingc vminingc 544 Aug  4 12:08 evaluation.blade.php
+-rw-r--r-- 1 vminingc vminingc 761 Aug  5 13:55 index.blade.php
+-rw-r--r-- 1 vminingc vminingc 643 Aug  4 12:08 info_request.blade.php
+-rw-r--r-- 1 vminingc vminingc 280 Aug  4 12:08 list.blade.php
+-rw-r--r-- 1 vminingc vminingc 203 Aug  4 12:08 qr.blade.php
+-rw-r--r-- 1 vminingc vminingc 466 Aug  5 13:55 show.blade.php
+
+resources/views/faq:
+total 0
+
+resources/views/kyc:
+total 16
+-rw-r--r-- 1 vminingc vminingc 665 Aug  4 12:08 show.blade.php
+-rw-r--r-- 1 vminingc vminingc 359 Aug  4 12:08 upload.blade.php
+
+resources/views/layouts:
+total 68
+-rw-rw-r-- 1 vminingc vminingc  244 Aug  4 16:55 admin.blade.php
+-rw-r--r-- 1 vminingc vminingc 4806 Aug  4 12:08 admin_theme.blade.php
+-rw-r--r-- 1 vminingc vminingc 1663 Aug  5 13:55 app.blade.php
+-rw-rw-r-- 1 vminingc vminingc  876 Aug  5 02:38 dropdown.blade.php
+-rw-r--r-- 1 vminingc vminingc  487 Aug  5 09:25 guest.blade.php
+-rw-r--r-- 1 vminingc vminingc 2686 Aug  5 03:04 navigation.blade.php
+-rw-r--r-- 1 vminingc vminingc  984 Aug  4 12:08 theme.blade.php
+-rw-rw-r-- 1 vminingc vminingc  252 Aug  4 16:55 volunteer.blade.php
+
+resources/views/news:
+total 16
+-rw-r--r-- 1 vminingc vminingc 802 Aug  5 12:40 index.blade.php
+-rw-r--r-- 1 vminingc vminingc 530 Aug  4 12:08 show.blade.php
+
+resources/views/notifications:
+total 0
+
+resources/views/opportunities:
+total 16
+-rw-r--r-- 1 vminingc vminingc 1536 Aug  5 16:53 index.blade.php
+-rw-r--r-- 1 vminingc vminingc  852 Aug  5 16:53 show.blade.php
+
+resources/views/organization:
+total 32
+-rw-r--r-- 1 vminingc vminingc 441 Aug  4 12:08 dashboard.blade.php
+-rw-r--r-- 1 vminingc vminingc 512 Aug  4 12:08 login.blade.php
+-rw-r--r-- 1 vminingc vminingc 436 Aug  4 12:08 public_profile.blade.php
+-rw-r--r-- 1 vminingc vminingc 676 Aug  4 12:08 register.blade.php
+
+resources/views/organizations:
+total 24
+-rw-r--r-- 1 vminingc vminingc 368 Aug  5 02:54 dashboard.blade.php
+-rw-r--r-- 1 vminingc vminingc 776 Aug  4 12:08 index.blade.php
+-rw-r--r-- 1 vminingc vminingc 550 Aug  4 12:08 show.blade.php
+
+resources/views/pages:
+total 48
+-rw-r--r-- 1 vminingc vminingc 262 Aug  4 12:08 about.blade.php
+-rw-r--r-- 1 vminingc vminingc 417 Aug  4 12:08 app.blade.php
+-rw-r--r-- 1 vminingc vminingc 207 Aug  4 12:08 contact.blade.php
+-rw-r--r-- 1 vminingc vminingc 527 Aug  4 12:08 faq.blade.php
+-rw-r--r-- 1 vminingc vminingc 245 Aug  4 12:08 partners.blade.php
+-rw-r--r-- 1 vminingc vminingc 268 Aug  4 12:08 region.blade.php
+
+resources/views/partials:
+total 48
+-rw-r--r-- 1 vminingc vminingc  754 Aug  4 12:08 certificates-list.blade.php
+-rw-r--r-- 1 vminingc vminingc 1209 Aug  4 12:08 dashboard_widgets.blade.php
+-rw-r--r-- 1 vminingc vminingc  687 Aug  4 12:08 events-list.blade.php
+-rw-r--r-- 1 vminingc vminingc  442 Aug  5 11:50 footer.blade.php
+-rw-r--r-- 1 vminingc vminingc 1276 Aug  5 11:50 header.blade.php
+-rw-rw-r-- 1 vminingc vminingc  575 Aug  5 12:32 notifications.blade.php
+
+resources/views/partners:
+total 8
+-rw-rw-r-- 1 vminingc vminingc 651 Aug  5 12:40 index.blade.php
+
+resources/views/pdf:
+total 8
+-rw-r--r-- 1 vminingc vminingc 1002 Aug  4 12:08 certificate.blade.php
+
+resources/views/profile:
+total 12
+-rw-r--r-- 1 vminingc vminingc 1039 Aug  5 02:29 edit.blade.php
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 12:08 partials
+
+resources/views/profile/partials:
+total 24
+-rw-r--r-- 1 vminingc vminingc 2216 Aug  5 02:29 delete-user-form.blade.php
+-rw-r--r-- 1 vminingc vminingc 2175 Aug  5 02:29 update-password-form.blade.php
+-rw-r--r-- 1 vminingc vminingc 2846 Aug  5 02:29 update-profile-information-form.blade.php
+
+resources/views/public:
+total 64
+-rw-r--r-- 1 vminingc vminingc  848 Aug  4 12:08 about.blade.php
+-rw-r--r-- 1 vminingc vminingc 1670 Aug  4 12:08 contact.blade.php
+-rw-rw-r-- 1 vminingc vminingc  231 Aug  5 11:51 events.blade.php
+-rw-r--r-- 1 vminingc vminingc 2005 Aug  4 12:08 faq.blade.php
+-rw-r--r-- 1 vminingc vminingc  860 Aug  5 11:50 hero.blade.php
+-rw-r--r-- 1 vminingc vminingc 3103 Aug  5 12:17 home.blade.php
+-rw-r--r-- 1 vminingc vminingc 1250 Aug  5 11:51 partners.blade.php
+-rw-r--r-- 1 vminingc vminingc 1142 Aug  4 12:08 stories.blade.php
+
+resources/views/regions:
+total 8
+-rw-rw-r-- 1 vminingc vminingc 896 Aug  5 12:40 sharjah.blade.php
+
+resources/views/resources:
+total 0
+
+resources/views/surveys:
+total 8
+-rw-r--r-- 1 vminingc vminingc 427 Aug  4 12:08 create.blade.php
+
+resources/views/team:
+total 0
+
+resources/views/teams:
+total 24
+-rw-r--r-- 1 vminingc vminingc 754 Aug  4 12:08 create.blade.php
+-rw-r--r-- 1 vminingc vminingc 472 Aug  4 12:08 index.blade.php
+-rw-r--r-- 1 vminingc vminingc 803 Aug  4 12:08 show.blade.php
+
+resources/views/vendor:
+total 4
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 12:08 mail
+
+resources/views/vendor/mail:
+total 0
+
+resources/views/volunteer:
+total 116
+-rw-r--r-- 1 vminingc vminingc  443 Aug  4 12:08 badges.blade.php
+-rw-r--r-- 1 vminingc vminingc  431 Aug  4 12:08 certificates.blade.php
+-rw-r--r-- 1 vminingc vminingc  219 Aug  4 18:35 dashboard.blade.php
+-rw-r--r-- 1 vminingc vminingc 1446 Aug  4 12:08 edit.blade.php
+-rw-rw-r-- 1 vminingc vminingc  209 Aug  4 15:58 hours.blade.php
+-rw-r--r-- 1 vminingc vminingc  574 Aug  4 12:08 leaderboard.blade.php
+-rw-r--r-- 1 vminingc vminingc  450 Aug  4 18:35 my_events.blade.php
+-rw-r--r-- 1 vminingc vminingc 1176 Aug  5 13:52 opportunities.blade.php
+-rw-r--r-- 1 vminingc vminingc  590 Aug  5 11:35 opportunity_detail.blade.php
+-rw-rw-r-- 1 vminingc vminingc  670 Aug  5 13:52 opportunity_show.blade.php
+drwxr-xr-x 2 vminingc vminingc 4096 Aug  4 12:08 profile
+-rw-r--r-- 1 vminingc vminingc 1914 Aug  5 12:40 profile.blade.php
+-rw-r--r-- 1 vminingc vminingc  960 Aug  4 12:08 profile_edit.blade.php
+-rw-r--r-- 1 vminingc vminingc  620 Aug  4 12:08 public_profile.blade.php
+-rw-r--r-- 1 vminingc vminingc  525 Aug  4 12:08 register.blade.php
+
+resources/views/volunteer/profile:
+total 8
+-rw-r--r-- 1 vminingc vminingc 320 Aug  4 12:08 show.blade.php
+
+==== [MIGRATIONS] ====
+total 316
+-rw-r--r-- 1 vminingc vminingc 1473 Aug  4 12:08 0001_01_01_000000_create_users_table.php
+-rw-r--r-- 1 vminingc vminingc  849 Aug  4 12:08 0001_01_01_000001_create_cache_table.php
+-rw-r--r-- 1 vminingc vminingc 1812 Aug  4 12:08 0001_01_01_000002_create_jobs_table.php
+-rw-rw-r-- 1 vminingc vminingc  554 Aug  5 03:38 2024_01_01_100000_add_role_enabled_to_users.php
+-rw-rw-r-- 1 vminingc vminingc  659 Aug  5 12:46 2025_01_01_000000_add_role_to_users.php
+-rw-r--r-- 1 vminingc vminingc  642 Aug  4 12:08 2025_08_02_235249_add_social_fields_to_users_table.php
+-rw-r--r-- 1 vminingc vminingc  789 Aug  4 12:08 2025_08_03_000000_create_events_table.php
+-rw-r--r-- 1 vminingc vminingc  670 Aug  4 12:08 2025_08_03_000001_create_volunteers_table.php
+-rw-r--r-- 1 vminingc vminingc  801 Aug  4 12:08 2025_08_03_000002_create_certificates_table.php
+-rw-r--r-- 1 vminingc vminingc  720 Aug  4 12:08 2025_08_03_000002_create_registrations_table.php
+-rw-r--r-- 1 vminingc vminingc  744 Aug  4 12:08 2025_08_03_000100_create_volunteer_profiles_table.php
+-rw-r--r-- 1 vminingc vminingc  674 Aug  4 12:08 2025_08_03_000200_create_organizations_table.php
+-rw-r--r-- 1 vminingc vminingc  770 Aug  4 12:08 2025_08_03_000400_create_event_registrations_table.php
+-rw-r--r-- 1 vminingc vminingc  712 Aug  4 12:08 2025_08_03_000500_create_volunteer_hours_table.php
+-rw-r--r-- 1 vminingc vminingc  876 Aug  4 12:08 2025_08_03_000553_create_kyc_table.php
+-rw-r--r-- 1 vminingc vminingc  859 Aug  4 12:08 2025_08_03_000553_create_roles_table.php
+-rw-r--r-- 1 vminingc vminingc  996 Aug  4 12:08 2025_08_03_000742_create_teams_table.php
+-rw-r--r-- 1 vminingc vminingc  879 Aug  4 12:08 2025_08_03_020000_create_event_applications_table.php
+-rw-r--r-- 1 vminingc vminingc  615 Aug  4 12:08 2025_08_03_020100_create_event_info_requests_table.php
+-rw-r--r-- 1 vminingc vminingc  781 Aug  4 12:08 2025_08_03_020200_create_event_checkins_table.php
+-rw-r--r-- 1 vminingc vminingc  794 Aug  4 12:08 2025_08_03_020300_create_event_evaluations_table.php
+-rw-r--r-- 1 vminingc vminingc  863 Aug  4 12:08 2025_08_03_025713_create_personal_access_tokens_table.php
+-rw-r--r-- 1 vminingc vminingc  803 Aug  4 12:08 2025_08_04_000000_create_opportunities_table.php
+-rw-r--r-- 1 vminingc vminingc  544 Aug  4 12:08 2025_08_04_200000_create_site_settings_table.php
+-rw-r--r-- 1 vminingc vminingc 1280 Aug  4 12:08 2025_08_04_210000_create_badges_table.php
+-rw-rw-r-- 1 vminingc vminingc  726 Aug  5 13:52 2025_08_05_000000_create_volunteer_opportunities_table.php
+-rw-rw-r-- 1 vminingc vminingc  642 Aug  5 12:54 2025_08_05_000001_add_date_to_events_table.php
+-rw-rw-r-- 1 vminingc vminingc  955 Aug  5 12:56 2025_08_05_000003_add_city_and_description_to_events_table.php
+-rw-rw-r-- 1 vminingc vminingc  945 Aug  5 13:00 2025_08_05_000010_add_city_description_to_events.php
+-rw-rw-r-- 1 vminingc vminingc  942 Aug  5 13:00 2025_08_05_000011_create_certificates_table.php.bak
+-rw-rw-r-- 1 vminingc vminingc  713 Aug  5 13:00 2025_08_05_000012_create_kycs_table.php
+-rw-rw-r-- 1 vminingc vminingc  821 Aug  5 13:00 2025_08_05_000013_create_payments_table.php
+-rw-rw-r-- 1 vminingc vminingc  911 Aug  5 13:04 2025_08_05_000014_create_payments_table.php
+-rw-rw-r-- 1 vminingc vminingc  494 Aug  5 13:18 2025_08_05_000020_create_news_table.php
+-rw-rw-r-- 1 vminingc vminingc  684 Aug  5 06:39 2025_08_05_100000_add_status_enum_to_kyc_table.php
+-rw-rw-r-- 1 vminingc vminingc 1668 Aug  5 13:00 AdminController.php
+-rw-rw-r-- 1 vminingc vminingc 1456 Aug  5 13:04 PaymentController.php
+-rw-rw-r-- 1 vminingc vminingc 2326 Aug  5 13:04 app.blade.php
+drwxrwxr-x 3 vminingc vminingc 4096 Aug  5 13:04 resources
+-rw-rw-r-- 1 vminingc vminingc 3056 Aug  5 13:04 web.php
+
+==== [CONFIG FILES] ====
+total 116
+-rw-rw-r-- 1 vminingc vminingc  2244 Aug  5 09:25 app.php
+-rw-r--r-- 1 vminingc vminingc  4029 Aug  4 12:07 auth.php
+-rw-r--r-- 1 vminingc vminingc  3476 Aug  4 12:07 cache.php
+-rw-r--r-- 1 vminingc vminingc  6198 Aug  4 12:07 database.php
+-rw-r--r-- 1 vminingc vminingc 12280 Aug  4 12:07 dompdf.php
+-rw-r--r-- 1 vminingc vminingc  2500 Aug  4 12:07 filesystems.php
+-rw-r--r-- 1 vminingc vminingc  4310 Aug  4 12:07 logging.php
+-rw-r--r-- 1 vminingc vminingc  3539 Aug  4 12:07 mail.php
+-rw-r--r-- 1 vminingc vminingc  3824 Aug  4 12:07 queue.php
+-rw-r--r-- 1 vminingc vminingc  3037 Aug  4 12:07 sanctum.php
+-rw-r--r-- 1 vminingc vminingc  1035 Aug  4 12:07 services.php
+-rw-r--r-- 1 vminingc vminingc  7858 Aug  4 12:07 session.php
+
+==== [.ENV FILE] ====
+APP_NAME="SwaedUAE"
+APP_ENV=production
+APP_KEY=base64:FIYQqSBbwA3Wx95SVMspuMOxSoNsghH6tDcDk73XR1g=
+APP_DEBUG=false
+APP_URL=https://swaeduae.ae
+
+LOG_CHANNEL=stack
+LOG_LEVEL=debug
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=vminingc_swaeduae_db
+DB_USERNAME=vminingc_admin
+DB_PASSWORD=234026.Hg@
+
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+FILESYSTEM_DRIVER=local
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+
+MAIL_MAILER=smtp
+MAIL_HOST=mail.swaeduae.ae
+MAIL_PORT=587
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=null
+MAIL_FROM_NAME="${APP_NAME}"
+
+==== [PUBLIC FOLDER] ====
+total 56
+drwxrwxr-x 2 vminingc vminingc 4096 Aug  4 18:15 css
+-rw-r--r-- 1 vminingc vminingc 1148 Aug  5 13:42 error_log
+-rw-rw-r-- 1 vminingc vminingc  291 Aug  5 10:48 hero-volunteer.svg
+-rw-rw-r-- 1 vminingc vminingc  356 Aug  4 12:20 index.php
+drwxrwxr-x 2 vminingc vminingc 4096 Aug  5 09:52 js
+drwxrwxr-x 2 vminingc vminingc 4096 Aug  4 12:21 pdfs
+-rw-rw-r-- 1 vminingc vminingc   17 Aug  5 09:03 phpinfo.php
+drwxrwxr-x 2 vminingc vminingc 4096 Aug  4 12:21 storage
+-rw-rw-r-- 1 vminingc vminingc   19 Aug  4 18:37 test.txt
+
+==== [ARTISAN COMMANDS] ====
+Laravel Framework 11.45.1
+
+Usage:
+  command [options] [arguments]
+
+Options:
+  -h, --help            Display help for the given command. When no command is given display help for the list command
+      --silent          Do not output any message
+  -q, --quiet           Only errors are displayed. All other output is suppressed
+  -V, --version         Display this application version
+      --ansi|--no-ansi  Force (or disable --no-ansi) ANSI output
+  -n, --no-interaction  Do not ask any interactive question
+      --env[=ENV]       The environment the command should run under
+  -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+
+Available commands:
+  about                     Display basic information about your application
+  clear-compiled            Remove the compiled class file
+  completion                Dump the shell completion script
+  db                        Start a new database CLI session
+  docs                      Access the Laravel documentation
+  down                      Put the application into maintenance / demo mode
+  env                       Display the current framework environment
+  help                      Display help for a command
+  inspire                   Display an inspiring quote
+  list                      List commands
+  migrate                   Run the database migrations
+  optimize                  Cache framework bootstrap, configuration, and metadata to increase performance
+  pail                      Tails the application logs.
+  serve                     Serve the application on the PHP development server
+  test                      Run the application tests
+  tinker                    Interact with your application
+  ui                        Swap the front-end scaffolding for the application
+  up                        Bring the application out of maintenance mode
+ auth
+  auth:clear-resets         Flush expired password reset tokens
+ breeze
+  breeze:install            Install the Breeze controllers and resources
+ cache
+  cache:clear               Flush the application cache
+  cache:forget              Remove an item from the cache
+  cache:prune-stale-tags    Prune stale cache tags from the cache (Redis only)
+ channel
+  channel:list              List all registered private broadcast channels
+ config
+  config:cache              Create a cache file for faster configuration loading
+  config:clear              Remove the configuration cache file
+  config:publish            Publish configuration files to your application
+  config:show               Display all of the values for a given configuration file or key
+ db
+  db:monitor                Monitor the number of connections on the specified database
+  db:seed                   Seed the database with records
+  db:show                   Display information about the given database
+  db:table                  Display information about the given database table
+  db:wipe                   Drop all tables, views, and types
+ env
+  env:decrypt               Decrypt an environment file
+  env:encrypt               Encrypt an environment file
+ event
+  event:cache               Discover and cache the application's events and listeners
+  event:clear               Clear all cached events and listeners
+  event:list                List the application's events and listeners
+ install
+  install:api               Create an API routes file and install Laravel Sanctum or Laravel Passport
+  install:broadcasting      Create a broadcasting channel routes file
+ key
+  key:generate              Set the application key
+ lang
+  lang:publish              Publish all language files that are available for customization
+ make
+  make:cache-table          [cache:table] Create a migration for the cache database table
+  make:cast                 Create a new custom Eloquent cast class
+  make:channel              Create a new channel class
+  make:class                Create a new class
+  make:command              Create a new Artisan command
+  make:component            Create a new view component class
+  make:controller           Create a new controller class
+  make:enum                 Create a new enum
+  make:event                Create a new event class
+  make:exception            Create a new custom exception class
+  make:factory              Create a new model factory
+  make:interface            Create a new interface
+  make:job                  Create a new job class
+  make:job-middleware       Create a new job middleware class
+  make:listener             Create a new event listener class
+  make:mail                 Create a new email class
+  make:middleware           Create a new HTTP middleware class
+  make:migration            Create a new migration file
+  make:model                Create a new Eloquent model class
+  make:notification         Create a new notification class
+  make:notifications-table  [notifications:table] Create a migration for the notifications table
+  make:observer             Create a new observer class
+  make:policy               Create a new policy class
+  make:provider             Create a new service provider class
+  make:queue-batches-table  [queue:batches-table] Create a migration for the batches database table
+  make:queue-failed-table   [queue:failed-table] Create a migration for the failed queue jobs database table
+  make:queue-table          [queue:table] Create a migration for the queue jobs database table
+  make:request              Create a new form request class
+  make:resource             Create a new resource
+  make:rule                 Create a new validation rule
+  make:scope                Create a new scope class
+  make:seeder               Create a new seeder class
+  make:session-table        [session:table] Create a migration for the session database table
+  make:test                 Create a new test class
+  make:trait                Create a new trait
+  make:view                 Create a new view
+ migrate
+  migrate:fresh             Drop all tables and re-run all migrations
+  migrate:install           Create the migration repository
+  migrate:refresh           Reset and re-run all migrations
+  migrate:reset             Rollback all database migrations
+  migrate:rollback          Rollback the last database migration
+  migrate:status            Show the status of each migration
+ model
+  model:prune               Prune models that are no longer needed
+  model:show                Show information about an Eloquent model
+ optimize
+  optimize:clear            Remove the cached bootstrap files
+ package
+  package:discover          Rebuild the cached package manifest
+ pest
+  pest:dataset              Create a new dataset file
+  pest:test                 Create a new test file
+ queue
+  queue:clear               Delete all of the jobs from the specified queue
+  queue:failed              List all of the failed queue jobs
+  queue:flush               Flush all of the failed queue jobs
+  queue:forget              Delete a failed queue job
+  queue:listen              Listen to a given queue
+  queue:monitor             Monitor the size of the specified queues
+  queue:prune-batches       Prune stale entries from the batches database
+  queue:prune-failed        Prune stale entries from the failed jobs table
+  queue:restart             Restart queue worker daemons after their current job
+  queue:retry               Retry a failed queue job
+  queue:retry-batch         Retry the failed jobs for a batch
+  queue:work                Start processing jobs on the queue as a daemon
+ route
+  route:cache               Create a route cache file for faster route registration
+  route:clear               Remove the route cache file
+  route:list                List all registered routes
+ sail
+  sail:add                  Add a service to an existing Sail installation
+  sail:install              Install Laravel Sail's default Docker Compose file
+  sail:publish              Publish the Laravel Sail Docker files
+ sanctum
+  sanctum:prune-expired     Prune tokens expired for more than specified number of hours
+ schedule
+  schedule:clear-cache      Delete the cached mutex files created by scheduler
+  schedule:interrupt        Interrupt the current schedule run
+  schedule:list             List all scheduled tasks
+  schedule:run              Run the scheduled commands
+  schedule:test             Run a scheduled command
+  schedule:work             Start the schedule worker
+ schema
+  schema:dump               Dump the given database schema
+ storage
+  storage:link              Create the symbolic links configured for the application
+  storage:unlink            Delete existing symbolic links configured for the application
+ stub
+  stub:publish              Publish all stubs that are available for customization
+ ui
+  ui:auth                   Scaffold basic login and registration views and routes
+  ui:controllers            Scaffold the authentication controllers
+ vendor
+  vendor:publish            Publish any publishable assets from vendor packages
+ view
+  view:cache                Compile all of the application's Blade templates
+  view:clear                Clear all compiled view files

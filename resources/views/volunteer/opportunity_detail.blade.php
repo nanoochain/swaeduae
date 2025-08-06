@@ -12,5 +12,5 @@
     <div class="mb-2">
         <strong>Location:</strong> {{ $opp->location ?? 'N/A' }}
     </div>
-    <a href="{{ route('volunteer.opportunities') }}" class="text-blue-600 underline">&larr; Back to all opportunities</a>
+    <a href="{{ route('opportunities.index') }}" class="text-blue-600 underline">&larr; Back to all opportunities</a>
 @endsection

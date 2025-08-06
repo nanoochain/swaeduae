@@ -1,24 +1,20 @@
 <?php
+
 namespace App\Http\Controllers;
 
-class CertificateController extends Controller {
-    public function index() {
-        return view('certificates.index');
-    }
+use App\Models\Certificate;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
-    public function show($id) {
-        return view('certificates.show', compact('id'));
-    }
-
-    public function adminIndex() {
-        return view('admin.certificates.index');
-    }
-
-    public function create() {
-        return view('admin.certificates.create');
-    }
-
-    public function adminShow($id) {
-        return view('admin.certificates.show', compact('id'));
+class CertificateController extends Controller
+{
+    public function download($id)
+    {
+        $certificate = Certificate::findOrFail($id);
+        $qr = base64_encode(QrCode::format('png')->size(130)->generate(route('certificates.verify', ['code' => $certificate->code])));
+        $pdf = Pdf::loadView('certificates.pdf', compact('certificate', 'qr'));
+        return $pdf->download('certificate_'.$certificate->code.'.pdf');
     }
 }

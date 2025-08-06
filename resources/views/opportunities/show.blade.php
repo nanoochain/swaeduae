@@ -1,19 +1,14 @@
 @extends('layouts.app')
 
-@section('content')
-<div class="container py-4">
-    <h1 class="mb-3">{{ $opportunity->title }}</h1>
+@section('title', $opportunity->title . ' | Volunteer Opportunity')
 
-    <div class="mb-4">
-        @if($opportunity->image)
-            <img src="{{ asset('storage/' . $opportunity->image) }}" class="img-fluid mb-3" alt="{{ $opportunity->title }}">
-        @endif
-        <p>{{ $opportunity->description }}</p>
-        <p><strong>Start Date:</strong> {{ \Carbon\Carbon::parse($opportunity->start_date)->format('M d, Y') }}</p>
-        <p><strong>End Date:</strong> {{ \Carbon\Carbon::parse($opportunity->end_date)->format('M d, Y') }}</p>
-        <p><strong>Location:</strong> {{ $opportunity->region }}</p>
-        <p><strong>Max Volunteers:</strong> {{ $opportunity->max_volunteers }}</p>
+@section('content')
+<div class="container mx-auto py-10">
+    <div class="bg-white shadow rounded-lg p-8 max-w-2xl mx-auto">
+        <h1 class="text-3xl font-bold text-blue-900 mb-2">{{ $opportunity->title }}</h1>
+        <div class="mb-3 text-gray-600">{{ $opportunity->location }} | {{ $opportunity->date }}</div>
+        <p class="mb-4">{{ $opportunity->description }}</p>
+        <a href="{{ route('opportunities.index') }}" class="text-blue-700 hover:underline">← Back to Opportunities</a>
     </div>
-    <a href="{{ url()->previous() }}" class="btn btn-secondary">Back</a>
 </div>
 @endsection

@@ -2,26 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Opportunity extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        'title', 'description', 'region', 'start_date', 'end_date', 'max_volunteers', 'image', 'created_by'
+        'title', 'description', 'location', 'date', 'organization_id'
     ];
 
-    public function creator()
-    {
-        return $this->belongsTo(User::class, 'created_by');
-    }
-    public function registrations()
-    {
-        return $this->hasMany(EventRegistration::class);
-    }
-    public function volunteerHours()
-    {
-        return $this->hasMany(VolunteerHour::class);
+    public function organization() {
+        return $this->belongsTo(\App\Models\User::class, 'organization_id');
     }
 }

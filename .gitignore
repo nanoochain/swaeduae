@@ -1,12 +1,9 @@
 /vendor
 /node_modules
+.env
+.DS_Store
 /public/storage
 /storage/*.key
-/.env
+*.log
 /.idea
 /.vscode
-Homestead.yaml
-Homestead.json
-npm-debug.log
-yarn-error.log
-.DS_Store

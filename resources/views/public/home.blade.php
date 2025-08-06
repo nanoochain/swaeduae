@@ -8,7 +8,7 @@
                 <h1 class="fw-bold display-4 text-primary mb-3">Volunteer. Impact. Connect.</h1>
                 <p class="lead mb-4">SawaedUAE is the UAE’s leading platform for volunteers and organizations. Join, discover, and change lives.</p>
                 <a href="{{ route('register') }}" class="btn btn-primary btn-lg me-2">{{ __('Join Now') }}</a>
-                <a href="{{ route('volunteer.opportunities') }}" class="btn btn-outline-primary btn-lg">{{ __('View Opportunities') }}</a>
+                <a href="{{ route('opportunities.index') }}" class="btn btn-outline-primary btn-lg">{{ __('View Opportunities') }}</a>
             </div>
             <div class="col-md-5 text-center">
                 <img src="{{ asset('hero-volunteer.svg') }}" alt="Hero" class="img-fluid" style="max-width:340px;">
@@ -57,7 +57,7 @@
         </div>
 
         <div class="text-center mt-5">
-            <a href="{{ route('volunteer.opportunities') }}" class="btn btn-outline-secondary btn-lg">{{ __('See All Opportunities') }}</a>
+            <a href="{{ route('opportunities.index') }}" class="btn btn-outline-secondary btn-lg">{{ __('See All Opportunities') }}</a>
         </div>
     </div>
 </div>

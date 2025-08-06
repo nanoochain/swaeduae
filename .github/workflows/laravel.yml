@@ -1,46 +1,71 @@
-name: Laravel CI/CD
+name: Laravel CI
 
 on:
-  pull_request:
   push:
     branches:
       - main
-      - feature/*
+      - feature/**
 
 jobs:
-  test:
+  laravel-tests:
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: rootpassword
+          MYSQL_DATABASE: vminingc_swaeduae_db
+          MYSQL_USER: vminingc_admin
+          MYSQL_PASSWORD: 234026.Hg@
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd "mysqladmin ping --silent"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 3
+
+    env:
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: vminingc_swaeduae_db
+      DB_USERNAME: vminingc_admin
+      DB_PASSWORD: 234026.Hg@
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.4
-          extensions: mbstring, bcmath, xml, curl, sqlite, tokenizer, intl
-          coverage: xdebug
+          extensions: mbstring, bcmath, xml, curl, tokenizer, intl
 
-      - name: Install dependencies
+      - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-suggest --optimize-autoloader
 
       - name: Copy .env
         run: cp .env.example .env
 
+      - name: Wait for MySQL to be ready
+        run: |
+          for i in {1..30}; do
+            if mysqladmin ping -h mysql -u vminingc_admin -p234026.Hg@ --silent; then
+              echo "MySQL is ready!"
+              break
+            fi
+            echo "Waiting for MySQL to start..."
+            sleep 2
+          done
+
       - name: Generate application key
         run: php artisan key:generate
 
       - name: Run migrations
-        run: php artisan migrate --no-interaction --force
+        run: php artisan migrate --force
 
       - name: Run tests
-        run: php artisan test --coverage
-
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-      - uses: actions/checkout@v3
-      # Add your deployment steps here
+        run: php artisan test --verbose

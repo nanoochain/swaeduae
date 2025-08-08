@@ -1,7 +1,5 @@
 @extends('layouts.app')
+@section('title', __('messages.about'))
 @section('content')
-<div class="p-6">
-    <h1 class="text-2xl font-bold mb-4">About Sawaed UAE</h1>
-    <p>We are a national platform to connect passionate volunteers with organizations in need across the Emirates.</p>
-</div>
+<div class="card p-4"><h3 class="mb-3">{{ __('messages.about') }}</h3><p class="text-muted">{{ __('messages.about_text') }}</p></div>
 @endsection

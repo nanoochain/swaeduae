@@ -1,0 +1,109 @@
+Array
+(
+    [users] => Array
+        (
+            [0] => id
+            [1] => name
+            [2] => email
+            [3] => is_admin
+            [4] => email_verified_at
+            [5] => password
+            [6] => remember_token
+            [7] => created_at
+            [8] => updated_at
+            [9] => role
+            [10] => enabled
+            [11] => provider
+            [12] => provider_id
+            [13] => mobile
+            [14] => role_id
+        )
+
+    [events] => Array
+        (
+            [0] => id
+            [1] => title
+            [2] => description
+            [3] => city
+            [4] => date
+            [5] => created_at
+            [6] => updated_at
+        )
+
+    [opportunities] => Array
+        (
+            [0] => id
+            [1] => title
+            [2] => description
+            [3] => location
+            [4] => region
+            [5] => start_date
+            [6] => end_date
+            [7] => status
+            [8] => created_at
+            [9] => updated_at
+        )
+
+    [settings] => Array
+        (
+            [0] => key
+            [1] => value
+        )
+
+    [site_settings] => Array
+        (
+            [0] => id
+            [1] => key
+            [2] => value
+            [3] => created_at
+            [4] => updated_at
+        )
+
+    [kyc] => Array
+        (
+            [0] => id
+            [1] => user_id
+            [2] => emirates_id
+            [3] => passport_number
+            [4] => document_path
+            [5] => selfie_path
+            [6] => admin_comment
+            [7] => created_at
+            [8] => updated_at
+            [9] => status
+        )
+
+    [certificates] => Array
+        (
+            [0] => id
+            [1] => user_id
+            [2] => event_id
+            [3] => certificate_path
+            [4] => created_at
+            [5] => updated_at
+        )
+
+    [volunteer_profiles] => Array
+        (
+            [0] => id
+            [1] => user_id
+            [2] => bio
+            [3] => phone
+            [4] => kyc_document
+            [5] => profile_picture
+            [6] => created_at
+            [7] => updated_at
+        )
+
+    [volunteer_hours] => Array
+        (
+            [0] => id
+            [1] => user_id
+            [2] => event_id
+            [3] => hours
+            [4] => approved
+            [5] => created_at
+            [6] => updated_at
+        )
+
+)

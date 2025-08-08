@@ -1,0 +1,52 @@
+<?php
+
+return [
+    'site_title' => 'سواعد الإمارات',
+    'site_title_full' => 'سواعد الإمارات: تطوع في الإمارات',
+    'site_subtitle' => 'انضم لأكبر منصة للمتطوعين في الإمارات وابدأ التغيير اليوم!',
+    'search' => 'بحث',
+    'search_opportunities_placeholder' => 'ابحث عن فرصة تطوع...',
+    'featured_opportunities' => 'أبرز فرص التطوع',
+    'no_featured_opportunities' => 'لا توجد فرص مميزة حاليا.',
+    'browse_all_opportunities' => 'تصفح جميع الفرص التطوعية',
+    'view_details' => 'تفاصيل',
+    'all_regions' => 'كل المناطق',
+    // --- Already used elsewhere ---
+    'logout' => 'تسجيل الخروج',
+    'my_profile' => 'ملفي الشخصي',
+    'contact' => 'تواصل معنا',
+    'about' => 'عن المنصة',
+    'faq' => 'الأسئلة الشائعة',
+    'opportunities' => 'الفرص',
+    'home' => 'الرئيسية',
+    'active_volunteer' => 'متطوع نشط',
+    'member_since' => 'عضو منذ',
+    'volunteer_hours' => 'ساعات التطوع',
+    'certificates' => 'الشهادات',
+    'events' => 'الفعاليات',
+    'qr_code' => 'رمز الاستجابة السريعة',
+    'no_qr' => 'لا يوجد رمز QR',
+    'profile_management' => 'إدارة الملف الشخصي',
+    'full_name' => 'الاسم الكامل',
+    'email' => 'البريد الإلكتروني',
+    'region' => 'المنطقة',
+    'national_id' => 'رقم الهوية',
+    'marital_status' => 'الحالة الاجتماعية',
+    'birth_place' => 'مكان الميلاد',
+    'birth_date' => 'تاريخ الميلاد',
+    'education' => 'التعليم',
+    'level' => 'المستوى',
+    'edit_profile' => 'تعديل الملف',
+    'my_certificates' => 'شهاداتي',
+    'view' => 'عرض',
+    'no_certificates' => 'لا توجد شهادات حتى الآن.',
+    'recent_events' => 'الفعاليات الأخيرة',
+    'no_events' => 'لا توجد فعاليات حديثة.',
+    'edit' => 'تعديل',
+];
+
+return [
+    // ... باقي الترجمات ...
+    'dashboard_title' => 'لوحة التحكم',
+    'dashboard_welcome' => 'مرحبًا بك في لوحة التحكم الخاصة بك!',
+];

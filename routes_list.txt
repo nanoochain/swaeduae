@@ -1,0 +1,20 @@
+total 128
+-rw-rw-r-- 1 vminingc vminingc  278 Aug  6 10:59 about.blade.php
+-rw-r--r-- 1 vminingc vminingc  678 Aug  6 10:58 api.php
+drwxrwxr-x 3 vminingc vminingc 4096 Aug  5 13:16 app
+-rw-r--r-- 1 vminingc vminingc 2360 Aug  5 02:29 auth.php
+-rw-r--r-- 1 vminingc vminingc  210 Aug  4 12:08 console.php
+-rw-rw-r-- 1 vminingc vminingc  671 Aug  6 10:59 contact.blade.php
+-rw-r--r-- 1 vminingc vminingc  187 Aug  4 15:52 error_log
+-rw-rw-r-- 1 vminingc vminingc  395 Aug  6 10:59 faq.blade.php
+-rw-rw-r-- 1 vminingc vminingc   26 Aug  6 08:40 filename.php
+-rw-rw-r-- 1 vminingc vminingc  138 Aug  6 10:59 home.blade.php
+-rw-rw-r-- 1 vminingc vminingc  210 Aug  6 10:59 layout.blade.php
+drwxrwxr-x 3 vminingc vminingc 4096 Aug  5 03:22 resources
+-rw-rw-r-- 1 vminingc vminingc  661 Aug  6 18:51 web.php
+-rw-r--r-- 1 vminingc vminingc 1826 Aug  4 15:51 web.php.backup
+-rw-rw-r-- 1 vminingc vminingc 1457 Aug  4 19:04 web.php.bak
+-rw-r--r-- 1 vminingc vminingc 8139 Aug  4 15:50 web.php.bak2
+-rw-rw-r-- 1 vminingc vminingc  455 Aug  6 08:40 web.php.broken
+-rw-rw-r-- 1 vminingc vminingc 8139 Aug  6 08:40 web.php.old
+-rw-rw-r-- 1 vminingc vminingc 1812 Aug  4 15:52 web_part.php

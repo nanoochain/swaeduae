@@ -1,0 +1,20 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\UserController;
+
+// Public routes (login, home, etc)
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
+
+// Admin routes with middleware and prefix
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+
+    // User management routes
+    Route::resource('users', UserController::class);
+
+    // Add other admin routes here...
+});

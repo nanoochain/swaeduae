@@ -1,49 +1,38 @@
 @extends('layouts.app')
 
-@section('title', 'Volunteer Dashboard')
-
 @section('content')
-<div class="container mx-auto py-10">
-    <div class="bg-white shadow rounded-lg p-8 max-w-3xl mx-auto">
-        <h1 class="text-3xl font-bold text-blue-900 mb-4">Welcome, {{ \$user->name }}!</h1>
-        <div class="mb-6">
-            <p class="text-lg">Profile: {{ \$user->email }}</p>
-            <p class="text-lg">Total Volunteer Hours: <span class="font-bold">
-                {{
-                    \App\Models\Certificate::where('user_id', \$user->id)->sum('hours')
-                }}
-            </span></p>
+<div class="max-w-4xl mx-auto p-6">
+    <h2 class="text-3xl font-bold mb-4">Welcome, {{ Auth::user()->name }}</h2>
+
+    <div class="grid md:grid-cols-4 gap-4 mb-8">
+        <div class="stat-box">
+            <div class="stat-number">{{ $hours ?? 0 }}</div>
+            <div class="stat-label">Volunteer Hours</div>
         </div>
-        <h2 class="font-bold mt-6 mb-2">Your Registered Events</h2>
-        <ul>
-        @foreach(\App\Models\Registration::where('user_id', \$user->id)->whereNotNull('event_id')->with('event')->get() as \$reg)
-            <li>
-                <span class="font-semibold">{{ \$reg->event->title ?? '' }}</span>
-                <span class="text-gray-500">({{ \$reg->event->date ?? '' }})</span>
-            </li>
-        @endforeach
-        </ul>
-        <h2 class="font-bold mt-6 mb-2">Your Registered Opportunities</h2>
-        <ul>
-        @foreach(\App\Models\Registration::where('user_id', \$user->id)->whereNotNull('opportunity_id')->with('opportunity')->get() as \$reg)
-            <li>
-                <span class="font-semibold">{{ \$reg->opportunity->title ?? '' }}</span>
-                <span class="text-gray-500">({{ \$reg->opportunity->date ?? '' }})</span>
-            </li>
-        @endforeach
-        </ul>
-        <h2 class="font-bold mt-6 mb-2">Your Certificates</h2>
-        <ul>
-        @foreach(\App\Models\Certificate::where('user_id', \$user->id)->get() as \$cert)
-            <li>
-                <a href="{{ route('volunteer.certificates.show', \$cert->id) }}" class="text-blue-700 hover:underline">
-                    {{ \$cert->title }} ({{ \$cert->issue_date }}, {{ \$cert->hours }} hours)
-                </a>
-            </li>
-        @endforeach
-        </ul>
-        <a href="{{ route('profile.edit') }}" class="text-blue-700 hover:underline mt-4 inline-block">Edit Profile</a>
-        <a href="{{ route('volunteer.certificates') }}" class="ml-4 text-green-700 hover:underline mt-4 inline-block">View All Certificates</a>
+        <div class="stat-box">
+            <div class="stat-number">{{ $events ?? 0 }}</div>
+            <div class="stat-label">Events Attended</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">{{ $certificates ?? 0 }}</div>
+            <div class="stat-label">Certificates</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">{{ $badges ?? 0 }}</div>
+            <div class="stat-label">Badges Earned</div>
+        </div>
     </div>
+
+    <div class="bg-white rounded p-4 mb-8">
+        <h3>My Next Event</h3>
+        @if($nextEvent)
+        <p><strong>{{ $nextEvent->title }}</strong> on {{ $nextEvent->date }}</p>
+        @else
+        <p>No upcoming events.</p>
+        @endif
+    </div>
+
+    <a href="{{ route('volunteer.profile.edit') }}" class="btn btn-primary">Edit Profile</a>
+    <a href="{{ route('certificates.index') }}" class="btn btn-secondary">View Certificates</a>
 </div>
 @endsection

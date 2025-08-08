@@ -1,11 +1,8 @@
 @extends('layouts.app')
+@section('title', __('messages.faq'))
 @section('content')
-<div class="p-6">
-    <h1 class="text-2xl font-bold mb-4">Frequently Asked Questions</h1>
-    <ul class="space-y-4">
-        <li><strong>How can I volunteer?</strong> Register, apply for opportunities, and get approved.</li>
-        <li><strong>Do I receive certificates?</strong> Yes, certificates are issued after approved participation.</li>
-        <li><strong>What is KYC?</strong> It verifies your identity before approving your registration.</li>
-    </ul>
+<div class="card p-4">
+  <h3 class="mb-3">{{ __('messages.faq') }}</h3>
+  <p class="text-muted">{{ __('messages.faq_text') }}</p>
 </div>
 @endsection

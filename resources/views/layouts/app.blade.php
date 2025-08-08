@@ -1,28 +1,28 @@
-<!DOCTYPE html>
-<html lang="en" class="{{ session('theme', 'light') }}">
+<!doctype html>
+<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>@yield('title', 'Swaed UAE')</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
-    <script>
-        function toggleTheme() {
-            fetch('/toggle-theme', {
-                method: 'POST',
-                headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
-            }).then(res => res.json()).then(data => {
-                document.documentElement.className = data.theme;
-            });
-        }
-    </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>@yield('title','سواعد الإمارات')</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/swaed.css?v={{ filemtime(public_path('css/swaed.css')) }}">
+  @stack('head')
 </head>
 <body>
-    <button onclick="toggleTheme()" style="position:fixed;top:10px;right:10px;z-index:1000;">
-        Toggle Dark/Light Mode
-    </button>
+  @include('components.nav')
 
-    <main>
-        @yield('content')
-    </main>
+  <main class="container my-4">
+    @if(session('ok')) <div class="alert alert-success">{{ session('ok') }}</div> @endif
+    @if(session('error')) <div class="alert alert-danger">{{ session('error') }}</div> @endif
+    @yield('content')
+  </main>
+
+  @include('components.footer')
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/swaed.js?v={{ filemtime(public_path('js/swaed.js')) }}"></script>
+  @stack('scripts')
 </body>
 </html>

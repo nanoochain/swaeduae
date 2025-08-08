@@ -1,8 +1,11 @@
-@extends('layouts.app')
+@extends('admin.layout')
 
 @section('content')
-<div class="container py-8">
-  <h1 class="text-2xl font-bold mb-4">ADMIN/EVENTS/SHOW</h1>
-  <p>This is a placeholder page for admin/events/show.</p>
-</div>
+<h1>Event Details</h1>
+
+<p>Title: {{ $event->title ?? '' }}</p>
+<p>Description: {{ $event->description ?? '' }}</p>
+
+<a href="{{ route('admin.events.edit', $event->id ?? '') }}">Edit</a>
+<a href="{{ route('admin.events.index') }}">Back to List</a>
 @endsection

@@ -1,0 +1,1274 @@
+### PWD
+/home3/vminingc/swaeduae.ae/laravel-app
+
+### Git
+origin	git@github.com:nanoochain/swaeduae.git (fetch)
+origin	git@github.com:nanoochain/swaeduae.git (push)
+ M about.blade.php
+ M app.blade.php
+ M app/Http/Controllers/Admin/AdminController.php
+ M app/Http/Controllers/Admin/AdminDashboardController.php
+ M app/Http/Controllers/Admin/AdminEventController.php
+ M app/Http/Controllers/Admin/AdminUserController.php
+ M app/Http/Controllers/Admin/CertificateAdminController.php
+ M app/Http/Controllers/Admin/CertificateController.php
+ M app/Http/Controllers/Admin/KycAdminController.php
+ M app/Http/Controllers/Admin/LogController.php
+ M app/Http/Controllers/Admin/NewsController.php
+ M app/Http/Controllers/Admin/OrganizationController.php
+ M app/Http/Controllers/Admin/PartnerController.php
+ M app/Http/Controllers/Admin/SettingsController.php
+ M app/Http/Controllers/Admin/UserController.php
+ M app/Http/Controllers/AdminController.php
+ M app/Http/Controllers/Auth/ForgotPasswordController.php
+ M app/Http/Controllers/Auth/LoginController.php
+ M app/Http/Controllers/Auth/RegisterController.php
+ M app/Http/Controllers/Auth/ResetPasswordController.php
+ M app/Http/Controllers/Auth/VerificationController.php
+ M app/Http/Controllers/CertificateController.php
+ M app/Http/Controllers/DashboardController.php
+ M app/Http/Controllers/EventController.php
+ M app/Http/Controllers/HomeController.php
+ M app/Http/Controllers/LangController.php
+ M app/Http/Controllers/LanguageController.php
+ M app/Http/Controllers/NewsController.php
+ M app/Http/Controllers/NotificationController.php
+ M app/Http/Controllers/OpportunityController.php
+ M app/Http/Controllers/ProfileController.php
+ M app/Http/Controllers/Volunteer/DashboardController.php
+ M app/Http/Controllers/VolunteerController.php
+ M app/Http/Controllers/VolunteerProfileController.php
+ M app/Http/Kernel.php
+ D app/Http/Middleware/IsAdmin.php
+ D app/Http/Middleware/RoleMiddleware.php
+ M app/Http/Middleware/SetLocale.php
+ M app/Models/User.php
+ D app/Providers/AdminController.php
+ M app/Providers/AppServiceProvider.php
+ M app/Providers/AuthServiceProvider.php
+ D app/Providers/VolunteerController.php
+ D app/Providers/web.php
+ M config/app.php
+ M contact.blade.php
+ D database/migrations/2025_08_03_000000_create_events_table.php
+ D database/migrations/2025_08_05_000020_create_news_table.php
+ M error_log
+ M faq.blade.php
+ D home.blade.php
+ D layout.blade.php
+ D opcache_clear.php
+ M public/error_log
+ D public/images/1000436241.jpg
+ M resources/lang/ar/messages.php
+ M resources/lang/en/messages.php
+ M resources/views/about.blade.php
+ M resources/views/admin/certificates/create.blade.php
+ M resources/views/admin/certificates/edit.blade.php
+ M resources/views/admin/certificates/index.blade.php
+ M resources/views/admin/certificates/show.blade.php
+ M resources/views/admin/dashboard.blade.php
+ M resources/views/admin/events/create.blade.php
+ M resources/views/admin/events/edit.blade.php
+ M resources/views/admin/events/index.blade.php
+ M resources/views/admin/events/show.blade.php
+ M resources/views/admin/kyc/index.blade.php
+ M resources/views/admin/logs/index.blade.php
+ M resources/views/admin/news/create.blade.php
+ M resources/views/admin/news/edit.blade.php
+ M resources/views/admin/news/index.blade.php
+ M resources/views/admin/organizations/edit.blade.php
+ M resources/views/admin/partners/create.blade.php
+ M resources/views/admin/partners/edit.blade.php
+ M resources/views/admin/partners/index.blade.php
+ M resources/views/admin/settings.blade.php
+ M resources/views/admin/settings/index.blade.php
+ M resources/views/admin/users.blade.php
+ M resources/views/admin/users/edit.blade.php
+ M resources/views/admin/users/index.blade.php
+ M resources/views/admin/users/show.blade.php
+ M resources/views/auth/forgot-password.blade.php
+ M resources/views/auth/login.blade.php
+ M resources/views/auth/register.blade.php
+ M resources/views/auth/reset-password.blade.php
+ M resources/views/certificates/index.blade.php
+ M resources/views/certificates/show.blade.php
+ M resources/views/contact.blade.php
+ M resources/views/dashboard.blade.php
+ M resources/views/dashboard/index.blade.php
+ M resources/views/events/index.blade.php
+ M resources/views/events/qr.blade.php
+ M resources/views/events/show.blade.php
+ M resources/views/faq.blade.php
+ M resources/views/home.blade.php
+ M resources/views/layout.blade.php
+ M resources/views/layouts/admin.blade.php
+ M resources/views/layouts/admin_theme.blade.php
+ M resources/views/layouts/app.blade.php
+ M resources/views/layouts/navigation.blade.php
+ M resources/views/news/index.blade.php
+ M resources/views/news/show.blade.php
+ M resources/views/opportunities/index.blade.php
+ M resources/views/opportunities/show.blade.php
+ M resources/views/partials/footer.blade.php
+ M resources/views/partials/header.blade.php
+ M resources/views/partials/navbar.blade.php
+ M resources/views/partners.blade.php
+ D resources/views/profile.blade.php
+ M resources/views/team.blade.php
+ M resources/views/volunteer/dashboard.blade.php
+ M resources/views/volunteer/profile.blade.php
+ D resources/views/volunteer/profile_edit.blade.php
+ M resources/views/welcome.blade.php
+ M routes/api.php
+ M routes/auth.php
+ D routes/error_log
+ D routes/filename.php
+ M routes/resources/views/volunteer/register.blade.php
+ M routes/web.php
+ D routes/web.php.backup
+ D routes/web.php.bak
+ D routes/web.php.bak2
+ D routes/web.php.broken
+ D routes/web.php.old
+ D routes/web_part.php
+?? ,
+?? -
+?? "...\330\247\330\250\330\255\330\253 \330\271\331\206 \331\201\330\261\330\265 \330\243\331\210 \331\201\330\271\330\247\331\204\331\212\330\247\330\252 \330\243\331\210 \331\205\331\210\331\202\330\271,"
+?? AppHttpMiddlewareAdmin::class,
+?? AppHttpMiddlewareAdminMiddleware::class,
+?? AppHttpMiddlewareAuthenticate::class,
+?? IsAdmin.php
+?? Kernel.php
+?? SWAED_SNAPSHOT.txt
+?? UserController.php
+?? "[Top Volunteer"
+?? "[Top Volunteer,"
+?? [],
+?? add_missing_features.sh
+?? admin/
+?? app/Http/Controllers/Admin/AdminDashboardController.php.save
+?? app/Http/Controllers/Admin/AdminPanelController.php
+?? app/Http/Controllers/Admin/AdminSettingsController.php
+?? app/Http/Controllers/Admin/KycController.php
+?? app/Http/Controllers/Admin/TaskMonitorController.php
+?? app/Http/Controllers/Admin/TranslationController.php
+?? app/Http/Controllers/Auth/LogoutController.php
+?? app/Http/Controllers/Auth/UaePassController.php
+?? "app/Http/Controllers/Edit Profile,"
+?? app/Http/Controllers/Email,
+?? app/Http/Controllers/EventRegistrationController.php
+?? app/Http/Controllers/Name,
+?? app/Http/Controllers/PageController.php
+?? app/Http/Controllers/Phone,
+?? app/Http/Controllers/Save,
+?? app/Http/Controllers/TeamController.php
+?? app/Http/Controllers/UserController.php
+?? app/Http/Controllers/VolunteerHoursController.php
+?? app/Http/Kernel.php.bak
+?? app/Http/Kernel.php.save
+?? app/Http/Kernel.php.save.1
+?? app/Http/Kernel.php.save.2
+?? app/Http/Middleware/AdminMiddleware.php
+?? app/Http/Middleware/AdminMiddleware.php.save
+?? app/Http/Middleware/AdminMiddleware.php.save.1
+?? app/Http/Middleware/LocaleMiddleware.php
+?? app/Http/Middleware/RoleMiddleware.php.bak
+?? app/Http/[
+?? app/Http/web.php
+?? app/Models/Setting.php
+?? app/Notifications/EventRegistrationNotification.php
+?? app/Providers/EventServiceProvider.php
+?? app/Providers/RouteServiceProvider.php
+?? build_frontend.sh
+?? certificates/
+?? controllers_list.txt
+?? dashboard/
+?? data[message]
+?? database/migrations/2024_08_06_000002_create_news_table.php
+?? database/migrations/2025_08_06_000000_create_settings_table.php
+?? database/migrations/2025_08_06_000001_create_settings_table.php
+?? database/migrations/2025_08_07_193911_add_is_admin_to_users_table.php
+?? database/migrations/resources/views/opportunities/
+?? database/seed_sample_event.php
+?? events/
+?? fix_admin_middleware.sh
+?? full_feature_additions.sh
+?? full_news_fix.sh
+?? insert_default_settings.sql
+?? kyc/
+?? laravel_file_list.txt
+?? laravel_project_full_list.txt
+?? latest_admin_error.txt
+?? latest_errors.txt
+?? make_admin_role.sh
+?? make_admin_user.sh
+?? make_me_admin.sh
+?? mark_settings_migration.sql
+?? news/
+?? nullable|image|max:2048,
+?? opportunities/
+?? organization/
+?? phase1_features.sh
+?? phase2_features.sh
+?? phase3_features.sh
+?? php_file_list.txt
+?? profile/
+?? project_audit.txt
+?? project_file_list.txt
+?? public/images/hero-volunteer.png
+?? public/images/logo.svg
+?? public/img/
+?? public/opcache_clear.php
+?? regions/
+?? resources/views/admin/dashboard.blade.php.save
+?? resources/views/admin/edit_user.blade.php
+?? resources/views/admin/kyc/show.blade.php
+?? resources/views/admin/organizations/index.blade.php
+?? resources/views/admin/partials/sidebar.blade.php.save
+?? resources/views/admin/payments.blade.php
+?? resources/views/admin/photos.blade.php
+?? resources/views/admin/social.blade.php
+?? resources/views/admin/task_monitor/
+?? resources/views/admin/translations/
+?? resources/views/admin/uaepass.blade.php
+?? resources/views/admin/users/create.blade.php
+?? resources/views/components/footer.blade.php
+?? resources/views/components/navbar.blade.php
+?? resources/views/kyc_show.blade.php
+?? resources/views/layouts/app_profile_button.blade.php
+?? resources/views/partials/logout.blade.php
+?? resources/views/profile/show.blade.php
+?? resources/views/static/
+?? resources/views/volunteer/certificates/
+?? routes/app/Http/Controllers/LanguageController.php
+?? routes/app/Http/Controllers/NotificationController.php
+?? routes/app/Http/Controllers/VolunteerController.php
+?? routes/app/Http/Controllers/VolunteerProfileController.php
+?? routes/app/Http/Controllers/VolunteerRegistrationController.php
+?? routes/app/Http/Controllers/resources/
+?? routes/app/Http/Controllers/web.php
+?? routes/resources/views/home.blade.php
+?? routes_list.txt
+?? teams/
+?? update_instructions.sh
+?? volunteer/
+?? web.php
+?? welcome.blade.php
+?? "\330\242\330\256\330\261 \330\247\331\204\330\243\330\256\330\250\330\247\330\261,"
+?? "\330\247\330\263\330\252\331\203\330\264\331\201 \330\247\331\204\331\201\330\261\330\265,"
+?? "\330\247\331\204\330\247\330\263\331\205,"
+?? "\330\247\331\204\330\250\330\261\331\212\330\257 \330\247\331\204\330\245\331\204\331\203\330\252\330\261\331\210\331\206\331\212,"
+?? "\330\247\331\204\331\201\330\271\330\247\331\204\331\212\330\247\330\252 \330\247\331\204\331\205\331\206\330\270\331\205\330\251,"
+?? "\330\247\331\204\331\205\330\252\330\267\331\210\330\271\331\210\331\206 \330\247\331\204\331\205\330\263\330\254\331\204\331\210\331\206,"
+?? "\330\247\331\206\330\266\331\205 \330\245\331\204\331\211 \330\242\331\204\330\247\331\201 \330\247\331\204\331\205\330\252\330\267\331\210\330\271\331\212\331\206 \331\201\331\212 \330\254\331\205\331\212\330\271 \330\243\331\206\330\255\330\247\330\241 \330\247\331\204\330\245\331\205\330\247\330\261\330\247\330\252.,"
+?? "\330\252\330\243\331\203\331\212\330\257 \331\203\331\204\331\205\330\251 \330\247\331\204\331\205\330\261\331\210\330\261,"
+?? "\330\252\330\263\330\254\331\212\331\204 \330\247\331\204\330\257\330\256\331\210\331\204,"
+?? "\330\252\330\263\330\254\331\212\331\204,"
+?? "\330\263\330\247\330\271\330\247\330\252 \330\247\331\204\330\252\330\267\331\210\330\271,"
+?? "\330\263\330\254\331\204 \330\247\331\204\330\242\331\206,"
+?? "\331\203\331\204\331\205\330\251 \330\247\331\204\331\205\330\261\331\210\330\261,"
+?? "\331\203\331\206 \331\205\330\252\330\267\331\210\330\271\331\213\330\247 \330\247\331\204\330\242\331\206,"
+?? "\331\204\330\247 \330\252\331\210\330\254\330\257 \330\243\330\256\330\250\330\247\330\261 \330\255\330\247\331\204\331\212\330\247\331\213."
+?? "\331\204\330\247 \330\252\331\210\330\254\330\257 \330\243\330\256\330\250\330\247\330\261 \330\255\330\247\331\204\331\212\330\247\331\213.,"
+?? "\331\204\330\247 \330\252\331\210\330\254\330\257 \331\201\330\261\330\265 \331\205\330\252\330\247\330\255\330\251 \330\255\330\247\331\204\331\212\330\247\331\213.,"
+?? "\331\207\331\204 \331\204\330\257\331\212\331\203 \330\255\330\263\330\247\330\250\330\237,"
+
+### PHP/Laravel
+PHP 8.4.7 (cli) (built: May  8 2025 11:28:43) (NTS)
+Copyright (c) The PHP Group
+Zend Engine v4.4.7, Copyright (c) Zend Technologies
+Laravel Framework 11.45.1
+
+### Inventory (no vendor/storage/node_modules, depth<=3)
+./,
+./-
+./...ابحث عن فرص أو فعاليات أو موقع,
+./.env
+./.env.example
+./.git/.COMMIT_EDITMSG.swo
+./.git/.COMMIT_EDITMSG.swp
+./.git/COMMIT_EDITMSG
+./.git/FETCH_HEAD
+./.git/HEAD
+./.git/ORIG_HEAD
+./.git/REBASE_HEAD
+./.git/config
+./.git/description
+./.git/hooks/applypatch-msg.sample
+./.git/hooks/commit-msg.sample
+./.git/hooks/fsmonitor-watchman.sample
+./.git/hooks/post-update.sample
+./.git/hooks/pre-applypatch.sample
+./.git/hooks/pre-commit.sample
+./.git/hooks/pre-merge-commit.sample
+./.git/hooks/pre-push.sample
+./.git/hooks/pre-rebase.sample
+./.git/hooks/pre-receive.sample
+./.git/hooks/prepare-commit-msg.sample
+./.git/hooks/push-to-checkout.sample
+./.git/hooks/sendemail-validate.sample
+./.git/hooks/update.sample
+./.git/index
+./.git/info/exclude
+./.git/logs/HEAD
+./.git/rebase-merge/author-script
+./.git/rebase-merge/done
+./.git/rebase-merge/drop_redundant_commits
+./.git/rebase-merge/end
+./.git/rebase-merge/git-rebase-todo
+./.git/rebase-merge/git-rebase-todo.backup
+./.git/rebase-merge/head-name
+./.git/rebase-merge/interactive
+./.git/rebase-merge/message
+./.git/rebase-merge/msgnum
+./.git/rebase-merge/no-reschedule-failed-exec
+./.git/rebase-merge/onto
+./.git/rebase-merge/orig-head
+./.git/rebase-merge/patch
+./.git/rebase-merge/stopped-sha
+./.github/workflows/deploy.yml
+./.github/workflows/laravel.yml
+./.gitignore
+./@php
+./AppHttpMiddlewareAdmin::class,
+./AppHttpMiddlewareAdminMiddleware::class,
+./AppHttpMiddlewareAuthenticate::class,
+./IlluminateFoundationComposerScripts::postAutoloadDump
+./IsAdmin.php
+./Kernel.php
+./README.md
+./SWAED_SNAPSHOT.txt
+./UserController.php
+./[Top Volunteer
+./[Top Volunteer,
+./[],
+./about.blade.php
+./add_missing_features.sh
+./admin/certificates.blade.php
+./admin/dashboard.blade.php
+./admin/events.blade.php
+./admin/kyc.blade.php
+./admin/news.blade.php
+./admin/settings.blade.php
+./admin/users.blade.php
+./app.blade.php
+./app.css
+./app/Ht
+./app/Http/Kernel.php
+./app/Http/Kernel.php.bak
+./app/Http/Kernel.php.save
+./app/Http/Kernel.php.save.1
+./app/Http/Kernel.php.save.2
+./app/Http/[
+./app/Http/web.php
+./app/Mail/CertificateIssued.php
+./app/Mail/CertificateMail.php
+./app/Mail/GeneralNotification.php
+./app/Models/Badge.php
+./app/Models/Certificate.php
+./app/Models/Download.php
+./app/Models/Event.php
+./app/Models/EventApplication.php
+./app/Models/EventCheckin.php
+./app/Models/EventEvaluation.php
+./app/Models/EventInfoRequest.php
+./app/Models/EventRegistration.php
+./app/Models/Kyc.php
+./app/Models/News.php
+./app/Models/Opportunity.php
+./app/Models/Organization.php
+./app/Models/Partner.php
+./app/Models/Registration.php
+./app/Models/Role.php
+./app/Models/Setting.php
+./app/Models/SiteSetting.php
+./app/Models/Team.php
+./app/Models/User.php
+./app/Models/Volunteer.php
+./app/Models/VolunteerHour.php
+./app/Models/VolunteerOpportunity.php
+./app/Models/VolunteerProfile.php
+./app/Notifications/CertificateIssued.php
+./app/Notifications/EventRegistrationNotification.php
+./app/Policies/TeamPolicy.php
+./app/Providers/2025_08_05_000010_add_city_description_to_events.php
+./app/Providers/2025_08_05_000011_create_certificates_table.php
+./app/Providers/2025_08_05_000012_create_kycs_table.php
+./app/Providers/2025_08_05_000013_create_payments_table.php
+./app/Providers/AppServiceProvider.php
+./app/Providers/AuthServiceProvider.php
+./app/Providers/EventServiceProvider.php
+./app/Providers/RouteServiceProvider.php
+./app/Services/CertificateService.php
+./app/Services/WhatsAppSender.php
+./artisan
+./bootstrap/app.php
+./bootstrap/cache/.gitignore
+./bootstrap/cache/packages.php
+./bootstrap/cache/services.php
+./bootstrap/providers.php
+./build_frontend.sh
+./certificates/download.blade.php
+./certificates/index.blade.php
+./certificates/show.blade.php
+./certificates/verify.blade.php
+./composer.json
+./composer.lock
+./config/app.php
+./config/auth.php
+./config/cache.php
+./config/database.php
+./config/dompdf.php
+./config/filesystems.php
+./config/logging.php
+./config/mail.php
+./config/queue.php
+./config/sanctum.php
+./config/services.php
+./config/session.php
+./contact.blade.php
+./controllers_list.txt
+./dashboard/index.blade.php
+./data[message]
+./database/.gitignore
+./database/database.sqlite
+./database/factories/EventFactory.php
+./database/factories/UserFactory.php
+./database/migrations/0001_01_01_000000_create_users_table.php
+./database/migrations/0001_01_01_000001_create_cache_table.php
+./database/migrations/0001_01_01_000002_create_jobs_table.php
+./database/migrations/2024_01_01_100000_add_role_enabled_to_users.php
+./database/migrations/2024_08_06_000000_create_events_table.php
+./database/migrations/2024_08_06_000002_create_news_table.php
+./database/migrations/2025_01_01_000000_add_role_to_users.php
+./database/migrations/2025_08_02_235249_add_social_fields_to_users_table.php
+./database/migrations/2025_08_03_000001_create_volunteers_table.php
+./database/migrations/2025_08_03_000002_create_certificates_table.php
+./database/migrations/2025_08_03_000002_create_registrations_table.php
+./database/migrations/2025_08_03_000100_create_volunteer_profiles_table.php
+./database/migrations/2025_08_03_000200_create_organizations_table.php
+./database/migrations/2025_08_03_000400_create_event_registrations_table.php
+./database/migrations/2025_08_03_000500_create_volunteer_hours_table.php
+./database/migrations/2025_08_03_000553_create_kyc_table.php
+./database/migrations/2025_08_03_000553_create_roles_table.php
+./database/migrations/2025_08_03_000742_create_teams_table.php
+./database/migrations/2025_08_03_020000_create_event_applications_table.php
+./database/migrations/2025_08_03_020100_create_event_info_requests_table.php
+./database/migrations/2025_08_03_020200_create_event_checkins_table.php
+./database/migrations/2025_08_03_020300_create_event_evaluations_table.php
+./database/migrations/2025_08_03_025713_create_personal_access_tokens_table.php
+./database/migrations/2025_08_04_000000_create_opportunities_table.php
+./database/migrations/2025_08_04_200000_create_site_settings_table.php
+./database/migrations/2025_08_04_210000_create_badges_table.php
+./database/migrations/2025_08_05_000000_create_volunteer_opportunities_table.php
+./database/migrations/2025_08_05_000001_add_date_to_events_table.php
+./database/migrations/2025_08_05_000003_add_city_and_description_to_events_table.php
+./database/migrations/2025_08_05_000010_add_city_description_to_events.php
+./database/migrations/2025_08_05_000011_create_certificates_table.php.bak
+./database/migrations/2025_08_05_000012_create_kycs_table.php
+./database/migrations/2025_08_05_000013_create_payments_table.php
+./database/migrations/2025_08_05_100000_add_status_enum_to_kyc_table.php
+./database/migrations/2025_08_06_000000_create_settings_table.php
+./database/migrations/2025_08_06_000001_create_settings_table.php
+./database/migrations/2025_08_06_050137_add_fields_to_certificates_table.php
+./database/migrations/2025_08_07_193911_add_is_admin_to_users_table.php
+./database/migrations/AdminController.php
+./database/migrations/PaymentController.php
+./database/migrations/app.blade.php
+./database/migrations/web.php
+./database/seed_sample_event.php
+./database/seeders/AdminUserSeeder.php
+./database/seeders/DatabaseSeeder.php
+./database/seeders/DemoHomeSeeder.php
+./database/seeders/EventSeeder.php
+./database/seeders/InitialDataSeeder.php
+./database/seeders/RoleSeeder.php
+./database/seeders/VolunteerOpportunitiesTableSeeder.php
+./error_log
+./events/index.blade.php
+./events/show.blade.php
+./faq.blade.php
+./favicon.ico
+./fix-images.sh
+./fix_admin_middleware.sh
+./fix_images.sh
+./fix_routes_and_clear.sh
+./frontend/create_frontend.sh
+./frontend/dist/index.html
+./frontend/frontend_dist.zip
+./frontend/index.html
+./frontend/package-lock.json
+./frontend/package.json
+./frontend/postcss.config.js
+./frontend/setup_frontend.sh
+./frontend/src/App.jsx
+./frontend/src/index.css
+./frontend/src/main.jsx
+./frontend/src/manifest.json
+./frontend/tailwind.config.js
+./frontend/vite.config.js
+./full_feature_additions.sh
+./full_news_fix.sh
+./grant_privileges.sql
+./index.php
+./insert_default_settings.sql
+./js/mobile-client-example.js
+./kyc/show.blade.php
+./kyc/upload.blade.php
+./laravel-app-filetree.txt
+./laravel_file_list.txt
+./laravel_project_full_list.txt
+./latest-errors.txt
+./latest_admin_error.txt
+./latest_errors.txt
+./make_admin_role.sh
+./make_admin_user.sh
+./make_me_admin.sh
+./mark_settings_migration.sql
+./news/index.blade.php
+./news/show.blade.php
+./nullable|image|max:2048,
+./opportunities/index.blade.php
+./opportunities/show.blade.php
+./organization/create_event.blade.php
+./organization/dashboard.blade.php
+./organization/events.blade.php
+./organization/login.blade.php
+./organization/register.blade.php
+./package-lock.json
+./package.json
+./phase1_features.sh
+./phase2_features.sh
+./phase3_features.sh
+./php_file_list.txt
+./phpunit.xml
+./postcss.config.js
+./profile/edit.blade.php
+./project-files.txt
+./project_audit.txt
+./project_file_list.txt
+./project_structure.txt
+./public/.htaccess
+./public/css/app.css
+./public/error_log
+./public/hero-volunteer.svg
+./public/icons/10.png
+./public/icons/1000436241.jpg
+./public/icons/11.png
+./public/icons/12.png
+./public/icons/13.png
+./public/icons/14.png
+./public/icons/15.png
+./public/icons/16.png
+./public/icons/17.png
+./public/icons/18.png
+./public/icons/19.png
+./public/icons/2.png
+./public/icons/20.png
+./public/icons/21.png
+./public/icons/22.png
+./public/icons/23.png
+./public/icons/24.png
+./public/icons/25.png
+./public/icons/26.png
+./public/icons/3.png
+./public/icons/4.png
+./public/icons/5.png
+./public/icons/6.png
+./public/icons/7.png
+./public/icons/8.png
+./public/icons/9.png
+./public/icons/network.svg
+./public/images/appstore.png
+./public/images/hero-volunteer.png
+./public/images/logo.svg
+./public/images/step1.png
+./public/images/step2.png
+./public/images/step3.png
+./public/img/avatar.svg
+./public/img/logo.svg
+./public/index.php
+./public/js/app.js
+./public/opcache_clear.php
+./public/partners/partner1.png
+./public/partners/partner2.png
+./public/partners/partner3.png
+./public/partners/partner4.png
+./public/partners/partner5.png
+./public/phpinfo.php
+./public/test.txt
+./regions/sharjah.blade.php
+./resources/css/app.css
+./resources/js/app.js
+./resources/js/bootstrap.js
+./resources/sass/_variables.scss
+./resources/sass/app.scss
+./resources/vie
+./resources/views/404.blade.php
+./resources/views/EventController.php
+./resources/views/a
+./resources/views/about.blade.php
+./resources/views/admin.dashboard.blade.php
+./resources/views/admin.events.blade.php
+./resources/views/admin.users.blade.php
+./resources/views/app.css
+./resources/views/auth.forgot-password.blade.php
+./resources/views/auth.login.blade.php
+./resources/views/auth.register.blade.php
+./resources/views/certificates.blade.php
+./resources/views/certificates.index.blade.php
+./resources/views/certificates.show.blade.php
+./resources/views/contact.blade.php
+./resources/views/dashboard.blade.php
+./resources/views/downloads.blade.php
+./resources/views/events.blade.php
+./resources/views/events.index.blade.php
+./resources/views/events.show.blade.php
+./resources/views/faq.blade.php
+./resources/views/home.blade.php
+./resources/views/image-test.blade.php
+./resources/views/kyc.blade.php
+./resources/views/kyc_show.blade.php
+./resources/views/layout.blade.php
+./resources/views/maintenance.blade.php
+./resources/views/opportunities.blade.php
+./resources/views/partners.blade.php
+./resources/views/publ
+./resources/views/team.blade.php
+./resources/views/volunteer.hours.blade.php
+./resources/views/volunteer.opportunities.blade.php
+./resources/views/welcome.blade.php
+./routes/api.php
+./routes/auth.php
+./routes/console.php
+./routes/web.php
+./routes_list.txt
+./swaeduae_tree.txt
+./swaeduae_updates (2).zip
+./swaeduae_updates.sh
+./swaeduae_updates/routes/web.php
+./tailwind.config.js
+./teams/create.blade.php
+./teams/index.blade.php
+./teams/show.blade.php
+./tests/Feature/ExampleTest.php
+./tests/Feature/ProfileTest.php
+./tests/Pest.php
+./tests/TestCase.php
+./tests/Unit/ExampleTest.php
+./update_instructions.sh
+./vite.config.js
+./volunteer/certificate_show.blade.php
+./volunteer/certificates.blade.php
+./volunteer/dashboard.blade.php
+./volunteer/opportunities.blade.php
+./volunteer/opportunity_show.blade.php
+./volunteer/profile.blade.php
+./web.php
+./webpack.mix.js
+./welcome.blade.php
+./آخر الأخبار,
+./استكشف الفرص,
+./الاسم,
+./البريد الإلكتروني,
+./الفعاليات المنظمة,
+./المتطوعون المسجلون,
+./انضم إلى آلاف المتطوعين في جميع أنحاء الإمارات.,
+./تأكيد كلمة المرور,
+./تسجيل الدخول,
+./تسجيل,
+./ساعات التطوع,
+./سجل الآن,
+./كلمة المرور,
+./كن متطوعًا الآن,
+./لا توجد أخبار حالياً.
+./لا توجد أخبار حالياً.,
+./لا توجد فرص متاحة حالياً.,
+./هل لديك حساب؟,
+
+===== routes/web.php =====
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\UserController;
+
+// Public routes (login, home, etc)
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
+
+// Admin routes with middleware and prefix
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+
+    // User management routes
+    Route::resource('users', UserController::class);
+
+    // Add other admin routes here...
+});
+
+===== middleware/AdminMiddleware.php =====
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Support\Facades\Auth;
+
+class AdminMiddleware
+{
+    public function handle($request, Closure $next)
+    {
+        if (!Auth::check() || !Auth::user()->is_admin) {
+            abort(403, 'Unauthorized');
+        }
+        return $next($request);
+    }
+}
+
+===== Admin/UserController.php =====
+<?php
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Http\Request;
+
+class UserController extends Controller
+{
+    public function index()
+    {
+        $users = User::paginate(15);
+        return view('admin.users.index', compact('users'));
+    }
+
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin.users.edit', compact('user'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->update($request->only(['name', 'email', 'role']));
+        return redirect()->route('admin.users.index')->with('success', 'User updated.');
+    }
+
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin.users.show', compact('user'));
+    }
+
+    // Add toggle method here
+    public function toggle($id)
+    {
+        $user = User::findOrFail($id);
+        $user->enabled = !$user->enabled;
+        $user->save();
+        return redirect()->route('admin.users.index');
+    }
+}
+
+===== VolunteerController.php =====
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class VolunteerController extends Controller
+{
+    public function showProfile()
+    {
+        $user = auth()->user();
+        $certificates = []; // Replace with: $user->certificates or DB query
+        $recent_events = []; // Replace with: $user->recentEvents or DB query
+
+        return view('volunteer.profile', compact('user', 'certificates', 'recent_events'));
+    }
+}
+
+===== EventController.php =====
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class EventController extends Controller
+{
+    public function index()
+    {
+        // Add real event fetching or dummy for now
+        $events = [];
+        return view('events.index', compact('events'));
+    }
+}
+
+===== views/layouts/app.blade.php =====
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ __('messages.site_title') }}</title>
+    <style>
+        body { font-family: 'Tajawal', Arial, sans-serif; background: #fff7e2; margin: 0; }
+        header.sticky { position: sticky; top: 0; z-index: 40; background: #fff; }
+        .main-content { margin-top: 90px; }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 16px 0 16px;
+            background: transparent;
+        }
+        /* Responsive container */
+        @media (max-width:900px) { .container { padding: 16px 6px 0 6px; } }
+    </style>
+    @yield('head')
+</head>
+<body class="antialiased min-h-screen">
+    <header class="sticky shadow">
+        <div class="max-w-7xl mx-auto flex items-center justify-between py-3 px-4 md:px-8">
+            @include('partials/navbar')
+        </div>
+    </header>
+    <main class="main-content">
+        <div class="container">
+            @yield('content')
+        </div>
+    </main>
+    @yield('footer')
+</body>
+</html>
+
+@section('footer')
+<footer style="background:#fff; margin-top:60px; border-top:1px solid #ececec;">
+    <div style="max-width:1200px; margin:auto; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:28px 12px; font-size:1.05rem;">
+        <div style="color:#222;">
+            <strong>سواعد الإمارات</strong> &copy; {{ date('Y') }}. جميع الحقوق محفوظة.
+        </div>
+        <div>
+            <a href="{{ route('about') }}" style="margin-left:24px; color:#207744;">عن المنصة</a>
+            <a href="{{ route('contact') }}" style="margin-left:24px; color:#207744;">تواصل معنا</a>
+            <a href="{{ route('faq') }}" style="color:#207744;">الأسئلة الشائعة</a>
+        </div>
+    </div>
+</footer>
+@show
+
+===== views/admin/users/index.blade.php =====
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <h1>Users</h1>
+    <table class="table-auto w-full border">
+        <thead>
+            <tr>
+                <th>ID</th><th>Name</th><th>Email</th><th>Status</th><th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach ($users as $user)
+            <tr>
+                <td>{{ $user->id }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->enabled ? 'Active' : 'Inactive' }}</td>
+                <td>
+                    <a href="{{ route('admin.users.edit', $user) }}" class="text-blue-600">Edit</a>
+                    <form method="POST" action="{{ route('admin.users.toggle', $user) }}" style="display:inline;">
+                        @csrf
+                        <button onclick="return confirm('Toggle status?')">Toggle</button>
+                    </form>
+                    <form method="POST" action="{{ route('admin.users.destroy', $user) }}" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button onclick="return confirm('Delete user?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+
+    <div class="mt-4">
+        {{ $users->links() }}
+    </div>
+</div>
+@endsection
+
+===== lang/ar/*.php =====
+----- resources/lang/ar/messages.php -----
+<?php
+
+return [
+    'site_title' => 'سواعد الإمارات',
+    'site_title_full' => 'سواعد الإمارات: تطوع في الإمارات',
+    'site_subtitle' => 'انضم لأكبر منصة للمتطوعين في الإمارات وابدأ التغيير اليوم!',
+    'search' => 'بحث',
+    'search_opportunities_placeholder' => 'ابحث عن فرصة تطوع...',
+    'featured_opportunities' => 'أبرز فرص التطوع',
+    'no_featured_opportunities' => 'لا توجد فرص مميزة حاليا.',
+    'browse_all_opportunities' => 'تصفح جميع الفرص التطوعية',
+    'view_details' => 'تفاصيل',
+    'all_regions' => 'كل المناطق',
+    // --- Already used elsewhere ---
+    'logout' => 'تسجيل الخروج',
+    'my_profile' => 'ملفي الشخصي',
+    'contact' => 'تواصل معنا',
+    'about' => 'عن المنصة',
+    'faq' => 'الأسئلة الشائعة',
+    'opportunities' => 'الفرص',
+    'home' => 'الرئيسية',
+    'active_volunteer' => 'متطوع نشط',
+    'member_since' => 'عضو منذ',
+    'volunteer_hours' => 'ساعات التطوع',
+    'certificates' => 'الشهادات',
+    'events' => 'الفعاليات',
+    'qr_code' => 'رمز الاستجابة السريعة',
+    'no_qr' => 'لا يوجد رمز QR',
+    'profile_management' => 'إدارة الملف الشخصي',
+    'full_name' => 'الاسم الكامل',
+    'email' => 'البريد الإلكتروني',
+    'region' => 'المنطقة',
+    'national_id' => 'رقم الهوية',
+    'marital_status' => 'الحالة الاجتماعية',
+    'birth_place' => 'مكان الميلاد',
+    'birth_date' => 'تاريخ الميلاد',
+    'education' => 'التعليم',
+    'level' => 'المستوى',
+    'edit_profile' => 'تعديل الملف',
+    'my_certificates' => 'شهاداتي',
+    'view' => 'عرض',
+    'no_certificates' => 'لا توجد شهادات حتى الآن.',
+    'recent_events' => 'الفعاليات الأخيرة',
+    'no_events' => 'لا توجد فعاليات حديثة.',
+    'edit' => 'تعديل',
+];
+
+return [
+    // ... باقي الترجمات ...
+    'dashboard_title' => 'لوحة التحكم',
+    'dashboard_welcome' => 'مرحبًا بك في لوحة التحكم الخاصة بك!',
+];
+
+===== config/app.php (first 220 lines) =====
+<?php
+
+return [
+
+    'name' => env('APP_NAME', 'Laravel'),
+
+    'env' => env('APP_ENV', 'production'),
+
+    'debug' => (bool) env('APP_DEBUG', false),
+
+    'url' => env('APP_URL', 'http://localhost'),
+
+    'asset_url' => env('ASSET_URL', null),
+
+    // Set Arabic as default locale
+    'locale' => 'ar',
+
+    'fallback_locale' => 'en',
+
+    'key' => env('APP_KEY'),
+
+    'cipher' => 'AES-256-CBC',
+
+    'timezone' => 'Asia/Dubai',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Autoloaded Service Providers
+    |--------------------------------------------------------------------------
+    */
+    'providers' => [
+
+        /*
+         * Laravel Framework Service Providers...
+         */
+        Illuminate\Auth\AuthServiceProvider::class,
+        Illuminate\Broadcasting\BroadcastServiceProvider::class,
+        Illuminate\Bus\BusServiceProvider::class,
+        Illuminate\Cache\CacheServiceProvider::class,
+        Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
+        Illuminate\Cookie\CookieServiceProvider::class,
+        Illuminate\Database\DatabaseServiceProvider::class,
+        Illuminate\Encryption\EncryptionServiceProvider::class,
+        Illuminate\Filesystem\FilesystemServiceProvider::class,
+        Illuminate\Foundation\Providers\FoundationServiceProvider::class,
+        Illuminate\Hashing\HashServiceProvider::class,
+        Illuminate\Mail\MailServiceProvider::class,
+        Illuminate\Notifications\NotificationServiceProvider::class,
+        Illuminate\Pagination\PaginationServiceProvider::class,
+        Illuminate\Pipeline\PipelineServiceProvider::class,
+        Illuminate\Queue\QueueServiceProvider::class,
+        Illuminate\Redis\RedisServiceProvider::class,
+        Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
+        Illuminate\Session\SessionServiceProvider::class,
+        Illuminate\Translation\TranslationServiceProvider::class,
+        Illuminate\Validation\ValidationServiceProvider::class,
+        Illuminate\View\ViewServiceProvider::class,
+
+        /*
+         * Package Service Providers...
+         */
+
+        /*
+         * Application Service Providers...
+         */
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
+    ],
+
+    'aliases' => [
+        'App' => Illuminate\Support\Facades\App::class,
+        'Arr' => Illuminate\Support\Arr::class,
+        'Artisan' => Illuminate\Support\Facades\Artisan::class,
+        'Auth' => Illuminate\Support\Facades\Auth::class,
+        'Blade' => Illuminate\Support\Facades\Blade::class,
+        'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
+        'Bus' => Illuminate\Support\Facades\Bus::class,
+        'Cache' => Illuminate\Support\Facades\Cache::class,
+        'Config' => Illuminate\Support\Facades\Config::class,
+        'Cookie' => Illuminate\Support\Facades\Cookie::class,
+        'Crypt' => Illuminate\Support\Facades\Crypt::class,
+        'DB' => Illuminate\Support\Facades\DB::class,
+        'Eloquent' => Illuminate\Database\Eloquent\Model::class,
+        'Event' => Illuminate\Support\Facades\Event::class,
+        'File' => Illuminate\Support\Facades\File::class,
+        'Gate' => Illuminate\Support\Facades\Gate::class,
+        'Hash' => Illuminate\Support\Facades\Hash::class,
+        'Http' => Illuminate\Support\Facades\Http::class,
+        'Lang' => Illuminate\Support\Facades\Lang::class,
+        'Log' => Illuminate\Support\Facades\Log::class,
+        'Mail' => Illuminate\Support\Facades\Mail::class,
+        'Notification' => Illuminate\Support\Facades\Notification::class,
+        'Password' => Illuminate\Support\Facades\Password::class,
+        'Queue' => Illuminate\Support\Facades\Queue::class,
+        'Redirect' => Illuminate\Support\Facades\Redirect::class,
+        'Redis' => Illuminate\Support\Facades\Redis::class,
+        'Request' => Illuminate\Support\Facades\Request::class,
+        'Response' => Illuminate\Support\Facades\Response::class,
+        'Route' => Illuminate\Support\Facades\Route::class,
+        'Schema' => Illuminate\Support\Facades\Schema::class,
+        'Session' => Illuminate\Support\Facades\Session::class,
+        'Storage' => Illuminate\Support\Facades\Storage::class,
+        'Str' => Illuminate\Support\Str::class,
+        'URL' => Illuminate\Support\Facades\URL::class,
+        'Validator' => Illuminate\Support\Facades\Validator::class,
+        'View' => Illuminate\Support\Facades\View::class,
+    ],
+
+];
+
+===== config/mail.php (first 220 lines) =====
+<?php
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Default Mailer
+    |--------------------------------------------------------------------------
+    |
+    | This option controls the default mailer that is used to send all email
+    | messages unless another mailer is explicitly specified when sending
+    | the message. All additional mailers can be configured within the
+    | "mailers" array. Examples of each type of mailer are provided.
+    |
+    */
+
+    'default' => env('MAIL_MAILER', 'log'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Mailer Configurations
+    |--------------------------------------------------------------------------
+    |
+    | Here you may configure all of the mailers used by your application plus
+    | their respective settings. Several examples have been configured for
+    | you and you are free to add your own as your application requires.
+    |
+    | Laravel supports a variety of mail "transport" drivers that can be used
+    | when delivering an email. You may specify which one you're using for
+    | your mailers below. You may also add additional mailers if needed.
+    |
+    | Supported: "smtp", "sendmail", "mailgun", "ses", "ses-v2",
+    |            "postmark", "resend", "log", "array",
+    |            "failover", "roundrobin"
+    |
+    */
+
+    'mailers' => [
+
+        'smtp' => [
+            'transport' => 'smtp',
+            'scheme' => env('MAIL_SCHEME'),
+            'url' => env('MAIL_URL'),
+            'host' => env('MAIL_HOST', '127.0.0.1'),
+            'port' => env('MAIL_PORT', 2525),
+            'username' => env('MAIL_USERNAME'),
+            'password' => env('MAIL_PASSWORD'),
+            'timeout' => null,
+            'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url(env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
+        ],
+
+        'ses' => [
+            'transport' => 'ses',
+        ],
+
+        'postmark' => [
+            'transport' => 'postmark',
+            // 'message_stream_id' => env('POSTMARK_MESSAGE_STREAM_ID'),
+            // 'client' => [
+            //     'timeout' => 5,
+            // ],
+        ],
+
+        'resend' => [
+            'transport' => 'resend',
+        ],
+
+        'sendmail' => [
+            'transport' => 'sendmail',
+            'path' => env('MAIL_SENDMAIL_PATH', '/usr/sbin/sendmail -bs -i'),
+        ],
+
+        'log' => [
+            'transport' => 'log',
+            'channel' => env('MAIL_LOG_CHANNEL'),
+        ],
+
+        'array' => [
+            'transport' => 'array',
+        ],
+
+        'failover' => [
+            'transport' => 'failover',
+            'mailers' => [
+                'smtp',
+                'log',
+            ],
+        ],
+
+        'roundrobin' => [
+            'transport' => 'roundrobin',
+            'mailers' => [
+                'ses',
+                'postmark',
+            ],
+        ],
+
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Global "From" Address
+    |--------------------------------------------------------------------------
+    |
+    | You may wish for all emails sent by your application to be sent from
+    | the same address. Here you may specify a name and address that is
+    | used globally for all emails that are sent by your application.
+    |
+    */
+
+    'from' => [
+        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'name' => env('MAIL_FROM_NAME', 'Example'),
+    ],
+
+];
+
+===== config/services.php (first 220 lines) =====
+<?php
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Third Party Services
+    |--------------------------------------------------------------------------
+    |
+    | This file is for storing the credentials for third party services such
+    | as Mailgun, Postmark, AWS and more. This file provides the de facto
+    | location for this type of information, allowing packages to have
+    | a conventional file to locate the various service credentials.
+    |
+    */
+
+    'postmark' => [
+        'token' => env('POSTMARK_TOKEN'),
+    ],
+
+    'ses' => [
+        'key' => env('AWS_ACCESS_KEY_ID'),
+        'secret' => env('AWS_SECRET_ACCESS_KEY'),
+        'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+    ],
+
+    'resend' => [
+        'key' => env('RESEND_KEY'),
+    ],
+
+    'slack' => [
+        'notifications' => [
+            'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),
+            'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
+        ],
+    ],
+
+];
+
+===== database/migrations (list) =====
+database/migrations/0001_01_01_000000_create_users_table.php
+database/migrations/0001_01_01_000001_create_cache_table.php
+database/migrations/0001_01_01_000002_create_jobs_table.php
+database/migrations/2024_01_01_100000_add_role_enabled_to_users.php
+database/migrations/2024_08_06_000000_create_events_table.php
+database/migrations/2024_08_06_000002_create_news_table.php
+database/migrations/2025_01_01_000000_add_role_to_users.php
+database/migrations/2025_08_02_235249_add_social_fields_to_users_table.php
+database/migrations/2025_08_03_000001_create_volunteers_table.php
+database/migrations/2025_08_03_000002_create_certificates_table.php
+database/migrations/2025_08_03_000002_create_registrations_table.php
+database/migrations/2025_08_03_000100_create_volunteer_profiles_table.php
+database/migrations/2025_08_03_000200_create_organizations_table.php
+database/migrations/2025_08_03_000400_create_event_registrations_table.php
+database/migrations/2025_08_03_000500_create_volunteer_hours_table.php
+database/migrations/2025_08_03_000553_create_kyc_table.php
+database/migrations/2025_08_03_000553_create_roles_table.php
+database/migrations/2025_08_03_000742_create_teams_table.php
+database/migrations/2025_08_03_020000_create_event_applications_table.php
+database/migrations/2025_08_03_020100_create_event_info_requests_table.php
+database/migrations/2025_08_03_020200_create_event_checkins_table.php
+database/migrations/2025_08_03_020300_create_event_evaluations_table.php
+database/migrations/2025_08_03_025713_create_personal_access_tokens_table.php
+database/migrations/2025_08_04_000000_create_opportunities_table.php
+database/migrations/2025_08_04_200000_create_site_settings_table.php
+database/migrations/2025_08_04_210000_create_badges_table.php
+database/migrations/2025_08_05_000000_create_volunteer_opportunities_table.php
+database/migrations/2025_08_05_000001_add_date_to_events_table.php
+database/migrations/2025_08_05_000003_add_city_and_description_to_events_table.php
+database/migrations/2025_08_05_000010_add_city_description_to_events.php
+database/migrations/2025_08_05_000011_create_certificates_table.php.bak
+database/migrations/2025_08_05_000012_create_kycs_table.php
+database/migrations/2025_08_05_000013_create_payments_table.php
+database/migrations/2025_08_05_100000_add_status_enum_to_kyc_table.php
+database/migrations/2025_08_06_000000_create_settings_table.php
+database/migrations/2025_08_06_000001_create_settings_table.php
+database/migrations/2025_08_06_050137_add_fields_to_certificates_table.php
+database/migrations/2025_08_07_193911_add_is_admin_to_users_table.php
+database/migrations/AdminController.php
+database/migrations/PaymentController.php
+database/migrations/app.blade.php
+database/migrations/web.php

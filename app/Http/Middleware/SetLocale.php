@@ -8,17 +8,12 @@ use Illuminate\Http\Request;
 class SetLocale
 {
     /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
+     * Handle an incoming request and set the app locale from session.
      */
     public function handle(Request $request, Closure $next)
     {
-        if (session()->has('locale')) {
-            app()->setLocale(session('locale'));
-        }
+        $locale = session('locale', config('app.locale', 'en'));
+        app()->setLocale($locale);
 
         return $next($request);
     }

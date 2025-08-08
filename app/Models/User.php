@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable;
+    use Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password', /* ...add your fields... */
+        'name', 'email', 'password', 'role',
     ];
 
     protected $hidden = [
@@ -23,10 +22,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // RELATIONS — No extra closing bracket before here!
-    public function certificates() {
-        return $this->hasMany(\App\Models\Certificate::class);
-    }
-
-    // Add other relationships as needed...
+    // Add helpers for role
+    public function isAdmin() { return $this->role === 'admin'; }
+    public function isVolunteer() { return $this->role === 'volunteer'; }
+    public function isOrganization() { return $this->role === 'organization'; }
 }

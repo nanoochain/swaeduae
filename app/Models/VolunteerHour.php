@@ -2,15 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class VolunteerHour extends Model
 {
-    use HasFactory;
-    protected $fillable = [
-        'user_id', 'event_id', 'hours', 'approved'
-    ];
-    public function user() { return $this->belongsTo(\App\Models\User::class); }
-    public function event() { return $this->belongsTo(\App\Models\Event::class); }
+    protected $fillable = ['user_id','date','hours','notes','event_id','status'];
+    protected $casts = ['date' => 'date', 'hours' => 'float'];
 }

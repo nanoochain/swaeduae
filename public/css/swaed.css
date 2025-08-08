@@ -1,0 +1,30 @@
+:root{
+  --bg:#fffaf1;            /* sand */
+  --card:#ffffff;
+  --text:#0f172a;          /* slate-900 */
+  --muted:#6b7280;         /* gray-500 */
+  --accent:#0ea5e9;        /* sky-500 */
+  --accent-600:#0284c7;
+  --ring:rgba(14,165,233,.25);
+  --radius:14px;
+  --shadow:0 10px 30px rgba(2,8,23,.08);
+}
+html[dir="rtl"] body{ font-family: "Tajawal", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";}
+body{ background:var(--bg); color:var(--text);}
+.navbar{ background:#fff; box-shadow:var(--shadow);}
+.btn{ border-radius:10px }
+.btn-accent{ background:var(--accent); border-color:var(--accent); color:#fff }
+.btn-accent:hover{ background:var(--accent-600); border-color:var(--accent-600) }
+.badge-accent{ background:var(--accent); }
+.card{ border:0; border-radius:var(--radius); box-shadow:var(--shadow); }
+.hero{ background:linear-gradient(180deg,#fef3c7, #fde68a1a); border-radius:var(--radius); padding:3rem }
+.hero h1{ font-weight:800; letter-spacing:.3px }
+.hero p{ color:var(--muted) }
+.section-title{ font-weight:800; margin-bottom:1rem }
+.kbd{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace; background:#f1f5f9; padding:.15rem .45rem; border-radius:6px; border:1px solid #e2e8f0 }
+.searchbar{ border-radius:10px; box-shadow: inset 0 0 0 1px #e5e7eb; padding:.75rem 1rem }
+.card-event .meta{ color:var(--muted); font-size:.85rem }
+.card-event a.title{ color:var(--text); text-decoration:none; font-weight:700 }
+.card-event a.title:hover{ color:var(--accent) }
+.footer{ color:var(--muted) }
+.lang-pill{ border:1px solid #e5e7eb; padding:.25rem .5rem; border-radius:999px; }

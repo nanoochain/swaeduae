@@ -1,15 +1,25 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NotificationController extends Controller
 {
-    public function sendPushNotification(Request $request)
+    public function unread()
     {
-        // Example stub for sending push notifications or SMS
-        // Integrate with real providers like Firebase, Twilio, etc.
-
-        return response()->json(['message' => 'Push notification sent (stub).']);
+        $user = Auth::user();
+        $notifications = $user->unreadNotifications()->get()->map(function($notif) {
+            return [
+                'id' => $notif->id,
+                'message' => $notif->data['message'] ?? 'Notification',
+                'url' => $notif->data['url'] ?? '#',
+            ];
+        });
+        return response()->json([
+            'count' => $notifications->count(),
+            'notifications' => $notifications,
+        ]);
     }
 }

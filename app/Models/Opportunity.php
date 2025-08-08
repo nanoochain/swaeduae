@@ -2,18 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Opportunity extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
-        'title', 'description', 'location', 'date', 'organization_id'
+        'title','summary','location','region','category','date','application_deadline',
+        'start_time','end_time','slots','requirements','status','poster_path'
     ];
 
-    public function organization() {
-        return $this->belongsTo(\App\Models\User::class, 'organization_id');
-    }
+    protected $casts = [
+        'date' => 'date',
+        'application_deadline' => 'date',
+    ];
 }

@@ -10,12 +10,12 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        \$user = Auth::user();
+        $user = Auth::user();
         // Placeholder stats/data, update as you build features
-        \$registeredEvents = [];
-        \$registeredOpportunities = [];
-        \$certificates = [];
-        \$volunteerHours = 0;
+        $registeredEvents = [];
+        $registeredOpportunities = [];
+        $certificates = [];
+        $volunteerHours = 0;
         return view('volunteer.dashboard', compact('user', 'registeredEvents', 'registeredOpportunities', 'certificates', 'volunteerHours'));
     }
 }

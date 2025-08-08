@@ -1,37 +1,28 @@
-@extends('layouts.admin')
+@extends('layouts.app')
+@section('title','Admin — Events')
 
 @section('content')
-<div class="container py-6">
-    <h1 class="text-2xl font-bold mb-6">Manage Events</h1>
-    <a href="{{ route('admin.events.create') }}" class="btn btn-success mb-4">Add New Event</a>
-    <table class="table table-bordered bg-white shadow-sm">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($events as $event)
-                <tr>
-                    <td>{{ $event->title }}</td>
-                    <td>{{ \Carbon\Carbon::parse($event->date)->format('Y-m-d') }}</td>
-                    <td>{{ \Illuminate\Support\Str::limit($event->description, 50) }}</td>
-                    <td>
-                        <a href="{{ route('admin.events.edit', $event->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('admin.events.destroy', $event->id) }}" method="POST" style="display:inline">
-                            @csrf @method('DELETE')
-                            <button class="btn btn-danger btn-sm" onclick="return confirm('Delete event?')">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @empty
-                <tr><td colspan="4">No events found.</td></tr>
-            @endforelse
-        </tbody>
-    </table>
-    {{ $events->links() }}
+<a class="btn btn-dark mb-3" href="{{ route('admin.events.create') }}">+ New Event</a>
+<div class="table-responsive">
+<table class="table">
+  <thead><tr><th>ID</th><th>Title</th><th>Date</th><th>Location</th><th></th></tr></thead>
+  <tbody>
+    @foreach($events as $e)
+      <tr>
+        <td>{{ $e->id }}</td>
+        <td>{{ $e->title }}</td>
+        <td>{{ $e->date->toDateString() }}</td>
+        <td>{{ $e->location }}</td>
+        <td class="text-nowrap">
+          <a class="btn btn-sm btn-outline-secondary" href="{{ route('admin.events.edit',$e) }}">Edit</a>
+          <form class="d-inline" method="POST" action="{{ route('admin.events.destroy',$e) }}">@csrf @method('DELETE')
+            <button class="btn btn-sm btn-outline-danger">Delete</button>
+          </form>
+        </td>
+      </tr>
+    @endforeach
+  </tbody>
+</table>
 </div>
+{{ $events->links() }}
 @endsection

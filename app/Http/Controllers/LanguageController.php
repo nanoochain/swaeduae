@@ -1,13 +1,23 @@
 <?php
+
 namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Redirect;
 
 class LanguageController extends Controller
 {
-    public function switch($lang)
+    public function switch($locale)
     {
-        if (in_array($lang, ['en', 'ar'])) {
-            session(['locale' => $lang]);
+        $availableLocales = ['en', 'ar'];
+
+        if (in_array($locale, $availableLocales)) {
+            Session::put('locale', $locale);
+            App::setLocale($locale);
         }
-        return back();
+
+        return Redirect::back();
     }
 }

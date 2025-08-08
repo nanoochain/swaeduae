@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        return view('dashboard');
+        // TODO: Fetch data for user dashboard
+        return view('dashboard.index'); // Create this Blade view
     }
 }

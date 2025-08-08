@@ -1,0 +1,22 @@
+<!-- Admin Sidebar Navigation --><aside class="d- <div class="bg-light border-end vh-100 p-3" style="min-width:200px;"> <div class="p-4 
+border-bottom text-center"
+    <h4 class="mb-4">لوحة التحكم<br>Admin Panel</h4> <span class="bran
+    <ul class="nav flex-column"> </div>
+        <li class="nav-item"><a class="nav-link" href="{{ route('admin.dashboard') }}">🏠 Dashboard</a></li> <ul class="nav 
+flex-column p-3">
+        <li class="nav-item"><a class="nav-link" href="{{ route('admin.users.index') }}">👤 Users</a></li> <li class="nav-item
+        <li class="nav-item"><a class="nav-link" href="{{ route('admin.events.index') }}">📅 Events</a></li> <li class="nav-item"><a 
+href="{{ route('admin.users.index') }}" class="nav-link @
+        <li class="nav-item"><a class="nav-link" href="{{ route('admin.certificates.index') }}">🎓 Certificates</a></li> <li 
+class="nav-it
+        <li class="nav-item"><a class="nav-link" href="{{ route('admin.organizations.index') }}">🏢 Organizations</a></li> <li 
+class="nav-item"><a href="{{ route('admin.certificates.index') }}" class="nav-link @if(
+        <li class="nav-item"><a class="nav-link" href="{{ route('admin.kyc.index') }}">🪪 KYC</a></li> <li class="nav-item"><a href="{{ 
+route('admin.kyc.index') }}" class="nav-link @if(request()->routeIs
+        <li class="nav-item"><a class="nav-link" href="{{ route('admin.partners.index') }}">🤝 Partners</a></li> <li class=
+        <li class="nav-item"><a class="nav-link" href="{{ route('admin.news.index') }}">📰 News</a></li> <li cl
+        <li class="nav-item"><a class="nav-link" href="{{ route('admin.analytics.index') }}">📊 Analytics</a></li> <li 
+class="nav-item"><a href="{{ r
+        <li class="nav-item"><a class="nav-link" href="{{ route('admin.settings.index') }}">⚙️ Settings</a></li> </ul> </aside>
+        <li class="nav-item"><a class="nav-link text-danger" href="{{ route('logout') }}">🚪 Logout</a></li>
+    </ul> </div>

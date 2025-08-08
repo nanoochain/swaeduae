@@ -1,0 +1,569 @@
+
+=== CONTROLLERS ===
+app/Http/Controllers/Admin/AdminController.php
+app/Http/Controllers/Admin/AdminDashboardController.php
+app/Http/Controllers/Admin/AdminEventController.php
+app/Http/Controllers/Admin/AdminPanelController.php
+app/Http/Controllers/Admin/AdminSettingsController.php
+app/Http/Controllers/Admin/AdminUserController.php
+app/Http/Controllers/Admin/AnalyticsController.php
+app/Http/Controllers/Admin/AttendanceDashboardController.php
+app/Http/Controllers/Admin/CertificateAdminController.php
+app/Http/Controllers/Admin/CertificateController.php
+app/Http/Controllers/Admin/CertificateManagementController.php
+app/Http/Controllers/Admin/DashboardController.php
+app/Http/Controllers/Admin/EventAttendanceController.php
+app/Http/Controllers/Admin/EventController.php
+app/Http/Controllers/Admin/EventInfoFormController.php
+app/Http/Controllers/Admin/EventManagementController.php
+app/Http/Controllers/Admin/EventPhotoController.php
+app/Http/Controllers/Admin/EventVolunteerController.php
+app/Http/Controllers/Admin/KycAdminController.php
+app/Http/Controllers/Admin/KycController.php
+app/Http/Controllers/Admin/KycManagementController.php
+app/Http/Controllers/Admin/LogController.php
+app/Http/Controllers/Admin/NewsController.php
+app/Http/Controllers/Admin/NotificationController.php
+app/Http/Controllers/Admin/OpportunityAdminController.php
+app/Http/Controllers/Admin/OrganizationController.php
+app/Http/Controllers/Admin/PageController.php
+app/Http/Controllers/Admin/PartnerController.php
+app/Http/Controllers/Admin/SettingsController.php
+app/Http/Controllers/Admin/SiteSettingsController.php
+app/Http/Controllers/Admin/TaskMonitorController.php
+app/Http/Controllers/Admin/TranslationController.php
+app/Http/Controllers/Admin/UserController.php
+app/Http/Controllers/Admin/UserExportController.php
+app/Http/Controllers/Admin/UserManagementController.php
+app/Http/Controllers/Admin/VolunteerHoursController.php
+app/Http/Controllers/AdminController.php
+app/Http/Controllers/AnalyticsController.php
+app/Http/Controllers/Api/MobileApiController.php
+app/Http/Controllers/Auth/AuthenticatedSessionController.php
+app/Http/Controllers/Auth/ConfirmPasswordController.php
+app/Http/Controllers/Auth/ConfirmablePasswordController.php
+app/Http/Controllers/Auth/EmailVerificationNotificationController.php
+app/Http/Controllers/Auth/EmailVerificationPromptController.php
+app/Http/Controllers/Auth/ForgotPasswordController.php
+app/Http/Controllers/Auth/LoginController.php
+app/Http/Controllers/Auth/LogoutController.php
+app/Http/Controllers/Auth/NewPasswordController.php
+app/Http/Controllers/Auth/PasswordController.php
+app/Http/Controllers/Auth/PasswordResetLinkController.php
+app/Http/Controllers/Auth/RegisterController.php
+app/Http/Controllers/Auth/RegisteredUserController.php
+app/Http/Controllers/Auth/ResetPasswordController.php
+app/Http/Controllers/Auth/SocialController.php
+app/Http/Controllers/Auth/UaePassController.php
+app/Http/Controllers/Auth/VerificationController.php
+app/Http/Controllers/Auth/VerifyEmailController.php
+app/Http/Controllers/Blog/PostController.php
+app/Http/Controllers/CertificateController.php
+app/Http/Controllers/CertificateEmailController.php
+app/Http/Controllers/CertificatePdfController.php
+app/Http/Controllers/CertificateVerifyController.php
+app/Http/Controllers/Controller.php
+app/Http/Controllers/Dashboard/DashboardController.php
+app/Http/Controllers/DashboardController.php
+app/Http/Controllers/DownloadController.php
+app/Http/Controllers/EventApplicationController.php
+app/Http/Controllers/EventCheckinController.php
+app/Http/Controllers/EventController.php
+app/Http/Controllers/EventEvaluationController.php
+app/Http/Controllers/EventInfoRequestController.php
+app/Http/Controllers/EventQrController.php
+app/Http/Controllers/EventRegistrationController.php
+app/Http/Controllers/HomeController.php
+app/Http/Controllers/ImageTestController.php
+app/Http/Controllers/Kyc/KycController.php
+app/Http/Controllers/KycController.php
+app/Http/Controllers/LangController.php
+app/Http/Controllers/LanguageController.php
+app/Http/Controllers/NewsController.php
+app/Http/Controllers/NotificationController.php
+app/Http/Controllers/OpportunityController.php
+app/Http/Controllers/Organization/DashboardController.php
+app/Http/Controllers/Organization/HourApprovalController.php
+app/Http/Controllers/Organization/PortalController.php
+app/Http/Controllers/OrganizationController.php
+app/Http/Controllers/PageController.php
+app/Http/Controllers/PagesController.php
+app/Http/Controllers/PartnerController.php
+app/Http/Controllers/ProfileController.php
+app/Http/Controllers/PublicController.php
+app/Http/Controllers/SurveyController.php
+app/Http/Controllers/Team/TeamController.php
+app/Http/Controllers/TeamController.php
+app/Http/Controllers/Volunteer/CertificateController.php
+app/Http/Controllers/Volunteer/DashboardController.php
+app/Http/Controllers/Volunteer/OpportunityController.php
+app/Http/Controllers/Volunteer/ProfileController.php
+app/Http/Controllers/Volunteer/RegistrationController.php
+app/Http/Controllers/VolunteerController.php
+app/Http/Controllers/VolunteerHourController.php
+app/Http/Controllers/VolunteerHoursController.php
+app/Http/Controllers/VolunteerOpportunityController.php
+app/Http/Controllers/VolunteerProfileController.php
+
+=== VIEWS (Blade) ===
+resources/views/404.blade.php
+resources/views/about.blade.php
+resources/views/admin.dashboard.blade.php
+resources/views/admin.events.blade.php
+resources/views/admin.users.blade.php
+resources/views/admin/analytics.blade.php
+resources/views/admin/analytics/index.blade.php
+resources/views/admin/certificates.blade.php
+resources/views/admin/certificates/create.blade.php
+resources/views/admin/certificates/edit.blade.php
+resources/views/admin/certificates/index.blade.php
+resources/views/admin/certificates/show.blade.php
+resources/views/admin/dashboard.blade.php
+resources/views/admin/events.blade.php
+resources/views/admin/events/create.blade.php
+resources/views/admin/events/edit.blade.php
+resources/views/admin/events/index.blade.php
+resources/views/admin/events/info_form.blade.php
+resources/views/admin/events/qr.blade.php
+resources/views/admin/events/show.blade.php
+resources/views/admin/events/volunteers.blade.php
+resources/views/admin/kyc.blade.php
+resources/views/admin/kyc/index.blade.php
+resources/views/admin/kyc/show.blade.php
+resources/views/admin/kyc_index.blade.php
+resources/views/admin/logs.blade.php
+resources/views/admin/logs/index.blade.php
+resources/views/admin/news.blade.php
+resources/views/admin/news/create.blade.php
+resources/views/admin/news/edit.blade.php
+resources/views/admin/news/index.blade.php
+resources/views/admin/opportunities/create.blade.php
+resources/views/admin/organizations.blade.php
+resources/views/admin/organizations/edit.blade.php
+resources/views/admin/organizations/index.blade.php
+resources/views/admin/organizations/show.blade.php
+resources/views/admin/pages.blade.php
+resources/views/admin/partials/sidebar.blade.php
+resources/views/admin/partners/create.blade.php
+resources/views/admin/partners/edit.blade.php
+resources/views/admin/partners/index.blade.php
+resources/views/admin/settings.blade.php
+resources/views/admin/settings/index.blade.php
+resources/views/admin/task_monitor/index.blade.php
+resources/views/admin/translations/index.blade.php
+resources/views/admin/users.blade.php
+resources/views/admin/users/create.blade.php
+resources/views/admin/users/edit.blade.php
+resources/views/admin/users/index.blade.php
+resources/views/admin/users/show.blade.php
+resources/views/analytics/dashboard.blade.php
+resources/views/attendance/dashboard.blade.php
+resources/views/auth.forgot-password.blade.php
+resources/views/auth.login.blade.php
+resources/views/auth.register.blade.php
+resources/views/auth/confirm-password.blade.php
+resources/views/auth/forgot-password.blade.php
+resources/views/auth/login.blade.php
+resources/views/auth/passwords/confirm.blade.php
+resources/views/auth/passwords/email.blade.php
+resources/views/auth/passwords/reset.blade.php
+resources/views/auth/register.blade.php
+resources/views/auth/reset-password.blade.php
+resources/views/auth/verify-email.blade.php
+resources/views/auth/verify.blade.php
+resources/views/certificates.blade.php
+resources/views/certificates.index.blade.php
+resources/views/certificates.show.blade.php
+resources/views/certificates/index.blade.php
+resources/views/certificates/pdf.blade.php
+resources/views/certificates/show.blade.php
+resources/views/certificates/template.blade.php
+resources/views/certificates/verified.blade.php
+resources/views/certificates/verify.blade.php
+resources/views/components/admin-navbar.blade.php
+resources/views/components/application-logo.blade.php
+resources/views/components/auth-session-status.blade.php
+resources/views/components/danger-button.blade.php
+resources/views/components/dropdown-link.blade.php
+resources/views/components/dropdown.blade.php
+resources/views/components/footer.blade.php
+resources/views/components/icon.blade.php
+resources/views/components/input-error.blade.php
+resources/views/components/input-label.blade.php
+resources/views/components/lang-toggle.blade.php
+resources/views/components/modal.blade.php
+resources/views/components/nav-link.blade.php
+resources/views/components/navbar.blade.php
+resources/views/components/primary-button.blade.php
+resources/views/components/responsive-nav-link.blade.php
+resources/views/components/secondary-button.blade.php
+resources/views/components/text-input.blade.php
+resources/views/components/volunteer-navbar.blade.php
+resources/views/contact.blade.php
+resources/views/dashboard.blade.php
+resources/views/dashboard/index.blade.php
+resources/views/dashboard/volunteer.blade.php
+resources/views/downloads.blade.php
+resources/views/downloads/index.blade.php
+resources/views/emails/certificate-issued.blade.php
+resources/views/emails/certificate.blade.php
+resources/views/emails/general_notification.blade.php
+resources/views/events.blade.php
+resources/views/events.index.blade.php
+resources/views/events.show.blade.php
+resources/views/events/create.blade.php
+resources/views/events/evaluation.blade.php
+resources/views/events/index.blade.php
+resources/views/events/info_request.blade.php
+resources/views/events/list.blade.php
+resources/views/events/qr.blade.php
+resources/views/events/show.blade.php
+resources/views/faq.blade.php
+resources/views/home.blade.php
+resources/views/image-test.blade.php
+resources/views/kyc.blade.php
+resources/views/kyc/show.blade.php
+resources/views/kyc/upload.blade.php
+resources/views/kyc_show.blade.php
+resources/views/layout.blade.php
+resources/views/layouts/admin.blade.php
+resources/views/layouts/admin_theme.blade.php
+resources/views/layouts/app.blade.php
+resources/views/layouts/base.blade.php
+resources/views/layouts/dropdown.blade.php
+resources/views/layouts/guest.blade.php
+resources/views/layouts/navigation.blade.php
+resources/views/layouts/theme.blade.php
+resources/views/layouts/volunteer.blade.php
+resources/views/maintenance.blade.php
+resources/views/news/index.blade.php
+resources/views/news/show.blade.php
+resources/views/opportunities.blade.php
+resources/views/opportunities/index.blade.php
+resources/views/opportunities/show.blade.php
+resources/views/organization/create_event.blade.php
+resources/views/organization/dashboard.blade.php
+resources/views/organization/login.blade.php
+resources/views/organization/public_profile.blade.php
+resources/views/organization/register.blade.php
+resources/views/organizations/dashboard.blade.php
+resources/views/organizations/index.blade.php
+resources/views/organizations/show.blade.php
+resources/views/pages/about.blade.php
+resources/views/pages/app.blade.php
+resources/views/pages/contact.blade.php
+resources/views/pages/faq.blade.php
+resources/views/pages/partners.blade.php
+resources/views/pages/region.blade.php
+resources/views/partials/certificates-list.blade.php
+resources/views/partials/dashboard_widgets.blade.php
+resources/views/partials/events-list.blade.php
+resources/views/partials/footer.blade.php
+resources/views/partials/header.blade.php
+resources/views/partials/logout.blade.php
+resources/views/partials/navbar.blade.php
+resources/views/partials/notifications.blade.php
+resources/views/partners.blade.php
+resources/views/partners/index.blade.php
+resources/views/pdf/certificate.blade.php
+resources/views/profile.blade.php
+resources/views/profile/edit.blade.php
+resources/views/profile/partials/delete-user-form.blade.php
+resources/views/profile/partials/update-password-form.blade.php
+resources/views/profile/partials/update-profile-information-form.blade.php
+resources/views/profile/show.blade.php
+resources/views/public/about.blade.php
+resources/views/public/contact.blade.php
+resources/views/public/events.blade.php
+resources/views/public/faq.blade.php
+resources/views/public/hero.blade.php
+resources/views/public/home.blade.php
+resources/views/public/partners.blade.php
+resources/views/public/stories.blade.php
+resources/views/regions/sharjah.blade.php
+resources/views/static/about.blade.php
+resources/views/surveys/create.blade.php
+resources/views/team.blade.php
+resources/views/teams/create.blade.php
+resources/views/teams/index.blade.php
+resources/views/teams/show.blade.php
+resources/views/volunteer.hours.blade.php
+resources/views/volunteer.opportunities.blade.php
+resources/views/volunteer/badges.blade.php
+resources/views/volunteer/certificate_show.blade.php
+resources/views/volunteer/certificates.blade.php
+resources/views/volunteer/certificates/index.blade.php
+resources/views/volunteer/dashboard.blade.php
+resources/views/volunteer/edit.blade.php
+resources/views/volunteer/hours.blade.php
+resources/views/volunteer/leaderboard.blade.php
+resources/views/volunteer/my_events.blade.php
+resources/views/volunteer/opportunities.blade.php
+resources/views/volunteer/opportunity_detail.blade.php
+resources/views/volunteer/opportunity_show.blade.php
+resources/views/volunteer/profile.blade.php
+resources/views/volunteer/profile/show.blade.php
+resources/views/volunteer/profile_dashboard.blade.php
+resources/views/volunteer/profile_edit.blade.php
+resources/views/volunteer/public_profile.blade.php
+resources/views/volunteer/register.blade.php
+resources/views/welcome.blade.php
+
+=== MIGRATIONS ===
+database/migrations/0001_01_01_000000_create_users_table.php
+database/migrations/0001_01_01_000001_create_cache_table.php
+database/migrations/0001_01_01_000002_create_jobs_table.php
+database/migrations/2024_01_01_100000_add_role_enabled_to_users.php
+database/migrations/2024_08_06_000000_create_events_table.php
+database/migrations/2024_08_06_000002_create_news_table.php
+database/migrations/2025_01_01_000000_add_role_to_users.php
+database/migrations/2025_08_02_235249_add_social_fields_to_users_table.php
+database/migrations/2025_08_03_000001_create_volunteers_table.php
+database/migrations/2025_08_03_000002_create_certificates_table.php
+database/migrations/2025_08_03_000002_create_registrations_table.php
+database/migrations/2025_08_03_000100_create_volunteer_profiles_table.php
+database/migrations/2025_08_03_000200_create_organizations_table.php
+database/migrations/2025_08_03_000400_create_event_registrations_table.php
+database/migrations/2025_08_03_000500_create_volunteer_hours_table.php
+database/migrations/2025_08_03_000553_create_kyc_table.php
+database/migrations/2025_08_03_000553_create_roles_table.php
+database/migrations/2025_08_03_000742_create_teams_table.php
+database/migrations/2025_08_03_020000_create_event_applications_table.php
+database/migrations/2025_08_03_020100_create_event_info_requests_table.php
+database/migrations/2025_08_03_020200_create_event_checkins_table.php
+database/migrations/2025_08_03_020300_create_event_evaluations_table.php
+database/migrations/2025_08_03_025713_create_personal_access_tokens_table.php
+database/migrations/2025_08_04_000000_create_opportunities_table.php
+database/migrations/2025_08_04_200000_create_site_settings_table.php
+database/migrations/2025_08_04_210000_create_badges_table.php
+database/migrations/2025_08_05_000000_create_volunteer_opportunities_table.php
+database/migrations/2025_08_05_000001_add_date_to_events_table.php
+database/migrations/2025_08_05_000003_add_city_and_description_to_events_table.php
+database/migrations/2025_08_05_000010_add_city_description_to_events.php
+database/migrations/2025_08_05_000012_create_kycs_table.php
+database/migrations/2025_08_05_000013_create_payments_table.php
+database/migrations/2025_08_05_100000_add_status_enum_to_kyc_table.php
+database/migrations/2025_08_06_000000_create_settings_table.php
+database/migrations/2025_08_06_000001_create_settings_table.php
+database/migrations/2025_08_06_050137_add_fields_to_certificates_table.php
+database/migrations/AdminController.php
+database/migrations/PaymentController.php
+database/migrations/app.blade.php
+database/migrations/resources/views/opportunities/index.blade.php
+database/migrations/resources/views/payments/payment.blade.php
+database/migrations/resources/views/payments/success.blade.php
+database/migrations/web.php
+
+=== LOCALIZATION FILES ===
+resources/lang/ar/messages.php
+resources/lang/en/messages.php
+
+=== ROUTES (artisan route:list) ===
+
+  GET|HEAD        / ....................................................................................................................... home
+  GET|HEAD        about .................................................................................................................. about
+  GET|HEAD        admin ................................................................. admin.dashboard › Admin\AdminDashboardController@index
+  GET|HEAD        admin/events ........................................................... admin.events.index › Admin\AdminEventController@index
+  POST            admin/events ........................................................... admin.events.store › Admin\AdminEventController@store
+  GET|HEAD        admin/events/create .................................................. admin.events.create › Admin\AdminEventController@create
+  GET|HEAD        admin/events/{event} ..................................................... admin.events.show › Admin\AdminEventController@show
+  PUT|PATCH       admin/events/{event} ................................................. admin.events.update › Admin\AdminEventController@update
+  DELETE          admin/events/{event} ............................................... admin.events.destroy › Admin\AdminEventController@destroy
+  GET|HEAD        admin/events/{event}/edit ................................................ admin.events.edit › Admin\AdminEventController@edit
+  GET|HEAD        admin/settings .......................................................... admin.settings › Admin\AdminSettingsController@index
+  POST            admin/settings .................................................. admin.settings.update › Admin\AdminSettingsController@update
+  GET|HEAD        admin/users .............................................................. admin.users.index › Admin\AdminUserController@index
+  POST            admin/users .............................................................. admin.users.store › Admin\AdminUserController@store
+  GET|HEAD        admin/users/create ..................................................... admin.users.create › Admin\AdminUserController@create
+  GET|HEAD        admin/users/{user} ......................................................... admin.users.show › Admin\AdminUserController@show
+  PUT|PATCH       admin/users/{user} ..................................................... admin.users.update › Admin\AdminUserController@update
+  DELETE          admin/users/{user} ................................................... admin.users.destroy › Admin\AdminUserController@destroy
+  GET|HEAD        admin/users/{user}/edit .................................................... admin.users.edit › Admin\AdminUserController@edit
+  GET|HEAD        api/certificates ........................................................................ Api\MobileApiController@certificates
+  GET|HEAD        api/events .................................................................................... Api\MobileApiController@events
+  POST            api/events/register ................................................................. Api\MobileApiController@registerForEvent
+  POST            api/login ...................................................................................... Api\MobileApiController@login
+  POST            api/logout .................................................................................... Api\MobileApiController@logout
+  GET|HEAD        api/profile .................................................................................. Api\MobileApiController@profile
+  POST            api/register ................................................................................ Api\MobileApiController@register
+  GET|HEAD        certificates ................................................................ certificates.index › CertificateController@index
+  GET|HEAD        certificates/{id} ............................................................. certificates.show › CertificateController@show
+  GET|HEAD        contact .............................................................................................................. contact
+  GET|HEAD        dashboard .............................................................................. dashboard › DashboardController@index
+  POST            email/resend ........................................................ verification.resend › Auth\VerificationController@resend
+  GET|HEAD        email/verify .......................................................... verification.notice › Auth\VerificationController@show
+  GET|HEAD        email/verify/{id}/{hash} ............................................ verification.verify › Auth\VerificationController@verify
+  GET|HEAD        events .................................................................................. events.index › EventController@index
+  GET|HEAD        events/{id} ............................................................................... events.show › EventController@show
+  GET|HEAD        faq ...................................................................................................................... faq
+  GET|HEAD        lang/{locale} .................................................................................................... lang.switch
+  GET|HEAD        login ............................................................................. login › Auth\LoginController@showLoginForm
+  POST            login ............................................................................................. Auth\LoginController@login
+  POST            logout ................................................................................. logout › Auth\LogoutController@logout
+  GET|HEAD        news ....................................................................................... news.index › NewsController@index
+  GET|HEAD        news/{id} .................................................................................... news.show › NewsController@show
+  GET|HEAD        opportunities .............................................................. opportunities.index › OpportunityController@index
+  POST            password/email ............................................. password.email › Auth\ForgotPasswordController@sendResetLinkEmail
+  GET|HEAD        password/reset .......................................... password.request › Auth\ForgotPasswordController@showLinkRequestForm
+  POST            password/reset .......................................................... password.update › Auth\ResetPasswordController@reset
+  GET|HEAD        password/reset/{token} ........................................... password.reset › Auth\ResetPasswordController@showResetForm
+  GET|HEAD        profile ................................................................................ profile.show › ProfileController@show
+  POST            profile ............................................................................ profile.update › ProfileController@update
+  GET|HEAD        register ............................................................. register › Auth\RegisterController@showRegistrationForm
+  POST            register .................................................................................... Auth\RegisterController@register
+  GET|HEAD        sanctum/csrf-cookie ........................................ sanctum.csrf-cookie › Laravel\Sanctum › CsrfCookieController@show
+  GET|HEAD        storage/{path} ................................................................................................. storage.local
+  GET|HEAD        up ........................................................................................................................... 
+  GET|HEAD        volunteer ................................................................ volunteer.dashboard › VolunteerController@dashboard
+  GET|HEAD        volunteer/profile ........................................................ volunteer.profile › VolunteerController@showProfile
+  GET|HEAD        volunteer/profile/edit .............................................. volunteer.profile.edit › VolunteerController@editProfile
+  POST            volunteer/profile/update ........................................ volunteer.profile.update › VolunteerController@updateProfile
+  GET|HEAD        volunteer/register ........................................................................................ volunteer.register
+
+                                                                                                                             Showing [59] routes
+
+
+=== MIGRATION STATUS ===
+
+  Migration name ................................................................................................................ Batch / Status  
+  0001_01_01_000000_create_users_table ................................................................................................. [1] Ran  
+  0001_01_01_000001_create_cache_table ................................................................................................. [1] Ran  
+  0001_01_01_000002_create_jobs_table .................................................................................................. [1] Ran  
+  2024_01_01_100000_add_role_enabled_to_users .......................................................................................... [1] Ran  
+  2024_08_06_000000_create_events_table ................................................................................................ [1] Ran  
+  2024_08_06_000002_create_news_table .................................................................................................. [2] Ran  
+  2025_01_01_000000_add_role_to_users .................................................................................................. [1] Ran  
+  2025_08_02_235249_add_social_fields_to_users_table ................................................................................... [1] Ran  
+  2025_08_03_000001_create_volunteers_table ............................................................................................ [3] Ran  
+  2025_08_03_000002_create_certificates_table .......................................................................................... [3] Ran  
+  2025_08_03_000002_create_registrations_table ......................................................................................... [3] Ran  
+  2025_08_03_000100_create_volunteer_profiles_table .................................................................................... [3] Ran  
+  2025_08_03_000200_create_organizations_table ......................................................................................... [3] Ran  
+  2025_08_03_000400_create_event_registrations_table ................................................................................... [3] Ran  
+  2025_08_03_000500_create_volunteer_hours_table ....................................................................................... [3] Ran  
+  2025_08_03_000553_create_kyc_table ................................................................................................... [3] Ran  
+  2025_08_03_000553_create_roles_table ................................................................................................. [3] Ran  
+  2025_08_03_000742_create_teams_table ................................................................................................. [3] Ran  
+  2025_08_03_020000_create_event_applications_table .................................................................................... [3] Ran  
+  2025_08_03_020100_create_event_info_requests_table ................................................................................... [3] Ran  
+  2025_08_03_020200_create_event_checkins_table ........................................................................................ [3] Ran  
+  2025_08_03_020300_create_event_evaluations_table ..................................................................................... [3] Ran  
+  2025_08_03_025713_create_personal_access_tokens_table ................................................................................ [3] Ran  
+  2025_08_04_000000_create_opportunities_table ......................................................................................... [3] Ran  
+  2025_08_04_200000_create_site_settings_table ......................................................................................... [3] Ran  
+  2025_08_04_210000_create_badges_table ................................................................................................ [3] Ran  
+  2025_08_05_000000_create_volunteer_opportunities_table ............................................................................... [3] Ran  
+  2025_08_05_000001_add_date_to_events_table ........................................................................................... [3] Ran  
+  2025_08_05_000003_add_city_and_description_to_events_table ........................................................................... [3] Ran  
+  2025_08_05_000010_add_city_description_to_events ..................................................................................... [3] Ran  
+  2025_08_05_000012_create_kycs_table .................................................................................................. [3] Ran  
+  2025_08_05_000013_create_payments_table .............................................................................................. [3] Ran  
+  2025_08_05_100000_add_status_enum_to_kyc_table ....................................................................................... [4] Ran  
+  2025_08_06_000000_create_settings_table .............................................................................................. [1] Ran  
+  2025_08_06_000001_create_settings_table .............................................................................................. [4] Ran  
+  2025_08_06_050137_add_fields_to_certificates_table ................................................................................... [4] Ran  
+
+
+=== MAIN FOLDER STRUCTURE ===
+total 6388
+-rw-rw-r--  1 vminingc vminingc       0 Aug  6 13:25 ,
+-rw-rw-r--  1 vminingc vminingc       0 Aug  6 13:25 -
+-rw-rw-r--  1 vminingc vminingc       0 Aug  6 08:40 @php
+-rw-rw-r--  1 vminingc vminingc       0 Aug  6 14:46 AppHttpMiddlewareAdmin::class,
+-rw-rw-r--  1 vminingc vminingc       0 Aug  6 17:08 AppHttpMiddlewareAdminMiddleware::class,
+-rw-rw-r--  1 vminingc vminingc       0 Aug  6 17:08 AppHttpMiddlewareAuthenticate::class,
+-rw-rw-r--  1 vminingc vminingc       0 Aug  6 08:40 IlluminateFoundationComposerScripts::postAutoloadDump
+-rw-rw-r--  1 vminingc vminingc     707 Aug  6 08:28 README.md
+-rw-rw-r--  1 vminingc vminingc       0 Aug  6 13:25 [Top Volunteer
+-rw-rw-r--  1 vminingc vminingc       0 Aug  6 13:25 [Top Volunteer,
+-rw-rw-r--  1 vminingc vminingc       0 Aug  6 14:46 [],
+-rw-rw-r--  1 vminingc vminingc     315 Aug  7 08:56 about.blade.php
+-rwxrwxr-x  1 vminingc vminingc    7610 Aug  7 07:39 add_missing_features.sh
+drwxrwxr-x  2 vminingc vminingc    4096 Aug  7 05:09 admin
+drwxr-xr-x 10 vminingc vminingc    4096 Aug  6 08:40 app
+-rw-rw-r--  1 vminingc vminingc     713 Aug  7 05:57 app.blade.php
+-rw-rw-r--  1 vminingc vminingc     722 Aug  4 17:27 app.css
+-rw-r--r--  1 vminingc vminingc     350 Aug  4 12:07 artisan
+drwxr-xr-x  3 vminingc vminingc    4096 Aug  4 12:08 bootstrap
+-rwxrwxr-x  1 vminingc vminingc     173 Aug  6 16:28 build_frontend.sh
+drwxrwxr-x  2 vminingc vminingc    4096 Aug  7 05:09 certificates
+-rw-r--r--  1 vminingc vminingc    2576 Aug  7 08:04 composer.json
+-rw-r--r--  1 vminingc vminingc  360858 Aug  7 08:04 composer.lock
+drwxr-xr-x  2 vminingc vminingc    4096 Aug  5 09:25 config
+-rw-rw-r--  1 vminingc vminingc     167 Aug  7 05:09 contact.blade.php
+-rw-rw-r--  1 vminingc vminingc    3122 Aug  6 18:54 controllers_list.txt
+drwxrwxr-x  2 vminingc vminingc    4096 Aug  7 05:09 dashboard
+-rw-rw-r--  1 vminingc vminingc       0 Aug  6 13:25 data[message]
+drwxr-xr-x  5 vminingc vminingc    4096 Aug  6 12:25 database
+-rw-rw-r--  1 vminingc vminingc    4546 Aug  6 18:20 error_log
+drwxrwxr-x  2 vminingc vminingc    4096 Aug  7 05:09 events
+-rw-rw-r--  1 vminingc vminingc     163 Aug  7 05:09 faq.blade.php
+-rw-r--r--  1 vminingc vminingc       0 Aug  4 12:08 favicon.ico
+-rwxrwxr-x  1 vminingc vminingc     957 Aug  6 08:40 fix-images.sh
+-rwxrwxr-x  1 vminingc vminingc    1317 Aug  6 08:40 fix_images.sh
+-rwxrwxr-x  1 vminingc vminingc    4006 Aug  4 16:36 fix_routes_and_clear.sh
+drwxr-xr-x  5 vminingc vminingc    4096 Aug  4 12:08 frontend
+-rw-rw-r--  1 vminingc vminingc    4322 Aug  7 07:52 full_feature_additions.sh
+-rwxrwxr-x  1 vminingc vminingc     550 Aug  7 08:12 full_news_fix.sh
+-rw-rw-r--  1 vminingc vminingc     113 Aug  6 08:40 grant_privileges.sql
+-rw-r--r--  1 vminingc vminingc     393 Aug  4 12:08 index.php
+-rw-rw-r--  1 vminingc vminingc     275 Aug  6 13:49 insert_default_settings.sql
+drwxr-xr-x  2 vminingc vminingc    4096 Aug  4 12:08 js
+drwxrwxr-x  2 vminingc vminingc    4096 Aug  7 05:09 kyc
+-rw-rw-r--  1 vminingc vminingc 1284000 Aug  5 11:26 laravel-app-filetree.txt
+-rw-rw-r--  1 vminingc vminingc  961391 Aug  6 18:55 laravel_file_list.txt
+-rw-rw-r--  1 vminingc vminingc  963800 Aug  7 04:22 laravel_project_full_list.txt
+-rw-rw-r--  1 vminingc vminingc    1932 Aug  4 13:12 latest-errors.txt
+-rw-rw-r--  1 vminingc vminingc      97 Aug  6 16:17 mark_settings_migration.sql
+drwxrwxr-x  2 vminingc vminingc    4096 Aug  7 05:09 news
+drwxrwxr-x  2 vminingc vminingc    4096 Aug  7 05:09 opportunities
+drwxrwxr-x  2 vminingc vminingc    4096 Aug  7 05:09 organization
+-rw-r--r--  1 vminingc vminingc  130727 Aug  4 12:08 package-lock.json
+-rw-r--r--  1 vminingc vminingc     546 Aug  5 02:29 package.json
+-rwxrwxr-x  1 vminingc vminingc    4307 Aug  6 16:11 phase1_features.sh
+-rwxrwxr-x  1 vminingc vminingc    6632 Aug  6 16:12 phase2_features.sh
+-rwxrwxr-x  1 vminingc vminingc    4150 Aug  6 16:12 phase3_features.sh
+-rw-r--r--  1 vminingc vminingc    1191 Aug  4 12:08 phpunit.xml
+-rw-r--r--  1 vminingc vminingc      93 Aug  5 02:29 postcss.config.js
+drwxrwxr-x  2 vminingc vminingc    4096 Aug  7 05:09 profile
+-rw-rw-r--  1 vminingc vminingc 1276059 Aug  5 02:44 project-files.txt
+-rw-rw-r--  1 vminingc vminingc   31391 Aug  7 09:12 project_audit.txt
+-rw-rw-r--  1 vminingc vminingc   47162 Aug  6 08:40 project_structure.txt
+drwxr-xr-x 10 vminingc nobody      4096 Aug  6 17:13 public
+drwxrwxr-x  2 vminingc vminingc    4096 Aug  7 05:09 regions
+drwxr-xr-x  7 vminingc vminingc    4096 Aug  4 12:08 resources
+drwxr-xr-x  4 vminingc vminingc    4096 Aug  6 19:28 routes
+-rw-rw-r--  1 vminingc vminingc    1175 Aug  6 18:54 routes_list.txt
+drwxrwxr-x  7 vminingc vminingc    4096 Aug  4 12:08 storage
+-rw-rw-r--  1 vminingc vminingc 1006197 Aug  4 16:59 swaeduae_tree.txt
+drwxrwxr-x  5 vminingc vminingc    4096 Aug  6 08:28 swaeduae_updates
+-rw-rw-r--  1 vminingc vminingc    7611 Aug  6 08:28 swaeduae_updates (2).zip
+-rw-rw-r--  1 vminingc vminingc    4082 Aug  5 02:48 swaeduae_updates.sh
+-rw-r--r--  1 vminingc vminingc     541 Aug  5 02:29 tailwind.config.js
+drwxrwxr-x  2 vminingc vminingc    4096 Aug  7 05:09 teams
+drwxr-xr-x  4 vminingc vminingc    4096 Aug  4 12:07 tests
+-rw-r--r--  1 vminingc vminingc    6371 Aug  6 18:44 update_instructions.sh
+drwxr-xr-x 54 vminingc vminingc    4096 Aug  7 08:04 vendor
+-rw-r--r--  1 vminingc vminingc     263 Aug  5 02:29 vite.config.js
+drwxrwxr-x  2 vminingc vminingc    4096 Aug  7 05:09 volunteer
+-rw-rw-r--  1 vminingc vminingc     538 Aug  7 05:55 web.php
+-rw-rw-r--  1 vminingc vminingc     131 Aug  5 09:26 webpack.mix.js
+-rw-rw-r--  1 vminingc vminingc     167 Aug  7 05:09 welcome.blade.php
+-rw-rw-r--  1 vminingc vminingc       0 Aug  7 06:47 آخر الأخبار,
+-rw-rw-r--  1 vminingc vminingc       0 Aug  7 06:47 استكشف الفرص,
+-rw-rw-r--  1 vminingc vminingc       0 Aug  7 06:47 الاسم,
+-rw-rw-r--  1 vminingc vminingc       0 Aug  7 06:47 البريد الإلكتروني,
+-rw-rw-r--  1 vminingc vminingc       0 Aug  7 06:47 الفعاليات المنظمة,
+-rw-rw-r--  1 vminingc vminingc       0 Aug  7 06:47 المتطوعون المسجلون,
+-rw-rw-r--  1 vminingc vminingc       0 Aug  7 06:47 انضم إلى آلاف المتطوعين في جميع أنحاء الإمارات.,
+-rw-rw-r--  1 vminingc vminingc       0 Aug  7 06:47 تأكيد كلمة المرور,
+-rw-rw-r--  1 vminingc vminingc       0 Aug  7 06:47 تسجيل الدخول,
+-rw-rw-r--  1 vminingc vminingc       0 Aug  7 06:47 تسجيل,
+-rw-rw-r--  1 vminingc vminingc       0 Aug  7 06:47 ساعات التطوع,
+-rw-rw-r--  1 vminingc vminingc       0 Aug  7 06:47 سجل الآن,
+-rw-rw-r--  1 vminingc vminingc       0 Aug  7 06:47 كلمة المرور,
+-rw-rw-r--  1 vminingc vminingc       0 Aug  7 06:47 كن متطوعًا الآن,
+-rw-rw-r--  1 vminingc vminingc       0 Aug  7 06:47 لا توجد أخبار حالياً.
+-rw-rw-r--  1 vminingc vminingc       0 Aug  7 06:47 لا توجد أخبار حالياً.,
+-rw-rw-r--  1 vminingc vminingc       0 Aug  7 06:47 لا توجد فرص متاحة حالياً.,
+-rw-rw-r--  1 vminingc vminingc       0 Aug  7 06:47 هل لديك حساب؟,

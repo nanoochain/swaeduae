@@ -1,0 +1,340 @@
+### PHP & Laravel
+PHP 8.4.7 (cli) (built: May  8 2025 11:28:43) (NTS)
+Copyright (c) The PHP Group
+Zend Engine v4.4.7, Copyright (c) Zend Technologies
+Laravel Framework 11.45.1
+
+### ENV
+APP_ENV=unknown  APP_URL=unset  APP_LOCALE=
+
+### Route List (php artisan route:list)
+
+  GET|HEAD        / ....................................................................................................................... home
+                  ⇂ web
+  GET|HEAD        admin ................................................................. admin.dashboard › Admin\AdminDashboardController@index
+                  ⇂ web
+                  ⇂ Illuminate\Auth\Middleware\Authenticate
+                  ⇂ admin
+  GET|HEAD        admin/users ................................................................... admin.users.index › Admin\UserController@index
+                  ⇂ web
+                  ⇂ Illuminate\Auth\Middleware\Authenticate
+                  ⇂ admin
+  POST            admin/users ................................................................... admin.users.store › Admin\UserController@store
+                  ⇂ web
+                  ⇂ Illuminate\Auth\Middleware\Authenticate
+                  ⇂ admin
+  GET|HEAD        admin/users/create .......................................................... admin.users.create › Admin\UserController@create
+                  ⇂ web
+                  ⇂ Illuminate\Auth\Middleware\Authenticate
+                  ⇂ admin
+  GET|HEAD        admin/users/{user} .............................................................. admin.users.show › Admin\UserController@show
+                  ⇂ web
+                  ⇂ Illuminate\Auth\Middleware\Authenticate
+                  ⇂ admin
+  PUT|PATCH       admin/users/{user} .......................................................... admin.users.update › Admin\UserController@update
+                  ⇂ web
+                  ⇂ Illuminate\Auth\Middleware\Authenticate
+                  ⇂ admin
+  DELETE          admin/users/{user} ........................................................ admin.users.destroy › Admin\UserController@destroy
+                  ⇂ web
+                  ⇂ Illuminate\Auth\Middleware\Authenticate
+                  ⇂ admin
+  GET|HEAD        admin/users/{user}/edit ......................................................... admin.users.edit › Admin\UserController@edit
+                  ⇂ web
+                  ⇂ Illuminate\Auth\Middleware\Authenticate
+                  ⇂ admin
+  GET|HEAD        api/certificates ........................................................................ Api\MobileApiController@certificates
+                  ⇂ api
+                  ⇂ Illuminate\Auth\Middleware\Authenticate:sanctum
+  GET|HEAD        api/events .................................................................................... Api\MobileApiController@events
+                  ⇂ api
+                  ⇂ Illuminate\Auth\Middleware\Authenticate:sanctum
+  POST            api/events/register ................................................................. Api\MobileApiController@registerForEvent
+                  ⇂ api
+                  ⇂ Illuminate\Auth\Middleware\Authenticate:sanctum
+  POST            api/login ...................................................................................... Api\MobileApiController@login
+                  ⇂ api
+  POST            api/logout .................................................................................... Api\MobileApiController@logout
+                  ⇂ api
+                  ⇂ Illuminate\Auth\Middleware\Authenticate:sanctum
+  GET|HEAD        api/profile .................................................................................. Api\MobileApiController@profile
+                  ⇂ api
+                  ⇂ Illuminate\Auth\Middleware\Authenticate:sanctum
+  POST            api/register ................................................................................ Api\MobileApiController@register
+                  ⇂ api
+  GET|HEAD        sanctum/csrf-cookie ........................................ sanctum.csrf-cookie › Laravel\Sanctum › CsrfCookieController@show
+                  ⇂ web
+  GET|HEAD        storage/{path} ................................................................................................. storage.local
+  GET|HEAD        up ........................................................................................................................... 
+
+                                                                                                                             Showing [19] routes
+
+
+### Middleware Aliases (Kernel $routeMiddleware)
+class Kernel extends HttpKernel
+{
+    protected $middleware = [
+        \App\Http\Middleware\TrustProxies::class,
+        \Fruitcake\Cors\HandleCors::class,
+        \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
+        \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
+        \App\Http\Middleware\TrimStrings::class,
+        \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+    ];
+
+    protected $middlewareGroups = [
+        'web' => [
+            \App\Http\Middleware\SetLocale::class,
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            // \Illuminate\Session\Middleware\AuthenticateSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \App\Http\Middleware\VerifyCsrfToken::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ],
+
+        'api' => [
+            'throttle:api',
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ],
+    ];
+
+    protected $routeMiddleware = [
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        'auth' => \App\Http\Middleware\Authenticate::class,
+        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+        'can' => \Illuminate\Auth\Middleware\Authorize::class,
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
+        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+    ];
+}
+
+### AdminMiddleware.php
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Support\Facades\Auth;
+
+class AdminMiddleware
+{
+    public function handle($request, Closure $next)
+    {
+        if (!Auth::check() || !Auth::user()->is_admin) {
+            abort(403, 'Unauthorized');
+        }
+        return $next($request);
+    }
+}
+
+### web.php (first 300 lines)
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\UserController;
+
+// Public routes (login, home, etc)
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
+
+// Admin routes with middleware and prefix
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+
+    // User management routes
+    Route::resource('users', UserController::class);
+
+    // Add other admin routes here...
+});
+
+### api.php (first 220 lines)
+<?php
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\MobileApiController;
+
+Route::post('login', [MobileApiController::class, 'login']);
+Route::post('register', [MobileApiController::class, 'register']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('events', [MobileApiController::class, 'events']);
+    Route::post('events/register', [MobileApiController::class, 'registerForEvent']);
+    Route::get('certificates', [MobileApiController::class, 'certificates']);
+    Route::get('profile', [MobileApiController::class, 'profile']);
+    Route::post('logout', [MobileApiController::class, 'logout']);
+});
+
+### auth.php (first 220 lines)
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\Auth\ConfirmPasswordController;
+
+// Login Routes
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [LoginController::class, 'login']);
+
+// Logout Route
+Route::post('logout', [LogoutController::class, 'logout'])->name('logout');
+
+// Registration Routes
+Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('register', [RegisterController::class, 'register']);
+
+// Password Reset Routes
+Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
+
+// Email Verification Routes
+Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
+Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
+Route::post('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
+
+// Confirm Password Routes
+Route::get('password/confirm', [ConfirmPasswordController::class, 'showConfirmForm'])->name('password.confirm');
+Route::post('password/confirm', [ConfirmPasswordController::class, 'confirm']);
+
+### Views linking to named routes (about/contact/faq)
+resources/views/partials/header.blade.php:11:        <a href="{{ route('about') }}" class="hover:text-blue-600">About</a>
+resources/views/partials/header.blade.php:12:        <a href="{{ route('contact') }}" class="hover:text-blue-600">Contact</a>
+resources/views/public/partners.blade.php:26:        <p class="text-muted">Are you an organization? <a href="{{ route('contact') }}">Contact us</a> to become a partner.</p>
+resources/views/components/footer.blade.php:8:            <a href="{{ route('about') }}">About</a>
+resources/views/components/footer.blade.php:9:            <a href="{{ route('faq') }}">FAQ</a>
+resources/views/components/footer.blade.php:10:            <a href="{{ route('contact') }}">Contact</a>
+resources/views/layouts/app.blade.php:44:            <a href="{{ route('about') }}" style="margin-left:24px; color:#207744;">عن المنصة</a>
+resources/views/layouts/app.blade.php:45:            <a href="{{ route('contact') }}" style="margin-left:24px; color:#207744;">تواصل معنا</a>
+resources/views/layouts/app.blade.php:46:            <a href="{{ route('faq') }}" style="color:#207744;">الأسئلة الشائعة</a>
+
+### Controllers referenced under admin users
+<?php
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Http\Request;
+
+class UserController extends Controller
+{
+    public function index()
+    {
+        $users = User::paginate(15);
+        return view('admin.users.index', compact('users'));
+    }
+
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin.users.edit', compact('user'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->update($request->only(['name', 'email', 'role']));
+        return redirect()->route('admin.users.index')->with('success', 'User updated.');
+    }
+
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin.users.show', compact('user'));
+    }
+
+    // Add toggle method here
+    public function toggle($id)
+    {
+        $user = User::findOrFail($id);
+        $user->enabled = !$user->enabled;
+        $user->save();
+        return redirect()->route('admin.users.index');
+    }
+}
+
+### Stray files under routes/ (should be empty of controllers/views)
+routes/app/Http/Controllers/EventController.php
+routes/app/Http/Controllers/Auth/LoginController.php
+routes/app/Http/Controllers/Auth/RegisterController.php
+routes/app/Http/Controllers/VolunteerProfileController.php
+routes/app/Http/Controllers/VolunteerRegistrationController.php
+routes/app/Http/Controllers/VolunteerController.php
+routes/app/Http/Controllers/resources/lang/en/messages.php
+routes/app/Http/Controllers/resources/lang/ar/messages.php
+routes/app/Http/Controllers/NotificationController.php
+routes/app/Http/Controllers/LanguageController.php
+routes/app/Http/Controllers/web.php
+routes/resources/views/volunteer/profile_edit.blade.php
+routes/resources/views/volunteer/hours.blade.php
+routes/resources/views/volunteer/opportunity_detail.blade.php
+routes/resources/views/volunteer/public_profile.blade.php
+routes/resources/views/volunteer/certificates.blade.php
+routes/resources/views/volunteer/register.blade.php
+routes/resources/views/volunteer/leaderboard.blade.php
+routes/resources/views/volunteer/opportunities.blade.php
+routes/resources/views/volunteer/profile.blade.php
+routes/resources/views/volunteer/my_events.blade.php
+routes/resources/views/home.blade.php
+routes/resources/views/kyc/upload.blade.php
+routes/resources/views/kyc/show.blade.php
+routes/resources/views/certificates.blade.php
+routes/resources/views/organization/dashboard.blade.php
+routes/resources/views/organization/register.blade.php
+routes/resources/views/organization/login.blade.php
+routes/resources/views/admin/users.blade.php
+routes/resources/views/admin/news.blade.php
+routes/resources/views/admin/logs/index.blade.php
+routes/resources/views/admin/users/edit.blade.php
+routes/resources/views/admin/users/index.blade.php
+routes/resources/views/admin/users/show.blade.php
+routes/resources/views/admin/partners.blade.php
+routes/resources/views/admin/kyc/index.blade.php
+routes/resources/views/admin/settings/index.blade.php
+routes/resources/views/admin/certificates/edit.blade.php
+routes/resources/views/admin/certificates/create.blade.php
+routes/resources/views/admin/certificates/index.blade.php
+routes/resources/views/admin/certificates/show.blade.php
+routes/resources/views/admin/certificates.blade.php
+routes/resources/views/admin/kyc.blade.php
+routes/resources/views/admin/analytics/index.blade.php
+routes/resources/views/admin/partners/edit.blade.php
+routes/resources/views/admin/partners/create.blade.php
+routes/resources/views/admin/partners/index.blade.php
+routes/resources/views/admin/events.blade.php
+routes/resources/views/admin/organizations/edit.blade.php
+routes/resources/views/admin/organizations/index.blade.php
+routes/resources/views/admin/organizations/show.blade.php
+routes/resources/views/admin/settings.blade.php
+routes/resources/views/admin/events/edit.blade.php
+routes/resources/views/admin/events/info_form.blade.php
+routes/resources/views/admin/events/create.blade.php
+routes/resources/views/admin/events/index.blade.php
+routes/resources/views/admin/events/volunteers.blade.php
+routes/resources/views/admin/events/qr.blade.php
+routes/resources/views/admin/events/show.blade.php
+routes/resources/views/admin/news/edit.blade.php
+routes/resources/views/admin/news/create.blade.php
+routes/resources/views/admin/news/index.blade.php
+routes/resources/views/downloads.blade.php
+routes/resources/views/profile.blade.php
+routes/resources/views/news/index.blade.php
+routes/resources/views/news/show.blade.php
+routes/resources/views/teams/create.blade.php
+routes/resources/views/teams/index.blade.php
+routes/resources/views/teams/show.blade.php
+routes/resources/views/maintenance.blade.php

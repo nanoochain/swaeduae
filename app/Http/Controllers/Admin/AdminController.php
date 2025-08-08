@@ -3,39 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Models\Event;
-use App\Models\Opportunity;
-use App\Models\Certificate;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function dashboard()
     {
-        return view('admin.dashboard', [
-            'volunteers' => User::where('role', 'volunteer')->count(),
-            'organizations' => User::where('role', 'organization')->count(),
-            'events' => Event::count(),
-            'opportunities' => Opportunity::count(),
-            'certificates' => Certificate::count(),
-            'pendingVolunteers' => User::where('role', 'volunteer')->where('status', 'pending')->get(),
-        ]);
+        // Example dashboard logic (customize as needed)
+        return view('admin.dashboard');
     }
 
-    public function approveVolunteer($id)
+    // --- Users List Method ---
+    public function users()
     {
-        $user = User::findOrFail($id);
-        $user->status = 'approved';
-        $user->save();
-        return back()->with('success', 'Volunteer approved!');
-    }
-
-    public function rejectVolunteer($id)
-    {
-        $user = User::findOrFail($id);
-        $user->status = 'rejected';
-        $user->save();
-        return back()->with('success', 'Volunteer rejected!');
+        $users = User::all();
+        return view('admin.users', compact('users'));
     }
 }

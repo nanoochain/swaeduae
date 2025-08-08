@@ -1,28 +1,19 @@
 @extends('layouts.admin_theme')
-@section('title', 'Site Settings')
+
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>Settings</h2>
-</div>
-<div class="dashboard-card p-4">
-    <form method="POST" action="{{ route('admin.settings.update') }}">
-        @csrf
-        <div class="mb-3">
-            <label class="form-label">Site Name</label>
-            <input type="text" name="site_name" class="form-control" value="{{ $settings['site_name'] ?? '' }}">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Contact Email</label>
-            <input type="email" name="contact_email" class="form-control" value="{{ $settings['contact_email'] ?? '' }}">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Maintenance Mode</label>
-            <select name="maintenance_mode" class="form-select">
-                <option value="0" @if(!($settings['maintenance_mode'] ?? false)) selected @endif>No</option>
-                <option value="1" @if(($settings['maintenance_mode'] ?? false)) selected @endif>Yes</option>
-            </select>
-        </div>
-        <button class="btn btn-success">Save Changes</button>
-    </form>
-</div>
+<h1>Site Settings</h1>
+<form method="POST" action="{{ route('admin.settings.update') }}">
+@csrf
+<label>Site Name</label>
+<input type="text" name="site_name" value="{{ $settings['site_name'] ?? '' }}" />
+<label>Site Email</label>
+<input type="email" name="site_email" value="{{ $settings['site_email'] ?? '' }}" />
+<label>Facebook URL</label>
+<input type="url" name="facebook" value="{{ $settings['facebook'] ?? '' }}" />
+<label>Twitter URL</label>
+<input type="url" name="twitter" value="{{ $settings['twitter'] ?? '' }}" />
+<label>Instagram URL</label>
+<input type="url" name="instagram" value="{{ $settings['instagram'] ?? '' }}" />
+<button type="submit">Save Settings</button>
+</form>
 @endsection

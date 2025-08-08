@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\UserController;
+
+/*
+|--------------------------------------------------------------------------
+| Public Pages
+|--------------------------------------------------------------------------
+*/
+Route::view('/', 'welcome')->name('home');
+Route::view('/about', 'about')->name('about');
+Route::view('/contact', 'contact')->name('contact');
+Route::view('/faq', 'faq')->name('faq');
+
+/*
+|--------------------------------------------------------------------------
+| Auth Routes (Laravel UI / built-in)
+|--------------------------------------------------------------------------
+*/
+if (file_exists(__DIR__.'/auth.php')) {
+    require __DIR__.'/auth.php';
+}
+
+/*
+|--------------------------------------------------------------------------
+| Admin Area
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['web','auth','admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::resource('users', UserController::class);
+    Route::post('users/{user}/toggle', [UserController::class, 'toggle'])->name('users.toggle');
+});
+Route::get('/verify/{id}', [\App\Http\Controllers\CertificateVerifyController::class, 'verify'])->name('cert.verify');
+Route::middleware(['web','auth'])->get('/volunteer/hours', [\App\Http\Controllers\VolunteerHoursController::class, 'index'])->name('volunteer.hours');
+Route::middleware(['web','auth'])->post('/volunteer/hours', [\App\Http\Controllers\VolunteerHoursController::class, 'store'])->name('volunteer.hours.store');
+Route::middleware(['web','auth','admin'])->post('/admin/hours/{id}/approve', [\App\Http\Controllers\Admin\VolunteerHoursAdminController::class, 'approve'])->name('admin.hours.approve');
